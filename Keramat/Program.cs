@@ -10,6 +10,10 @@ namespace Keramat {
         static void Main() {
             ApplicationConfiguration.Initialize();
 
+            if (!Directory.Exists("data")) {
+                Directory.CreateDirectory("data");
+            }
+
             var host = Host.CreateDefaultBuilder()
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureContainer<ContainerBuilder>(builder => {
