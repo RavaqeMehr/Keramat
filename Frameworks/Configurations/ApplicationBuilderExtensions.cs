@@ -1,17 +1,16 @@
 ﻿using Common.Utilities;
 using Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services.DataInitializer;
 
 namespace Frameworks.Configurations {
     public static class ApplicationBuilderExtensions {
-        public static void AddDbContext(this IServiceCollection services, IConfiguration configuration) {
+        public static void AddDbContext(this IServiceCollection services) {
             services.AddDbContext<ApplicationDbContext>(options => {
                 options
-                    .UseSqlite(configuration.GetConnectionString("db"));
+                    .UseSqlite("Data Source=data/Keramat.db;");
             });
         }
 

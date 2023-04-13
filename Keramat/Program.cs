@@ -21,8 +21,7 @@ namespace Keramat {
                     builder.AddForms<Form>(typeof(Program));
                 })
                 .ConfigureServices((context, services) => {
-                    services
-                    .AddDbContext(context.Configuration);
+                    services.AddDbContext();
                 })
                 .Build();
 
