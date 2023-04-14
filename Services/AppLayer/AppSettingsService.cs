@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Services.AppLayer {
     public interface IAppSettingsService : ISingletonDependency {
-        Task<string> Get(string key);
+        Task Load();
+        string? Get(string key);
         Task Set(string key, string value);
     }
 
@@ -18,13 +19,12 @@ namespace Services.AppLayer {
             ) {
             this.settingsRepo = settingsRepo;
         }
+        public async Task Load() {
+            _settings = await settingsRepo.TableNoTracking.ToListAsync();
+        }
 
-        public async Task<string> Get(string key) {
-            if (_settings is null) {
-                _settings = await settingsRepo.TableNoTracking.ToListAsync();
-
-            }
-            return _settings.First(x => x.Key == key).Val;
+        public string? Get(string key) {
+            return _settings?.First(x => x.Key == key)?.Val;
         }
 
         public async Task Set(string key, string value) {
@@ -42,5 +42,7 @@ namespace Services.AppLayer {
                 _settings.Add(thisSetting);
             }
         }
+
+
     }
 }
