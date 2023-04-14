@@ -30,7 +30,7 @@ namespace Services.DataInitializer {
                 case 0:
                     settingsAdd.Add(new AppSetting {
                         Key = AppSettingsKeys.Last_Installed_Version,
-                        Val = appVersionService.VersionNumber().ToString()
+                        Val = thisVerNum.ToString()
                     });
 
                     settingsAdd.Add(new AppSetting {
@@ -41,6 +41,22 @@ namespace Services.DataInitializer {
                     settingsAdd.Add(new AppSetting {
                         Key = AppSettingsKeys.Ui_Fonts_Defaults_Size,
                         Val = "14"
+                    });
+
+                    goto case 1;
+                case 1:
+                    settingsAdd.Add(new AppSetting {
+                        Key = AppSettingsKeys.Charity_Name,
+                        Val = "خیریه کرامت"
+                    });
+                    settingsAdd.Add(new AppSetting {
+                        Key = AppSettingsKeys.Charity_Slogan,
+                        Val = "تعجیل در فرج آقاجان صاحب‌الزمان صلوات"
+                    });
+
+                    settingsUpdate.Add(new AppSetting {
+                        Key = AppSettingsKeys.Last_Installed_Version,
+                        Val = thisVerNum.ToString()
                     });
 
                     goto default;

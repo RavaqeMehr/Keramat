@@ -1,4 +1,5 @@
-﻿using Services.AppLayer;
+﻿using Entities.AppSettings;
+using Services.AppLayer;
 using Services.Ui;
 
 namespace Keramat.Forms.Dashboard {
@@ -35,6 +36,11 @@ namespace Keramat.Forms.Dashboard {
             lblTitle.Font = fontsService.FontByRatio(1.4);
             lblFooter.Text = $"نسخه: {appVersionService.VersionString()}";
             lblFooter.Font = fontsService.FontByRatio(0.8);
+
+            lblChrityName.Text = appSettingsService.Get(AppSettingsKeys.Charity_Name);
+            lblChrityName.Font = fontsService.FontByRatio(2);
+            lblCharitySlogan.Text = appSettingsService.Get(AppSettingsKeys.Charity_Slogan);
+            lblCharitySlogan.Font = fontsService.FontByRatio(1.2);
 
             addSideButtons();
         }

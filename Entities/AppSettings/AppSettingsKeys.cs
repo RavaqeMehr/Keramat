@@ -5,5 +5,8 @@
 
         public static string Ui_Fonts_Defaults_Family = "Ui_Fonts_Defaults_Family";
         public static string Ui_Fonts_Defaults_Size = "Ui_Fonts_Defaults_Size";
+
+        public static string Charity_Name = "Charity_Name";
+        public static string Charity_Slogan = "Charity_Slogan";
     }
 }
