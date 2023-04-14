@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Frameworks.Configurations;
+using Keramat.Forms.Dashboard;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -30,7 +31,7 @@ namespace Keramat {
             host.IntializeDatabase();
 
 
-            Application.Run(ServiceProvider.GetRequiredService<Form1>());
+            Application.Run(ServiceProvider.GetRequiredService<MainForm>());
         }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
