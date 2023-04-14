@@ -1,10 +1,10 @@
 ﻿using Data;
+using Entities.AppSettings;
 using Entities.ValiNematan;
-using Services.AppLayer;
 
 namespace Services.DataInitializer {
     public class ValiNematanSeed : IDataInitializer {
-        private readonly IAppVersionService appVersionService;
+        private readonly IRepository<AppSetting> appSettingRepo;
         private readonly IRepository<FamilyLevel> familyLevelRepo;
         private readonly IRepository<FamilyMemberNeedSubject> familyMemberNeedSubjectRepo;
         private readonly IRepository<FamilyNeedSubject> familyNeedSubjectRepo;
@@ -12,14 +12,14 @@ namespace Services.DataInitializer {
         private readonly IRepository<FamilyMemberSpecialDiseaseSubject> familyMemberSpecialDiseaseSubjectRepo;
 
         public ValiNematanSeed(
-            IAppVersionService appVersionService,
+            IRepository<AppSetting> appSettingRepo,
             IRepository<FamilyLevel> familyLevelRepo,
             IRepository<FamilyNeedSubject> familyNeedSubjectRepo,
             IRepository<FamilyMemberNeedSubject> familyMemberNeedSubjectRepo,
             IRepository<FamilyMemberRelation> familyMemberRelationRepo,
             IRepository<FamilyMemberSpecialDiseaseSubject> familyMemberSpecialDiseaseSubjectRepo
             ) {
-            this.appVersionService = appVersionService;
+            this.appSettingRepo = appSettingRepo;
             this.familyLevelRepo = familyLevelRepo;
             this.familyNeedSubjectRepo = familyNeedSubjectRepo;
             this.familyMemberNeedSubjectRepo = familyMemberNeedSubjectRepo;
@@ -27,10 +27,10 @@ namespace Services.DataInitializer {
             this.familyMemberSpecialDiseaseSubjectRepo = familyMemberSpecialDiseaseSubjectRepo;
         }
 
-        public int Order => 10;
+        public int Order => 1;
 
         public void InitializeData() {
-            var thisVerNum = appVersionService.VersionNumber();
+            var lastInstalledVerNum = int.Parse("0" + appSettingRepo.TableNoTracking.FirstOrDefault(x => x.Key == AppSettingsKeys.Last_Installed_Version)?.Val);
 
             var familyLevelAdd = new List<FamilyLevel>();
             var familyNeedSubjectAdd = new List<FamilyNeedSubject>();
@@ -38,7 +38,7 @@ namespace Services.DataInitializer {
             var familyMemberRelationAdd = new List<FamilyMemberRelation>();
             var familyMemberSpecialDiseaseSubjectAdd = new List<FamilyMemberSpecialDiseaseSubject>();
 
-            if (thisVerNum <= 2) {
+            if (lastInstalledVerNum <= 3) {
                 familyLevelAdd.Add(new FamilyLevel { Level = 1, Title = "نامشخص" });
                 familyLevelAdd.Add(new FamilyLevel { Level = 2, Title = "بحرانی" });
                 familyLevelAdd.Add(new FamilyLevel { Level = 3, Title = "خیلی محتاج" });

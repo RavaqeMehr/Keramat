@@ -16,7 +16,7 @@ namespace Services.DataInitializer {
             this.settingsRepo = settingsRepo;
         }
 
-        public int Order => 0;
+        public int Order => 10;
 
         public async void InitializeData() {
             var thisVerNum = appVersionService.VersionNumber();
@@ -54,14 +54,15 @@ namespace Services.DataInitializer {
                         Val = "تعجیل در فرج آقاجان صاحب‌الزمان صلوات"
                     });
 
-                    settingsUpdate.Add(new AppSetting {
-                        Key = AppSettingsKeys.Last_Installed_Version,
-                        Val = thisVerNum.ToString()
-                    });
-
                     goto default;
                 default:
                     break;
+            }
+
+            if (lastInstalledVer > 0) {
+                var savedVer = settingsRepo.TableNoTracking.First(x => x.Key == AppSettingsKeys.Last_Installed_Version);
+                savedVer.Val = thisVerNum.ToString();
+                settingsUpdate.Add(savedVer);
             }
 
             if (settingsAdd.Count > 0) {
