@@ -10,15 +10,19 @@ namespace Entities.ValiNematan {
         public int FamilyMemberRelationId { get; set; }
         public FamilyMemberRelation FamilyMemberRelation { get; set; }
 
+        public Gender Gender { get; set; } = Gender.NotSet;
+        public MaritalStatus MaritalStatus { get; set; } = MaritalStatus.NotSet;
+
         public string? Name { get; set; }
         public string? Phone { get; set; }
+        public string? NationalCode { get; set; }
 
         public string? Job { get; set; }
         public string? JobDescription { get; set; }
         public string? JobAdrees { get; set; }
         public string? JobPhone { get; set; }
 
-        public LiveStatus LiveStatus { get; set; }
+        public LiveStatus LiveStatus { get; set; } = LiveStatus.NotSet;
 
         public string? ImpreciseBirthDate { get; set; }
         public DateTime? BirthDate { get; set; }
@@ -33,6 +37,7 @@ namespace Entities.ValiNematan {
         public int? DeathDateD { get; set; }
 
         public virtual ObservableCollectionListSource<FamilyMemberNeed> Needs { get; } = new();
+        public virtual ObservableCollectionListSource<FamilyMemberSpecialDisease> SpecialDiseases { get; } = new();
 
     }
 }
