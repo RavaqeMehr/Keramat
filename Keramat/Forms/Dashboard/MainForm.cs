@@ -28,6 +28,7 @@ namespace Keramat.Forms.Dashboard {
             //this.Font = fontsService.Get()?.DefaultFont;
 
             load();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         void load() {
