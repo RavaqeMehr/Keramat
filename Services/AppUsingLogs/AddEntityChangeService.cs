@@ -21,7 +21,7 @@ namespace Services.AppUsingLogs {
         public async Task Exe(AddEntityChangeInputs inputs) {
             var now = DateTime.Now;
             var nowFa = now.ToPersianDateTime();
-            var changes = inputs.ObjA.Compare(inputs.ObjB).ToString();
+            var changes = inputs.ObjA.Compare(inputs.ObjB).Print();
 
             var item = new EntityChanges {
                 Date = now,
