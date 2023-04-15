@@ -32,9 +32,25 @@ namespace Frameworks.Configurations {
         }
 
         public static void AddForms<TForm>(this ContainerBuilder containerBuilder, Type programType) {
-            containerBuilder.RegisterAssemblyTypes(programType.Assembly)
+            var programAssembly = programType.Assembly;
+            containerBuilder.RegisterAssemblyTypes(programAssembly)
                     .AssignableTo<TForm>()
                     .InstancePerDependency();
+
+            containerBuilder.RegisterAssemblyTypes(programAssembly)
+                .AssignableTo<IScopedDependency>()
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+
+            containerBuilder.RegisterAssemblyTypes(programAssembly)
+                .AssignableTo<ITransientDependency>()
+                .AsImplementedInterfaces()
+                .InstancePerDependency();
+
+            containerBuilder.RegisterAssemblyTypes(programAssembly)
+                .AssignableTo<ISingletonDependency>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
     }
 }

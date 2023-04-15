@@ -1,4 +1,6 @@
 ﻿using Entities.AppSettings;
+using Keramat.Forms.ValiNematan;
+using Keramat.Utilities;
 using Services.AppLayer;
 using Services.Ui;
 
@@ -8,12 +10,14 @@ namespace Keramat.Forms.Dashboard {
         private readonly IFontsService fontsService;
         private readonly IAppSettingsService appSettingsService;
         private readonly IAppVersionService appVersionService;
+        private readonly IFormManager formManager;
 
         public MainForm(
             SplashForm splashForm,
             IFontsService fontsService,
             IAppSettingsService appSettingsService,
-            IAppVersionService appVersionService
+            IAppVersionService appVersionService,
+            IFormManager formManager
             ) {
 
             InitializeComponent();
@@ -21,6 +25,7 @@ namespace Keramat.Forms.Dashboard {
             this.fontsService = fontsService;
             this.appSettingsService = appSettingsService;
             this.appVersionService = appVersionService;
+            this.formManager = formManager;
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
@@ -76,7 +81,9 @@ namespace Keramat.Forms.Dashboard {
             var btn = sender as Button;
 
             switch (btn?.Name) {
-                case "":
+                case "valiNematan":
+                    var frm = formManager.Create<ValiNematanForm>();
+                    frm.Show();
                     break;
                 default:
                     break;
