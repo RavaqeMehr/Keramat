@@ -322,6 +322,15 @@ namespace Common.Utilities {
             return str.ToLower();
         }
 
+        public static string GetStringValue(this string? self) {
+            if (self is null) {
+                return "";
+            }
+            else {
+                return self.Trim();
+            }
+        }
+
     }
 }
 
