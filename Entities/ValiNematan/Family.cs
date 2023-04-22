@@ -12,8 +12,11 @@ namespace Entities.ValiNematan {
         [Display(Name = "آدرس")]
         public string Address { get; set; } = "";
         [Order]
+        [Display(Name = "کد سطح")]
+        public int LevelId { get; set; } = 1;
+        [Order]
         [Display(Name = "سطح")]
-        public int Level { get; set; }
+        public FamilyLevel Level { get; set; }
         [Order]
         [Display(Name = "ملاحظات")]
         public string Description { get; set; } = "";
