@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 namespace Keramat {
     internal static class Program {
         [STAThread]
-        static void Main() {
+        static async Task Main() {
             ApplicationConfiguration.Initialize();
 
             if (!Directory.Exists("data")) {
@@ -30,6 +30,9 @@ namespace Keramat {
 
             host.IntializeDatabase();
 
+            //var fontService = ServiceProvider.GetRequiredService<IFontsService>();
+            //await fontService.Load();
+            //Application.SetDefaultFont(fontService.FontByRatio(1));
 
             Application.Run(ServiceProvider.GetRequiredService<MainForm>());
         }
