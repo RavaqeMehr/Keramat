@@ -7,33 +7,33 @@ namespace Entities.ValiNematan {
     public class Family : BaseEntity {
         [Order]
         [Display(Name = "عنوان")]
-        public string? Title { get; set; }
+        public string Title { get; set; } = "";
         [Order]
         [Display(Name = "آدرس")]
-        public string? Address { get; set; }
+        public string Address { get; set; } = "";
         [Order]
         [Display(Name = "سطح")]
         public int Level { get; set; }
         [Order]
         [Display(Name = "ملاحظات")]
-        public string? Description { get; set; }
+        public string Description { get; set; } = "";
 
         [Order]
         [Display(Name = "نام رابط")]
-        public string? ContactPersonName { get; set; }
+        public string ContactPersonName { get; set; } = "";
         [Order]
         [Display(Name = "تلفن رابط")]
-        public string? ContactPersonPhone { get; set; }
+        public string ContactPersonPhone { get; set; } = "";
         [Order]
         [Display(Name = "ملاحظات رابط")]
-        public string? ContactPersonDescription { get; set; }
+        public string ContactPersonDescription { get; set; } = "";
 
         [Order]
         [Display(Name = "کد معرف")]
         public int? ConnectorId { get; set; }
         [Order]
         [Display(Name = "معرف")]
-        public Connector Connector { get; set; }
+        public Connector? Connector { get; set; }
 
         [Order]
         [Display(Name = "تاریخ درج")]

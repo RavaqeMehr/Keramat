@@ -29,26 +29,29 @@ namespace Entities.ValiNematan {
 
         [Order]
         [Display(Name = "نام")]
-        public string? Name { get; set; }
+        public string Name { get; set; }
         [Order]
         [Display(Name = "تلفن")]
-        public string? Phone { get; set; }
+        public string Phone { get; set; }
         [Order]
         [Display(Name = "کد ملی")]
-        public string? NationalCode { get; set; }
+        public string NationalCode { get; set; }
+        [Order]
+        [Display(Name = "ملاحظات")]
+        public string Description { get; set; }
 
         [Order]
         [Display(Name = "شغل")]
-        public string? Job { get; set; }
+        public string Job { get; set; }
         [Order]
         [Display(Name = "ملاحظات شغل")]
-        public string? JobDescription { get; set; }
+        public string JobDescription { get; set; }
         [Order]
         [Display(Name = "آدرس محل‌کار")]
-        public string? JobAdrees { get; set; }
+        public string JobAddress { get; set; }
         [Order]
         [Display(Name = "تلفن محل‌کار")]
-        public string? JobPhone { get; set; }
+        public string JobPhone { get; set; }
 
         [Order]
         [Display(Name = "وضعیت حیات")]
@@ -56,7 +59,7 @@ namespace Entities.ValiNematan {
 
         [Order]
         [Display(Name = "تاریخ غیر دقیق تولد")]
-        public string? ImpreciseBirthDate { get; set; }
+        public string ImpreciseBirthDate { get; set; }
         [Order]
         [Display(Name = "تاریخ تولد")]
         public DateTime? BirthDate { get; set; }
@@ -72,7 +75,7 @@ namespace Entities.ValiNematan {
 
         [Order]
         [Display(Name = "تاریخ غیر دقیق وفات/شهادت")]
-        public string? ImpreciseDeathDate { get; set; }
+        public string ImpreciseDeathDate { get; set; }
         [Order]
         [Display(Name = "تاریخ وفات/شهادت")]
         public DateTime? DeathDate { get; set; }
