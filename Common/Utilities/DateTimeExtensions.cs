@@ -21,6 +21,11 @@ namespace Common.Utilities {
             return $"{sh.Year:0000}/{sh.Month:00}/{sh.Day:00}-{sh.Hour:00}:{sh.Minute:00}:{sh.Second:00}";
         }
 
+        public static string ToPersianDateString(this DateTime dateTime) {
+            var sh = dateTime.ToPersianDateTime();
+            return $"{sh.Year:0000}/{sh.Month:00}/{sh.Day:00}";
+        }
+
         private static string[] PersianDays = new string[] { "یک‌شنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه" };
         public static string GetPersianDayString(this DateTime dateTime) => PersianDays[(int)dateTime.DayOfWeek];
 
