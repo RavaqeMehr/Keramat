@@ -8,7 +8,7 @@ using Services.ValiNematan.Models;
 
 namespace Services.ValiNematan {
     public interface IGetFamiliesListService : ITransientDependency {
-        Task<WithPagination<GetFamiliesListItemDto>> Search(string search, int page = 1);
+        Task<WithPagination<GetFamiliesListItemDto>> Search(string search = "", int page = 1);
         //Task<List<GetFamiliesListItemDto>> SearchPro(string search, int page=1);
     }
 
@@ -21,10 +21,11 @@ namespace Services.ValiNematan {
             this.familyRepo = familyRepo;
         }
 
-        public async Task<WithPagination<GetFamiliesListItemDto>> Search(string? search, int page = 1) {
+        public async Task<WithPagination<GetFamiliesListItemDto>> Search(string search = "", int page = 1) {
             var s = search.GetStringValue();
 
             IQueryable<Family> listAll = familyRepo.TableNoTracking
+                .Include(x => x.Level)
                 .Include(x => x.Members);
 
             if (s.Length > 0) {
@@ -60,10 +61,19 @@ namespace Services.ValiNematan {
                 .Select(x => new GetFamiliesListItemDto {
                     Id = x.Id,
                     Title = x.Title,
-                    Level = x.Level,
-                    MembersCount = x.Members.Count(m => m.LiveStatus != Enums.LiveStatus.Dead || m.LiveStatus != Enums.LiveStatus.Martyr)
+                    Level = x.Level.Title ?? x.Level.Level.ToString(),
+                    MembersCount = x.Members.Count(m => m.LiveStatus != Enums.LiveStatus.Dead || m.LiveStatus != Enums.LiveStatus.Martyr),
+                    AddDate = x.AddDate.ToPersianDateString()
                 })
                 .ToListAsync();
+
+            //output.Items.Add(new GetFamiliesListItemDto {
+            //    Id = 100,
+            //    Title = "تست",
+            //    Level = "نامشخص",
+            //    MembersCount = 5,
+            //    AddDate = DateTime.Now.ToPersianDateString()
+            //});
 
             return output;
         }
