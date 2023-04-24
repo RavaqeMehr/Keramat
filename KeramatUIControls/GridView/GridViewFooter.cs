@@ -50,7 +50,7 @@ namespace KeramatUIControls.GridView {
                         Dock = DockStyle.Fill,
                         TextAlign = ContentAlignment.MiddleCenter,
                         RightToLeft = RightToLeft.Yes,
-                        Font = this.Font.ByRatio(2),
+                        Font = this.Font.ByRatio(1.2),
                         Text = "موردی جهت نمایش وجود ندارد!"
                     };
 
