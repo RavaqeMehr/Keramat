@@ -1,6 +1,7 @@
 ﻿#pragma warning disable CA1416 // Validate platform compatibility // Just in windows
 
 using Common;
+using Common.Utilities;
 using Entities.AppSettings;
 using Services.AppLayer;
 using Services.Ui.Models;
@@ -51,7 +52,7 @@ namespace Services.Ui {
         }
 
         public Font FontByRatio(double ratio) {
-            return new Font(_dto.DefaultFontFamily, _dto.DefaultFontSize * (float)ratio);
+            return _dto.DefaultFont.ByRatio(ratio);
         }
     }
 }
