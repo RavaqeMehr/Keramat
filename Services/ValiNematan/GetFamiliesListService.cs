@@ -67,13 +67,22 @@ namespace Services.ValiNematan {
                 })
                 .ToListAsync();
 
-            //output.Items.Add(new GetFamiliesListItemDto {
-            //    Id = 100,
-            //    Title = "تست",
-            //    Level = "نامشخص",
-            //    MembersCount = 5,
-            //    AddDate = DateTime.Now.ToPersianDateString()
-            //});
+
+            #region Fake
+            //List<GetFamiliesListItemDto> fakeData = new();
+            //for (int i = 0; i < 1340; i++) {
+            //    fakeData.Add(new GetFamiliesListItemDto {
+            //        Id = 100 + i,
+            //        Title = "تست",
+            //        Level = "نامشخص",
+            //        MembersCount = i % 7,
+            //        AddDate = DateTime.Now.ToPersianDateString()
+            //    });
+            //}
+            //output.Fill(fakeData, page, perPage);
+            //output.Items = fakeData.Skip((page - 1) * perPage).Take(perPage).ToList();
+            #endregion
+
 
             return output;
         }
