@@ -28,11 +28,14 @@
             // GridViewFooter
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.Green;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.MaximumSize = new System.Drawing.Size(10000, 50);
-            this.MinimumSize = new System.Drawing.Size(0, 50);
+            this.MinimumSize = new System.Drawing.Size(600, 50);
             this.Name = "GridViewFooter";
             this.Size = new System.Drawing.Size(675, 50);
+            this.Load += new System.EventHandler(this.GridViewFooter_Load);
+            this.Resize += new System.EventHandler(this.GridViewFooter_Resize);
             this.ResumeLayout(false);
 
         }
