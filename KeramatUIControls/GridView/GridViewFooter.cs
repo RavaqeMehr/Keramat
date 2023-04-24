@@ -137,7 +137,7 @@ namespace KeramatUIControls.GridView {
                     ctls.Add(pnl);
                     ctls.Add(new Label {
                         //BorderStyle = BorderStyle.FixedSingle,
-                        AutoSize = false,
+                        AutoSize = true,
                         Dock = DockStyle.Right,
                         Width = 150,
                         TextAlign = ContentAlignment.MiddleLeft,
@@ -149,7 +149,7 @@ namespace KeramatUIControls.GridView {
 
                     ctls.Add(new Label {
                         //BorderStyle = BorderStyle.FixedSingle,
-                        AutoSize = false,
+                        AutoSize = true,
                         Dock = DockStyle.Left,
                         Width = 150,
                         TextAlign = ContentAlignment.MiddleRight,
@@ -201,9 +201,12 @@ namespace KeramatUIControls.GridView {
         private void GridViewFooter_Resize(object? sender, EventArgs? e) {
             Panel? pnl = this.Controls.OfType<FlowLayoutPanel>().FirstOrDefault();
             if (pnl is not null) {
-                var w = pnl.Width;
-                var childrenW = 330;
-                pnl.Padding = new Padding(5, 5, (w - childrenW) / 2, 0);
+                var w = this.ClientSize.Width;
+                //var pW = pnl.ClientSize.Width;
+                var cW = pnl.Controls.OfType<Control>().Sum(x => x.Width + x.Margin.Left + x.Margin.Right);
+                var l = this.Controls.OfType<Label>().FirstOrDefault();
+                var lW = l.Width + l.Margin.Left + l.Margin.Right;
+                pnl.Padding = new Padding(0, 5, ((w - cW) / 2) - lW, 0);
             }
         }
     }
