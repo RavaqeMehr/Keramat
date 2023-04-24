@@ -8,21 +8,16 @@ namespace Services.ComonModels {
         public int CurrentPage { get; set; }
         public List<TList>? Items { get; set; }
 
-        //public WithPagination() { }
-        //public WithPagination(IQueryable<object> listAllQueryable, int page, int itemsPerPage = 100) {
-        //    async void asyncer() {
-        //        this.ItemsPerPage = itemsPerPage;
-        //        this.TotalItems = await listAllQueryable.CountAsync();
-        //        this.CurrentPage = page;
-        //        this.TotalPages = (int)Math.Ceiling(this.TotalItems / (decimal)this.ItemsPerPage);
-        //    }
-
-        //    asyncer();
-        //}
-
         public async Task Fill(IQueryable<object> listAllQueryable, int page, int itemsPerPage = 100) {
             this.ItemsPerPage = itemsPerPage;
             this.TotalItems = await listAllQueryable.CountAsync();
+            this.CurrentPage = page;
+            this.TotalPages = (int)Math.Ceiling(this.TotalItems / (decimal)this.ItemsPerPage);
+        }
+
+        public void Fill<T>(List<T> listAll, int page, int itemsPerPage = 100) {
+            this.ItemsPerPage = itemsPerPage;
+            this.TotalItems = listAll.Count;
             this.CurrentPage = page;
             this.TotalPages = (int)Math.Ceiling(this.TotalItems / (decimal)this.ItemsPerPage);
         }
