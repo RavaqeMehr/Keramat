@@ -8,7 +8,15 @@ namespace Common.Utilities {
             var properties = typeof(T)
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(x => !x.GetMethod.IsVirtual)
-                .OrderBy(x => x.GetCustomAttributes<OrderAttribute>(false).FirstOrDefault()?.Order ?? 0);
+                //.Where(x => !x.GetAccessors().Any(a => a.IsVirtual))
+                .OrderBy(x => x.GetCustomAttributes<OrderAttribute>(false).FirstOrDefault()?.Order ?? 0)
+                .ToList();
+
+            if (NotAllowdBaseInterface is not null) {
+                properties = properties
+                .Where(x => !x.PropertyType.GetInterfaces().Any(i => i == NotAllowdBaseInterface))
+                .ToList();
+            }
             foreach (var property in properties) {
                 var v = new Variance {
                     PropName = property.GetDisplayName() ?? property.Name,
