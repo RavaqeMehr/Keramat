@@ -25,25 +25,26 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ValiNematanForm));
             this.toolBox = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.btnAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.پاکسازیفرمجستجوToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSearch = new System.Windows.Forms.ToolStripSplitButton();
+            this.btnClearSearch = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.معرفهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.سطحبندیخانوادههاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.نیازخانوادههاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.نیازاعضایخانوادههاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.بیماریهایخاصToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.روابطاعضایخانوادهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnOthers = new System.Windows.Forms.ToolStripDropDownButton();
+            this.btnConnector = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLevel = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnFamilyNeeds = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnMemebersNeeds = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSpecialDiseases = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnRelations = new System.Windows.Forms.ToolStripMenuItem();
             this.grid = new System.Windows.Forms.DataGridView();
             this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gridFooter = new KeramatUIControls.GridView.GridViewFooter();
             this.toolBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
@@ -52,13 +53,12 @@
             // 
             this.toolBox.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
+            this.btnAdd,
             this.toolStripSeparator1,
-            this.toolStripButton2,
             this.txtSearch,
-            this.toolStripSplitButton1,
+            this.btnSearch,
             this.toolStripSeparator2,
-            this.toolStripDropDownButton1});
+            this.btnOthers});
             this.toolBox.Location = new System.Drawing.Point(0, 0);
             this.toolBox.Name = "toolBox";
             this.toolBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -66,28 +66,19 @@
             this.toolBox.TabIndex = 0;
             this.toolBox.Text = "toolBox";
             // 
-            // toolStripButton1
+            // btnAdd
             // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(44, 35);
-            this.toolStripButton1.Text = "افزودن";
-            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.Image")));
+            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(44, 35);
+            this.btnAdd.Text = "افزودن";
+            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(94, 35);
-            this.toolStripButton2.Text = "جستجوی پیشرفته";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // txtSearch
             // 
@@ -97,79 +88,81 @@
             this.txtSearch.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.ToolTipText = "جستجوی ساده";
             // 
-            // toolStripSplitButton1
+            // btnSearch
             // 
-            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.پاکسازیفرمجستجوToolStripMenuItem});
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(57, 35);
-            this.toolStripSplitButton1.Text = "جستجو";
-            this.toolStripSplitButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSearch.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnClearSearch});
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(57, 35);
+            this.btnSearch.Text = "جستجو";
+            this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSearch.ButtonClick += new System.EventHandler(this.btnSearch_ButtonClick);
             // 
-            // پاکسازیفرمجستجوToolStripMenuItem
+            // btnClearSearch
             // 
-            this.پاکسازیفرمجستجوToolStripMenuItem.Name = "پاکسازیفرمجستجوToolStripMenuItem";
-            this.پاکسازیفرمجستجوToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.پاکسازیفرمجستجوToolStripMenuItem.Text = "پاکسازی فرم جستجو";
+            this.btnClearSearch.Name = "btnClearSearch";
+            this.btnClearSearch.Size = new System.Drawing.Size(180, 22);
+            this.btnClearSearch.Text = "پاکسازی فرم جستجو";
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
             // 
-            // toolStripDropDownButton1
+            // btnOthers
             // 
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.معرفهاToolStripMenuItem,
-            this.سطحبندیخانوادههاToolStripMenuItem,
-            this.نیازخانوادههاToolStripMenuItem,
-            this.نیازاعضایخانوادههاToolStripMenuItem,
-            this.بیماریهایخاصToolStripMenuItem,
-            this.روابطاعضایخانوادهToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(125, 35);
-            this.toolStripDropDownButton1.Text = "مدیریت موارد تکمیلی";
-            this.toolStripDropDownButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOthers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnConnector,
+            this.btnLevel,
+            this.btnFamilyNeeds,
+            this.btnMemebersNeeds,
+            this.btnSpecialDiseases,
+            this.btnRelations});
+            this.btnOthers.Image = ((System.Drawing.Image)(resources.GetObject("btnOthers.Image")));
+            this.btnOthers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnOthers.Name = "btnOthers";
+            this.btnOthers.Size = new System.Drawing.Size(125, 35);
+            this.btnOthers.Text = "مدیریت موارد تکمیلی";
+            this.btnOthers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // معرفهاToolStripMenuItem
+            // btnConnector
             // 
-            this.معرفهاToolStripMenuItem.Name = "معرفهاToolStripMenuItem";
-            this.معرفهاToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.معرفهاToolStripMenuItem.Text = "معرف‌ها";
+            this.btnConnector.Name = "btnConnector";
+            this.btnConnector.Size = new System.Drawing.Size(180, 22);
+            this.btnConnector.Text = "معرف‌ها";
             // 
-            // سطحبندیخانوادههاToolStripMenuItem
+            // btnLevel
             // 
-            this.سطحبندیخانوادههاToolStripMenuItem.Name = "سطحبندیخانوادههاToolStripMenuItem";
-            this.سطحبندیخانوادههاToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.سطحبندیخانوادههاToolStripMenuItem.Text = "سطح‌بندی خانواده‌ها";
+            this.btnLevel.Name = "btnLevel";
+            this.btnLevel.Size = new System.Drawing.Size(180, 22);
+            this.btnLevel.Text = "سطح‌بندی خانواده‌ها";
             // 
-            // نیازخانوادههاToolStripMenuItem
+            // btnFamilyNeeds
             // 
-            this.نیازخانوادههاToolStripMenuItem.Name = "نیازخانوادههاToolStripMenuItem";
-            this.نیازخانوادههاToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.نیازخانوادههاToolStripMenuItem.Text = "نیاز خانواده‌ها";
+            this.btnFamilyNeeds.Name = "btnFamilyNeeds";
+            this.btnFamilyNeeds.Size = new System.Drawing.Size(180, 22);
+            this.btnFamilyNeeds.Text = "نیاز خانواده‌ها";
             // 
-            // نیازاعضایخانوادههاToolStripMenuItem
+            // btnMemebersNeeds
             // 
-            this.نیازاعضایخانوادههاToolStripMenuItem.Name = "نیازاعضایخانوادههاToolStripMenuItem";
-            this.نیازاعضایخانوادههاToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.نیازاعضایخانوادههاToolStripMenuItem.Text = "نیاز اعضای خانواده‌ها";
+            this.btnMemebersNeeds.Name = "btnMemebersNeeds";
+            this.btnMemebersNeeds.Size = new System.Drawing.Size(180, 22);
+            this.btnMemebersNeeds.Text = "نیاز اعضای خانواده‌ها";
             // 
-            // بیماریهایخاصToolStripMenuItem
+            // btnSpecialDiseases
             // 
-            this.بیماریهایخاصToolStripMenuItem.Name = "بیماریهایخاصToolStripMenuItem";
-            this.بیماریهایخاصToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.بیماریهایخاصToolStripMenuItem.Text = "بیماری‌های خاص";
+            this.btnSpecialDiseases.Name = "btnSpecialDiseases";
+            this.btnSpecialDiseases.Size = new System.Drawing.Size(180, 22);
+            this.btnSpecialDiseases.Text = "بیماری‌های خاص";
             // 
-            // روابطاعضایخانوادهToolStripMenuItem
+            // btnRelations
             // 
-            this.روابطاعضایخانوادهToolStripMenuItem.Name = "روابطاعضایخانوادهToolStripMenuItem";
-            this.روابطاعضایخانوادهToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.روابطاعضایخانوادهToolStripMenuItem.Text = "روابط اعضای خانواده";
+            this.btnRelations.Name = "btnRelations";
+            this.btnRelations.Size = new System.Drawing.Size(180, 22);
+            this.btnRelations.Text = "روابط اعضای خانواده";
             // 
             // grid
             // 
@@ -181,6 +174,7 @@
             this.cId,
             this.cTitle,
             this.cLevel,
+            this.cCount,
             this.cDate});
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -193,11 +187,12 @@
             this.grid.RowTemplate.Height = 25;
             this.grid.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid.Size = new System.Drawing.Size(584, 323);
+            this.grid.Size = new System.Drawing.Size(584, 273);
             this.grid.TabIndex = 1;
             // 
             // cId
             // 
+            this.cId.DataPropertyName = "Id";
             this.cId.FillWeight = 1F;
             this.cId.Frozen = true;
             this.cId.HeaderText = "کد";
@@ -208,6 +203,7 @@
             // cTitle
             // 
             this.cTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cTitle.DataPropertyName = "Title";
             this.cTitle.FillWeight = 10F;
             this.cTitle.HeaderText = "عنوان";
             this.cTitle.Name = "cTitle";
@@ -216,18 +212,43 @@
             // cLevel
             // 
             this.cLevel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cLevel.DataPropertyName = "Level";
             this.cLevel.FillWeight = 3F;
             this.cLevel.HeaderText = "سطح";
             this.cLevel.Name = "cLevel";
             this.cLevel.ReadOnly = true;
             // 
+            // cCount
+            // 
+            this.cCount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cCount.DataPropertyName = "MembersCount";
+            this.cCount.FillWeight = 2F;
+            this.cCount.HeaderText = "تعداد اعضاء";
+            this.cCount.Name = "cCount";
+            this.cCount.ReadOnly = true;
+            // 
             // cDate
             // 
             this.cDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cDate.DataPropertyName = "AddDate";
             this.cDate.FillWeight = 3F;
             this.cDate.HeaderText = "تاریخ درج";
             this.cDate.Name = "cDate";
             this.cDate.ReadOnly = true;
+            // 
+            // gridFooter
+            // 
+            this.gridFooter.BackColor = System.Drawing.Color.Silver;
+            this.gridFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gridFooter.Location = new System.Drawing.Point(0, 311);
+            this.gridFooter.Margin = new System.Windows.Forms.Padding(0);
+            this.gridFooter.MaximumSize = new System.Drawing.Size(10000, 50);
+            this.gridFooter.MinimumSize = new System.Drawing.Size(0, 50);
+            this.gridFooter.Name = "gridFooter";
+            this.gridFooter.Pagination = null;
+            this.gridFooter.Size = new System.Drawing.Size(584, 50);
+            this.gridFooter.TabIndex = 2;
+            this.gridFooter.PageChange += new KeramatUIControls.GridView.GridViewFooter.PageChangeHandler(this.gridFooter_PageChange);
             // 
             // ValiNematanForm
             // 
@@ -235,10 +256,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
             this.Controls.Add(this.grid);
+            this.Controls.Add(this.gridFooter);
             this.Controls.Add(this.toolBox);
             this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "ValiNematanForm";
-            this.Text = "ValiNematanForm";
+            this.Text = "ولی‌نعمتان";
+            this.Load += new System.EventHandler(this.ValiNematanForm_Load);
             this.toolBox.ResumeLayout(false);
             this.toolBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
@@ -250,24 +273,25 @@
         #endregion
 
         private ToolStrip toolBox;
-        private ToolStripButton toolStripButton1;
+        private ToolStripButton btnAdd;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton toolStripButton2;
         private ToolStripTextBox txtSearch;
-        private ToolStripSplitButton toolStripSplitButton1;
-        private ToolStripMenuItem پاکسازیفرمجستجوToolStripMenuItem;
+        private ToolStripSplitButton btnSearch;
+        private ToolStripMenuItem btnClearSearch;
         private ToolStripSeparator toolStripSeparator2;
-        private ToolStripDropDownButton toolStripDropDownButton1;
-        private ToolStripMenuItem معرفهاToolStripMenuItem;
-        private ToolStripMenuItem سطحبندیخانوادههاToolStripMenuItem;
-        private ToolStripMenuItem نیازخانوادههاToolStripMenuItem;
-        private ToolStripMenuItem نیازاعضایخانوادههاToolStripMenuItem;
-        private ToolStripMenuItem بیماریهایخاصToolStripMenuItem;
-        private ToolStripMenuItem روابطاعضایخانوادهToolStripMenuItem;
+        private ToolStripDropDownButton btnOthers;
+        private ToolStripMenuItem btnConnector;
+        private ToolStripMenuItem btnLevel;
+        private ToolStripMenuItem btnFamilyNeeds;
+        private ToolStripMenuItem btnMemebersNeeds;
+        private ToolStripMenuItem btnSpecialDiseases;
+        private ToolStripMenuItem btnRelations;
         private DataGridView grid;
         private DataGridViewTextBoxColumn cId;
         private DataGridViewTextBoxColumn cTitle;
         private DataGridViewTextBoxColumn cLevel;
+        private DataGridViewTextBoxColumn cCount;
         private DataGridViewTextBoxColumn cDate;
+        private KeramatUIControls.GridView.GridViewFooter gridFooter;
     }
 }

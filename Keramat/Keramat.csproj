@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Frameworks\Frameworks.csproj" />
+		<ProjectReference Include="..\KeramatUIControls\KeramatUIControls.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
