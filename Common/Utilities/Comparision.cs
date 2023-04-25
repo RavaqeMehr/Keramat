@@ -3,7 +3,7 @@
 namespace Common.Utilities {
 
     public static class Comparision {
-        public static List<Variance> Compare<T>(this T val1, T val2) {
+        public static List<Variance> Compare<T>(this T val1, T val2, Type? NotAllowdBaseInterface = null) {
             var variances = new List<Variance>();
             var properties = typeof(T)
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
