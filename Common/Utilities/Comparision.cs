@@ -12,8 +12,9 @@ namespace Common.Utilities {
             foreach (var property in properties) {
                 var v = new Variance {
                     PropName = property.GetDisplayName() ?? property.Name,
-                    valA = property.GetValue(val1),
-                    valB = property.GetValue(val2)
+                    valA = property.GetValue(val1).NullIfEmpty(),
+                    //valB = property.GetValue(val2)
+                    valB = val2 == null ? null : property.GetValue(val2).NullIfEmpty()
                 };
                 if (v.valA == null && v.valB == null) {
                     continue;
