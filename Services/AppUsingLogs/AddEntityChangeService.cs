@@ -11,11 +11,14 @@ namespace Services.AppUsingLogs {
     }
 
     public class AddEntityChangeService : IAddEntityChangeService {
+        private readonly IAppSessionService appSessionService;
         private readonly IRepository<EntityChanges> entityChangesRepo;
 
         public AddEntityChangeService(
+            IAppSessionService appSessionService,
             IRepository<EntityChanges> entityChangesRepo
             ) {
+            this.appSessionService = appSessionService;
             this.entityChangesRepo = entityChangesRepo;
         }
 
@@ -26,6 +29,7 @@ namespace Services.AppUsingLogs {
             var changes = inputs.ChangeType == ChangeType.Edit ? diff.Print() : diff.PrintA();
 
             var item = new EntityChanges {
+                AppSessionId = appSessionService.ThisSession.Id,
                 Date = now,
                 DateY = nowFa.Year,
                 DateM = nowFa.Month,

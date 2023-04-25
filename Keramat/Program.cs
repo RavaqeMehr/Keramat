@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Common.Utilities;
 using Frameworks.Configurations;
 using Keramat.Forms.Dashboard;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,8 @@ namespace Keramat {
 
         [STAThread]
         static async Task Main(string[] args) {
-            if (args.Length == 0) //Main App Process.
+            Console.WriteLine(args.ToJSON());
+            if (args.Length == 0 || args[0] == "--applicationName") //Main App Process.
             {
                 ApplicationConfiguration.Initialize();
 

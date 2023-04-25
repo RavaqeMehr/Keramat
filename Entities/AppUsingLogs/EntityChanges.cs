@@ -2,6 +2,9 @@
 
 namespace Entities.AppUsingLogs {
     public class EntityChanges : BaseEntity<long> {
+        public int AppSessionId { get; set; }
+        public AppSession AppSession { get; set; }
+
         public DateTime Date { get; set; }
         public int DateY { get; set; }
         public int DateM { get; set; }
