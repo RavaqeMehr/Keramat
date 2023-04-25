@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Common.Utilities {
 
@@ -35,13 +34,15 @@ namespace Common.Utilities {
         }
 
         public static string? Print(this List<Variance> variances) {
-            string? output = null;
-            foreach (var item in variances) {
-                output += $"\n[{item.PropName.GetDisplayNameOrValue()}]: {{{item.valA}}} => {{{item.valB}}}";
-            }
+            var lines = variances.Select(x => $"[{x.PropName.GetDisplayNameOrValue()}]: {{{x.valA}}} => {{{x.valB}}}");
 
-            Debug.WriteLine(output);
-            return output is null ? null : output.Substring(1);
+            return lines.Count() == 0 ? null : string.Join("\n", lines);
+        }
+
+        public static string? PrintA(this List<Variance> variances) {
+            var lines = variances.Select(x => $"[{x.PropName.GetDisplayNameOrValue()}]: {{{x.valA}}}");
+
+            return lines.Count() == 0 ? null : string.Join("\n", lines);
         }
     }
 

@@ -1,4 +1,4 @@
-using Common.Utilities;
+﻿using Common.Utilities;
 using Entities.ValiNematan;
 using Assert = NUnit.Framework.Assert;
 
@@ -36,9 +36,17 @@ namespace Tests {
         }
 
         [Test]
+        public void TestCompare2() {
+            var obj1 = new Family { Id = 10, Title = "تست", AddDate = DateTime.Now, ContactPersonName = "سینا", ConnectorId = 1 };
+            var obj2 = new Family { };
+            var result = obj1.Compare(obj2).PrintA();
+            Assert.Pass(result); // for check output
+        }
+
+        [Test]
         public void TestGetPropertyDisplayNameOrName() {
             var obj2 = new Connector();
-            Assert.That(obj2.GetPropertyDisplayNameOrName(x => x.Id), Is.EqualTo("��"));
+            Assert.That(obj2.GetPropertyDisplayNameOrName(x => x.Id), Is.EqualTo("کد"));
         }
     }
 }
