@@ -89,7 +89,56 @@ namespace Common.Utilities {
         }
 
         public static string NullIfEmpty(this string str) {
-            return str?.Length == 0 ? null : str;
+            return str?.Trim().Length == 0 ? null : str;
+        }
+
+        public static string NullIfEmpty(this object self) {
+            var val = self is null ? "" : self.ToStringOrJson();
+            return val.NullIfEmpty();
+        }
+
+        public static string ToStringOrJson<T>(this T self) {
+            if (self is null) {
+                return "";
+            }
+
+            var type = typeof(T);
+
+            if (self.isNumericType() || self.isStringType()) {
+                return self.ToString();
+            }
+            else if (self.isBooleanType()) {
+                return self.ToString() == bool.TrueString ? "1" : "0";
+            }
+            else {
+                return self.ToJSON();
+            }
+        }
+
+        public static bool isNumericType(this object self) {
+            var type = self.GetType();
+            return type == typeof(int)
+                || type == typeof(uint)
+                || type == typeof(float)
+                || type == typeof(double)
+                || type == typeof(sbyte)
+                || type == typeof(byte)
+                || type == typeof(short)
+                || type == typeof(ushort)
+                || type == typeof(long)
+                || type == typeof(ulong)
+                || type == typeof(char)
+                || type == typeof(decimal);
+        }
+
+        public static bool isStringType(this object self) {
+            var type = self.GetType();
+            return type == typeof(string);
+        }
+
+        public static bool isBooleanType(this object self) {
+            var type = self.GetType();
+            return type == typeof(bool);
         }
 
         public static string getNumbers(this string str) {
