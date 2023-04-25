@@ -3,7 +3,7 @@ using Common.Utilities;
 using Data;
 using Entities.ValiNematan;
 using Microsoft.EntityFrameworkCore;
-using Services.ComonModels;
+using Services.Common;
 using Services.ValiNematan.Models;
 
 namespace Services.ValiNematan {

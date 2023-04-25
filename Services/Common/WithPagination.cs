@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Services.ComonModels {
+namespace Services.Common {
     public class WithPagination<TList> {
         public int TotalItems { get; set; }
         public int TotalPages { get; set; }
