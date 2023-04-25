@@ -2,6 +2,7 @@
 using Common.Utilities;
 using Data;
 using Entities.AppUsingLogs;
+using Entities.Common;
 using Services.AppUsingLogs.Models;
 
 namespace Services.AppUsingLogs {
@@ -21,7 +22,8 @@ namespace Services.AppUsingLogs {
         public async Task Exe(AddEntityChangeInputs inputs) {
             var now = DateTime.Now;
             var nowFa = now.ToPersianDateTime();
-            var changes = inputs.ObjA.Compare(inputs.ObjB).Print();
+            var diff = inputs.ObjA.Compare(inputs.ObjB, typeof(IEntity));
+            var changes = inputs.ChangeType == ChangeType.Edit ? diff.Print() : diff.PrintA();
 
             var item = new EntityChanges {
                 Date = now,
