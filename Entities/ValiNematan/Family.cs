@@ -9,14 +9,17 @@ namespace Entities.ValiNematan {
         [Display(Name = "عنوان")]
         public string Title { get; set; } = "";
         [Order]
-        [Display(Name = "آدرس")]
-        public string Address { get; set; } = "";
+        [Display(Name = "پرونده مختومه")]
+        public bool Finished { get; set; } = false;
         [Order]
         [Display(Name = "کد سطح")]
         public int LevelId { get; set; } = 1;
         [Order]
         [Display(Name = "سطح")]
         public FamilyLevel Level { get; set; }
+        [Order]
+        [Display(Name = "آدرس")]
+        public string Address { get; set; } = "";
         [Order]
         [Display(Name = "ملاحظات")]
         public string Description { get; set; } = "";
