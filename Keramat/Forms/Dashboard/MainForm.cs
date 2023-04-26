@@ -89,5 +89,18 @@ namespace Keramat.Forms.Dashboard {
                     break;
             }
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
+
+            var needSaveForms = Application.OpenForms.OfType<ISavableForm>().ToList();
+
+            foreach (var item in needSaveForms) {
+                if (item.HasChanges) {
+                    item.CloseAfterUserSubmit();
+                }
+            }
+
+            e.Cancel = needSaveForms.Any(x => x.HasChanges);
+        }
     }
 }
