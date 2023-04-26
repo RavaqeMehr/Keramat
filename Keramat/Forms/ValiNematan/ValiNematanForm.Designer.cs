@@ -39,12 +39,13 @@
             this.btnSpecialDiseases = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRelations = new System.Windows.Forms.ToolStripMenuItem();
             this.grid = new System.Windows.Forms.DataGridView();
+            this.gridFooter = new KeramatUIControls.GridView.GridViewFooter();
             this.cId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cFinished = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gridFooter = new KeramatUIControls.GridView.GridViewFooter();
             this.toolBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +75,7 @@
             this.btnAdd.Size = new System.Drawing.Size(44, 35);
             this.btnAdd.Text = "افزودن";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_ClickAsync);
             // 
             // toolStripSeparator1
             // 
@@ -103,7 +105,7 @@
             // btnClearSearch
             // 
             this.btnClearSearch.Name = "btnClearSearch";
-            this.btnClearSearch.Size = new System.Drawing.Size(180, 22);
+            this.btnClearSearch.Size = new System.Drawing.Size(170, 22);
             this.btnClearSearch.Text = "پاکسازی فرم جستجو";
             this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
@@ -131,37 +133,37 @@
             // btnConnector
             // 
             this.btnConnector.Name = "btnConnector";
-            this.btnConnector.Size = new System.Drawing.Size(180, 22);
+            this.btnConnector.Size = new System.Drawing.Size(176, 22);
             this.btnConnector.Text = "معرف‌ها";
             // 
             // btnLevel
             // 
             this.btnLevel.Name = "btnLevel";
-            this.btnLevel.Size = new System.Drawing.Size(180, 22);
+            this.btnLevel.Size = new System.Drawing.Size(176, 22);
             this.btnLevel.Text = "سطح‌بندی خانواده‌ها";
             // 
             // btnFamilyNeeds
             // 
             this.btnFamilyNeeds.Name = "btnFamilyNeeds";
-            this.btnFamilyNeeds.Size = new System.Drawing.Size(180, 22);
+            this.btnFamilyNeeds.Size = new System.Drawing.Size(176, 22);
             this.btnFamilyNeeds.Text = "نیاز خانواده‌ها";
             // 
             // btnMemebersNeeds
             // 
             this.btnMemebersNeeds.Name = "btnMemebersNeeds";
-            this.btnMemebersNeeds.Size = new System.Drawing.Size(180, 22);
+            this.btnMemebersNeeds.Size = new System.Drawing.Size(176, 22);
             this.btnMemebersNeeds.Text = "نیاز اعضای خانواده‌ها";
             // 
             // btnSpecialDiseases
             // 
             this.btnSpecialDiseases.Name = "btnSpecialDiseases";
-            this.btnSpecialDiseases.Size = new System.Drawing.Size(180, 22);
+            this.btnSpecialDiseases.Size = new System.Drawing.Size(176, 22);
             this.btnSpecialDiseases.Text = "بیماری‌های خاص";
             // 
             // btnRelations
             // 
             this.btnRelations.Name = "btnRelations";
-            this.btnRelations.Size = new System.Drawing.Size(180, 22);
+            this.btnRelations.Size = new System.Drawing.Size(176, 22);
             this.btnRelations.Text = "روابط اعضای خانواده";
             // 
             // grid
@@ -173,6 +175,7 @@
             this.grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cId,
             this.cTitle,
+            this.cFinished,
             this.cLevel,
             this.cCount,
             this.cDate});
@@ -189,6 +192,20 @@
             this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grid.Size = new System.Drawing.Size(584, 273);
             this.grid.TabIndex = 1;
+            // 
+            // gridFooter
+            // 
+            this.gridFooter.BackColor = System.Drawing.Color.Silver;
+            this.gridFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gridFooter.Location = new System.Drawing.Point(0, 311);
+            this.gridFooter.Margin = new System.Windows.Forms.Padding(0);
+            this.gridFooter.MaximumSize = new System.Drawing.Size(10000, 50);
+            this.gridFooter.MinimumSize = new System.Drawing.Size(0, 50);
+            this.gridFooter.Name = "gridFooter";
+            this.gridFooter.Pagination = null;
+            this.gridFooter.Size = new System.Drawing.Size(584, 50);
+            this.gridFooter.TabIndex = 2;
+            this.gridFooter.PageChange += new KeramatUIControls.GridView.GridViewFooter.PageChangeHandler(this.gridFooter_PageChange);
             // 
             // cId
             // 
@@ -208,6 +225,15 @@
             this.cTitle.HeaderText = "عنوان";
             this.cTitle.Name = "cTitle";
             this.cTitle.ReadOnly = true;
+            // 
+            // cFinished
+            // 
+            this.cFinished.DataPropertyName = "Finished";
+            this.cFinished.FillWeight = 10F;
+            this.cFinished.HeaderText = "مختومه";
+            this.cFinished.Name = "cFinished";
+            this.cFinished.ReadOnly = true;
+            this.cFinished.Width = 50;
             // 
             // cLevel
             // 
@@ -235,20 +261,6 @@
             this.cDate.HeaderText = "تاریخ درج";
             this.cDate.Name = "cDate";
             this.cDate.ReadOnly = true;
-            // 
-            // gridFooter
-            // 
-            this.gridFooter.BackColor = System.Drawing.Color.Silver;
-            this.gridFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gridFooter.Location = new System.Drawing.Point(0, 311);
-            this.gridFooter.Margin = new System.Windows.Forms.Padding(0);
-            this.gridFooter.MaximumSize = new System.Drawing.Size(10000, 50);
-            this.gridFooter.MinimumSize = new System.Drawing.Size(0, 50);
-            this.gridFooter.Name = "gridFooter";
-            this.gridFooter.Pagination = null;
-            this.gridFooter.Size = new System.Drawing.Size(584, 50);
-            this.gridFooter.TabIndex = 2;
-            this.gridFooter.PageChange += new KeramatUIControls.GridView.GridViewFooter.PageChangeHandler(this.gridFooter_PageChange);
             // 
             // ValiNematanForm
             // 
@@ -287,11 +299,12 @@
         private ToolStripMenuItem btnSpecialDiseases;
         private ToolStripMenuItem btnRelations;
         private DataGridView grid;
+        private KeramatUIControls.GridView.GridViewFooter gridFooter;
         private DataGridViewTextBoxColumn cId;
         private DataGridViewTextBoxColumn cTitle;
+        private DataGridViewCheckBoxColumn cFinished;
         private DataGridViewTextBoxColumn cLevel;
         private DataGridViewTextBoxColumn cCount;
         private DataGridViewTextBoxColumn cDate;
-        private KeramatUIControls.GridView.GridViewFooter gridFooter;
     }
 }

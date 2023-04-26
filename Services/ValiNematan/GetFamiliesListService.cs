@@ -61,6 +61,7 @@ namespace Services.ValiNematan {
                 .Select(x => new GetFamiliesListItemDto {
                     Id = x.Id,
                     Title = x.Title,
+                    Finished = x.Finished,
                     Level = x.Level.Title ?? x.Level.Level.ToString(),
                     MembersCount = x.Members.Count(m => m.LiveStatus != Enums.LiveStatus.Dead || m.LiveStatus != Enums.LiveStatus.Martyr),
                     AddDate = x.AddDate.ToPersianDateString()

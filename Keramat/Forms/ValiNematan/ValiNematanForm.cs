@@ -1,4 +1,5 @@
-﻿using KeramatUIControls.GridView.Models;
+﻿using Keramat.Utilities;
+using KeramatUIControls.GridView.Models;
 using Mapster;
 using Services.Ui;
 using Services.ValiNematan;
@@ -7,14 +8,17 @@ namespace Keramat.Forms.ValiNematan {
     public partial class ValiNematanForm : Form {
         private readonly IFontsService fontsService;
         private readonly IGetFamiliesListService getFamiliesListService;
+        private readonly IFormManager formManager;
 
         public ValiNematanForm(
             IFontsService fontsService,
-            IGetFamiliesListService getFamiliesListService
+            IGetFamiliesListService getFamiliesListService,
+            IFormManager formManager
             ) {
             InitializeComponent();
             this.fontsService = fontsService;
             this.getFamiliesListService = getFamiliesListService;
+            this.formManager = formManager;
             gridFooter.Font = fontsService.FontByRatio(1);
         }
 
@@ -29,21 +33,27 @@ namespace Keramat.Forms.ValiNematan {
             gridFooter.Fill(list.Adapt<Pagination>());
         }
 
-        private void ValiNematanForm_Load(object sender, EventArgs e) {
-            Fetch();
+        private async void ValiNematanForm_Load(object sender, EventArgs e) {
+            await Fetch();
         }
 
         private async Task gridFooter_PageChange(int page) {
             await FetchPage(page);
         }
 
-        private void btnSearch_ButtonClick(object sender, EventArgs e) {
-            Fetch(txtSearch.Text, 1);
+        private async void btnSearch_ButtonClick(object sender, EventArgs e) {
+            await Fetch(txtSearch.Text, 1);
         }
 
-        private void btnClearSearch_Click(object sender, EventArgs e) {
+        private async void btnClearSearch_Click(object sender, EventArgs e) {
             txtSearch.Text = "";
-            Fetch();
+            await Fetch();
+        }
+
+        private async void btnAdd_ClickAsync(object sender, EventArgs e) {
+            var frm = formManager.Create<FamilyForm>();
+            await frm.LoadData();
+            frm.Show();
         }
     }
 }
