@@ -13,7 +13,7 @@ namespace KeramatUIControls.Inputs {
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always), Bindable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Text of TextBox"), Category(StaticFields.PropertyCategory)]
-        public string Text {
+        public new string Text {
             get { return _Text; }
             set {
                 _Text = value;
@@ -82,7 +82,7 @@ namespace KeramatUIControls.Inputs {
         [Browsable(true), EditorBrowsable(EditorBrowsableState.Always), Bindable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Description("Font of Elements"), Category(StaticFields.PropertyCategory)]
-        public Font Font {
+        public new Font Font {
             get { return _Font; }
             set {
                 _Font = value;
