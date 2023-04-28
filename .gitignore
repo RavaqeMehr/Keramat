@@ -480,3 +480,5 @@ $RECYCLE.BIN/
 KeramatWeb/ClientApp/package-lock.json
 /KeramatWeb/ClientApp/yarn.json
 KeramatWeb/ClientApp/yarn.lock
+/KeramatWeb/data
+KeramatWeb/data
