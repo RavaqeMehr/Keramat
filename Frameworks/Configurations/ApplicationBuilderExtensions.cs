@@ -1,5 +1,6 @@
 ﻿using Common.Utilities;
 using Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -36,6 +37,15 @@ namespace Frameworks.Configurations {
                 dataInitializer.InitializeData();
 
             return app;
+        }
+
+        public static void AddCustomApiVersioning(this IServiceCollection services) {
+            services.AddApiVersioning(options => {
+                //url segment => {version}
+                options.AssumeDefaultVersionWhenUnspecified = true; //default => false;
+                options.DefaultApiVersion = new ApiVersion(1, 0); //v1.0 == v1
+                options.ReportApiVersions = true;
+            });
         }
     }
 }

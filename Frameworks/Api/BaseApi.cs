@@ -1,8 +1,9 @@
 ﻿using Frameworks.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Frameworks.Api {
-    //[AllowAnonymous]
+    [AllowAnonymous]
     //[Area("api")]
     [ApiController]
     [ApiResultFilter]
