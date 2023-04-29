@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import AppRoutes from './AppRoutes';
-import { Layout } from './components/Layout';
-import './custom.css';
+import React from 'react';
+import Layout from './layout/Layout';
+import routes from './layout/routes';
+import { Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import LoadingCenter from './components/general/LoadingCenter';
 
-export default class App extends Component {
-  static displayName = App.name;
+const App = () => {
+	const { appInfo } = useSelector((x) => x.general);
 
-  render() {
-    return (
-      <Layout>
-        <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={index} {...rest} element={element} />;
-          })}
-        </Routes>
-      </Layout>
-    );
-  }
-}
+	return appInfo ? (
+		<Layout>
+			<Routes>
+				{routes.map((route, index) => {
+					const { element, ...rest } = route;
+					return <Route key={index} Component={element} {...rest} />;
+				})}
+			</Routes>
+		</Layout>
+	) : (
+		<LoadingCenter />
+	);
+};
+
+export default App;
