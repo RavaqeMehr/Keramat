@@ -28,3 +28,22 @@ code {
 img {
 	max-width: 100%;
 }
+
+ul.pagination {
+	margin-bottom: 0;
+}
+
+html[dir='rtl'] .page-item:first-child .page-link {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-right-radius: var(--bs-pagination-border-radius);
+	border-bottom-right-radius: var(--bs-pagination-border-radius);
+	margin-left: -1px;
+}
+
+html[dir='rtl'] .page-item:last-child .page-link {
+	border-top-left-radius: var(--bs-pagination-border-radius);
+	border-bottom-left-radius: var(--bs-pagination-border-radius);
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
