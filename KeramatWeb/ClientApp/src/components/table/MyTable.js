@@ -1,10 +1,36 @@
 import React from 'react';
-import { Table, Alert } from 'reactstrap';
+import { arrayRange } from './../../helpers/ArrayHelpers';
+import {
+	Table,
+	Alert,
+	Pagination,
+	PaginationItem,
+	PaginationLink,
+	Card,
+	CardHeader,
+	CardBody,
+	CardFooter,
+} from 'reactstrap';
 
-const MyTable = ({ small = false, cols, rows, rowRenderer, onRowClick }) => {
+const MyTable = ({ small = false, title, cols, rows, rowRenderer, onRowClick, pagination, onPageClick }) => {
+	let pn1 = 0,
+		pn2 = 0;
+	if (pagination) {
+		// totalItems
+		// totalPages
+		// itemsPerPage
+		// currentPage
+
+		pn1 = Math.max(pagination.currentPage - 2, 1);
+		pn2 = Math.min(pagination.currentPage + 2, pagination.totalPages);
+	}
+
 	return (
-		<>
-			{rows ? (
+		<Card className='my-3'>
+			{title ? <CardHeader>{title}</CardHeader> : null}
+
+			{/* <CardBody> */}
+			{rows && rows.length > 0 ? (
 				<Table hover responsive striped size={small ? 'sm' : undefined}>
 					{cols ? (
 						<thead>
@@ -36,7 +62,46 @@ const MyTable = ({ small = false, cols, rows, rowRenderer, onRowClick }) => {
 					داده‌ای وجود ندارد!
 				</Alert>
 			)}
-		</>
+			{/* </CardBody> */}
+
+			{pagination ? (
+				<CardFooter>
+					<Pagination aria-label='صفحات' listClassName='justify-content-center'>
+						<PaginationItem disabled={pagination.currentPage == 1}>
+							<PaginationLink first onClick={onPageClick ? () => onPageClick(1) : undefined} />
+						</PaginationItem>
+						<PaginationItem disabled={pagination.currentPage == 1}>
+							<PaginationLink
+								previous
+								onClick={onPageClick ? () => onPageClick(pagination.currentPage - 1) : undefined}
+							/>
+						</PaginationItem>
+
+						{arrayRange(pn1, pn2).map((x, i) => (
+							<PaginationItem key={i} active={pagination.currentPage == x}>
+								<PaginationLink
+									onClick={onPageClick && pagination.currentPage != x ? () => onPageClick(x) : undefined}>
+									{x}
+								</PaginationLink>
+							</PaginationItem>
+						))}
+
+						<PaginationItem disabled={pagination.currentPage == pagination.totalPages}>
+							<PaginationLink
+								next
+								onClick={onPageClick ? () => onPageClick(pagination.currentPage + 1) : undefined}
+							/>
+						</PaginationItem>
+						<PaginationItem disabled={pagination.currentPage == pagination.totalPages}>
+							<PaginationLink
+								last
+								onClick={onPageClick ? () => onPageClick(pagination.totalPages) : undefined}
+							/>
+						</PaginationItem>
+					</Pagination>
+				</CardFooter>
+			) : null}
+		</Card>
 	);
 };
 
