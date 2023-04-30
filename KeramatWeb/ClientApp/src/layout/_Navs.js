@@ -52,7 +52,7 @@ const _Navs = [
 	{
 		component: NavLink,
 		title: 'ولی‌نعمتان',
-		to: '/vali-nemtan',
+		to: '/vali-nematan',
 	},
 ];
 
