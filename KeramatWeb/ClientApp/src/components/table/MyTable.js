@@ -9,9 +9,20 @@ import {
 	PaginationLink,
 	Table,
 } from 'reactstrap';
+import Loading from '../general/Loading';
 import { arrayRange } from './../../helpers/ArrayHelpers';
 
-const MyTable = ({ small = false, title, cols, rows, rowRenderer, onRowClick, pagination, onPageClick }) => {
+const MyTable = ({
+	small = false,
+	loading = false,
+	title,
+	cols,
+	rows,
+	rowRenderer,
+	onRowClick,
+	pagination,
+	onPageClick,
+}) => {
 	let pn1 = 0,
 		pn2 = 0;
 	if (pagination) {
@@ -25,11 +36,13 @@ const MyTable = ({ small = false, title, cols, rows, rowRenderer, onRowClick, pa
 	}
 
 	return (
-		<Card className='my-3'>
+		<Card className='my-4'>
 			{title ? <CardHeader>{title}</CardHeader> : null}
 
 			{/* <CardBody> */}
-			{rows && rows.length > 0 ? (
+			{loading ? (
+				<Loading />
+			) : rows && rows.length > 0 ? (
 				<Table hover responsive striped size={small ? 'sm' : undefined}>
 					{cols ? (
 						<thead>
