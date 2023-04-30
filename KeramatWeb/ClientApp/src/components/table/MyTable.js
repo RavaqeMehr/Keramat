@@ -1,16 +1,15 @@
 import React from 'react';
-import { arrayRange } from './../../helpers/ArrayHelpers';
 import {
-	Table,
 	Alert,
+	Card,
+	CardFooter,
+	CardHeader,
 	Pagination,
 	PaginationItem,
 	PaginationLink,
-	Card,
-	CardHeader,
-	CardBody,
-	CardFooter,
+	Table,
 } from 'reactstrap';
+import { arrayRange } from './../../helpers/ArrayHelpers';
 
 const MyTable = ({ small = false, title, cols, rows, rowRenderer, onRowClick, pagination, onPageClick }) => {
 	let pn1 = 0,
