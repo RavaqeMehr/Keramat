@@ -65,7 +65,10 @@ const MyTable = ({ small = false, title, cols, rows, rowRenderer, onRowClick, pa
 
 			{pagination ? (
 				<CardFooter>
-					<Pagination aria-label='صفحات' listClassName='justify-content-center'>
+					<Pagination
+						aria-label='صفحات'
+						listClassName='justify-content-center'
+						size={small ? 'sm' : undefined}>
 						<PaginationItem disabled={pagination.currentPage == 1}>
 							<PaginationLink first onClick={onPageClick ? () => onPageClick(1) : undefined} />
 						</PaginationItem>

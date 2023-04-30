@@ -47,3 +47,8 @@ html[dir='rtl'] .page-item:last-child .page-link {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }
+
+.card .alert,
+.card .table {
+	margin-bottom: 0;
+}
