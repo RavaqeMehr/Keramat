@@ -1,5 +1,7 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import MyTable from '../../components/table/MyTable';
+import { sleep } from '../../helpers/Utils';
 
 const fakeCols = ['کد', 'نام', 'طرح', 'اقدام'];
 const fakeData1 = [];
@@ -36,16 +38,100 @@ const fakeRenderer = (x) => {
 	return null;
 };
 
+const fakePagination1 = {
+	totalItems: 1,
+	totalPages: 1,
+	itemsPerPage: 10,
+	currentPage: 1,
+};
+
+const fakePagination2 = {
+	totalItems: 1,
+	totalPages: 3,
+	itemsPerPage: 10,
+	currentPage: 1,
+};
+
+const fakePagination3 = {
+	totalItems: 1,
+	totalPages: 10,
+	itemsPerPage: 10,
+	currentPage: 10,
+};
+
+const fakePagination4 = {
+	totalItems: 1,
+	totalPages: 10,
+	itemsPerPage: 10,
+	currentPage: 9,
+};
+
+const fakePagination5 = {
+	totalItems: 1,
+	totalPages: 10,
+	itemsPerPage: 10,
+	currentPage: 5,
+};
+
 const FamiliesList = () => {
+	const [tbl, tblSet] = useState({
+		search: '',
+		page: 1,
+		loading: true,
+		cols: null,
+		data: null,
+		pagination: null,
+	});
+
+	const GetPage = (page) => {
+		tblSet((old) => ({ ...old, loading: true }));
+		axios
+			.get('ValiNematan/List', { params: { search: tbl.search, page: page } })
+			.then((x) => x.data.data)
+			.then((x) => {
+				const { items, ...pagination } = x;
+				tblSet((old) => ({ ...old, loading: false, cols: fakeCols, data: items, pagination: pagination }));
+			})
+			.catch((e) => {})
+			.finally(() => tblSet((old) => ({ ...old, loading: false })));
+	};
+
+	useEffect(() => {
+		GetPage(1);
+	}, []);
+
 	return (
 		<>
-			<MyTable cols={fakeCols} rows={fakeData1} />
+			<MyTable
+				title='تست'
+				cols={tbl.cols}
+				rows={tbl.data}
+				pagination={tbl.pagination}
+				loading={tbl.loading}
+				// rowRenderer={fakeRenderer}
+				onPageClick={(x) => GetPage(x)}
+				onRowClick={console.log}
+			/>
+
+			{/* <MyTable cols={fakeCols} rows={fakeData1} />
 			<MyTable cols={fakeCols} rows={fakeData2} />
 			<MyTable cols={fakeCols} rows={fakeData3} onRowClick={console.log} />
 			<hr />
 			<MyTable cols={fakeCols} rows={fakeData1} rowRenderer={fakeRenderer} />
 			<MyTable cols={fakeCols} rows={fakeData2} rowRenderer={fakeRenderer} />
-			{/* <MyTable cols={fakeCols} rows={fakeData3} rowRenderer={fakeRenderer} /> */}
+         <hr /> */}
+
+			{/* <MyTable
+				cols={fakeCols}
+				rows={fakeData2}
+				pagination={fakePagination2}
+				onPageClick={console.log}
+				title='تست عنوان'
+				small
+			/>
+			<MyTable cols={fakeCols} rows={fakeData3} pagination={fakePagination3} onPageClick={console.log} />
+			<MyTable cols={fakeCols} rows={fakeData1} pagination={fakePagination4} onPageClick={console.log} />
+			<MyTable cols={fakeCols} rows={fakeData1} pagination={fakePagination5} onPageClick={console.log} /> */}
 		</>
 	);
 };

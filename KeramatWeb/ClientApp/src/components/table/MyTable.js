@@ -39,10 +39,9 @@ const MyTable = ({
 		<Card className='my-4'>
 			{title ? <CardHeader>{title}</CardHeader> : null}
 
-			{/* <CardBody> */}
-			{loading ? (
-				<Loading />
-			) : rows && rows.length > 0 ? (
+			{loading ? <Loading /> : null}
+
+			{rows && rows.length > 0 ? (
 				<Table hover responsive striped size={small ? 'sm' : undefined}>
 					{cols ? (
 						<thead>
@@ -74,9 +73,8 @@ const MyTable = ({
 					داده‌ای وجود ندارد!
 				</Alert>
 			)}
-			{/* </CardBody> */}
 
-			{pagination ? (
+			{pagination && pagination.totalPages > 0 ? (
 				<CardFooter>
 					<Pagination
 						aria-label='صفحات'
