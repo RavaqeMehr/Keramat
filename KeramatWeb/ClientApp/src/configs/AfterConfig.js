@@ -6,7 +6,11 @@ const AfterConfig = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(ReduxActions.generalActions.updateAppInfo());
+		const asyncer = async () => {
+			dispatch(await ReduxActions.generalActions.updateAppInfo());
+			dispatch(await ReduxActions.logicActions.updateLogics());
+		};
+		asyncer();
 	}, []);
 
 	return null;
