@@ -8,7 +8,7 @@ using Services.ValiNematan.Models;
 
 namespace Services.ValiNematan {
     public interface IGetFamiliesListService : ITransientDependency {
-        Task<WithPagination<GetFamiliesListItemDto>> Search(string search = "", int page = 1);
+        Task<WithPagination<GetFamiliesListItemDto>> Search(GetFamiliesListQuery query);
         //Task<List<GetFamiliesListItemDto>> SearchPro(string search, int page=1);
     }
 
@@ -21,8 +21,9 @@ namespace Services.ValiNematan {
             this.familyRepo = familyRepo;
         }
 
-        public async Task<WithPagination<GetFamiliesListItemDto>> Search(string search = "", int page = 1) {
-            var s = search.GetStringValue();
+        public async Task<WithPagination<GetFamiliesListItemDto>> Search(GetFamiliesListQuery query) {
+            var s = query.Search.GetStringValue();
+            var p = query.Page ?? 1;
 
             IQueryable<Family> listAll = familyRepo.TableNoTracking
                 .Include(x => x.Level)
@@ -50,13 +51,13 @@ namespace Services.ValiNematan {
                 );
             }
 
-            var perPage = 100;
+            var perPage = 10;
 
             var output = new WithPagination<GetFamiliesListItemDto>();
-            await output.Fill(listAll, page, perPage);
+            await output.Fill(listAll, p, perPage);
             output.Items = await listAll
                 .OrderBy(x => x.Title).ThenByDescending(x => x.AddDate)
-                .Skip((page - 1) * perPage)
+                .Skip((p - 1) * perPage)
                 .Take(perPage)
                 .Select(x => new GetFamiliesListItemDto {
                     Id = x.Id,
@@ -80,8 +81,8 @@ namespace Services.ValiNematan {
             //        AddDate = DateTime.Now.ToPersianDateString()
             //    });
             //}
-            //output.Fill(fakeData, page, perPage);
-            //output.Items = fakeData.Skip((page - 1) * perPage).Take(perPage).ToList();
+            //output.Fill(fakeData, p, perPage);
+            //output.Items = fakeData.Skip((p - 1) * perPage).Take(perPage).ToList();
             #endregion
 
 
