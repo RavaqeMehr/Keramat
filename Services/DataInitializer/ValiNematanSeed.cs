@@ -40,9 +40,9 @@ namespace Services.DataInitializer {
 
             if (lastInstalledVerNum <= 3) {
                 familyLevelAdd.Add(new FamilyLevel { Level = 1, Title = "نامشخص" });
-                familyLevelAdd.Add(new FamilyLevel { Level = 2, Title = "بحرانی" });
+                familyLevelAdd.Add(new FamilyLevel { Level = 2, Title = "محتاج" });
                 familyLevelAdd.Add(new FamilyLevel { Level = 3, Title = "خیلی محتاج" });
-                familyLevelAdd.Add(new FamilyLevel { Level = 4, Title = "محتاج" });
+                familyLevelAdd.Add(new FamilyLevel { Level = 4, Title = "بحرانی" });
 
                 familyNeedSubjectAdd.Add(new FamilyNeedSubject { Title = "بسته ارزاق" });
                 familyNeedSubjectAdd.Add(new FamilyNeedSubject { Title = "کمک‌هزینه اجاره منزل" });
