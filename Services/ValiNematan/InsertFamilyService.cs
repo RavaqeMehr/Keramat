@@ -8,7 +8,7 @@ using Services.ValiNematan.Models;
 
 namespace Services.ValiNematan {
     public interface IInsertFamilyService : IScopedDependency {
-        Task<int> Exe(InserFamilyDto dto);
+        Task<int> Exe(InsertFamilyDto dto);
     }
 
     public class InsertFamilyService : IInsertFamilyService {
@@ -23,7 +23,7 @@ namespace Services.ValiNematan {
             this.addEntityChangeService = addEntityChangeService;
         }
 
-        public async Task<int> Exe(InserFamilyDto dto) {
+        public async Task<int> Exe(InsertFamilyDto dto) {
             var now = DateTime.Now;
             var nowFa = now.ToPersianDateTime();
 

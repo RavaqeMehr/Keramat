@@ -1,5 +1,5 @@
 ﻿namespace Services.ValiNematan.Models {
-    public class InserFamilyDto {
+    public class InsertFamilyDto {
         public string Title { get; set; } = "";
         public string Address { get; set; } = "";
         public int LevelId { get; set; } = 1;
