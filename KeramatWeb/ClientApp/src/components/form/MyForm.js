@@ -1,8 +1,9 @@
-import React from 'react';
-import { Alert, Card, CardFooter, CardHeader, CardBody, Button } from 'reactstrap';
+import React, { useState } from 'react';
+import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Collapse } from 'reactstrap';
 import BlurLayer from '../general/BlurLayer';
 
 const MyForm = ({ title, children, onSubmit, loading = false }) => {
+	const [isOpen, isOpenSet] = useState(true);
 	return (
 		<form
 			onSubmit={(e) => {
@@ -13,13 +14,22 @@ const MyForm = ({ title, children, onSubmit, loading = false }) => {
 			}}>
 			<Card className='my-4'>
 				<BlurLayer show={loading} />
-				{title ? <CardHeader>{title}</CardHeader> : null}
-				<CardBody>{children}</CardBody>
-				<CardFooter>
-					<Button type='submit' color='primary' className='mx-1'>
-						ثبت
-					</Button>
-				</CardFooter>
+				<CardHeader>
+					<Badge color='dark' role='button' onClick={() => isOpenSet((old) => !old)}>
+						{isOpen ? '-' : '+'}
+					</Badge>{' '}
+					{title}
+				</CardHeader>
+				<Collapse isOpen={isOpen}>
+					<CardBody>{children}</CardBody>
+				</Collapse>
+				<Collapse isOpen={isOpen}>
+					<CardFooter>
+						<Button type='submit' color='primary' className='mx-1'>
+							ثبت
+						</Button>
+					</CardFooter>
+				</Collapse>
 			</Card>
 		</form>
 	);
