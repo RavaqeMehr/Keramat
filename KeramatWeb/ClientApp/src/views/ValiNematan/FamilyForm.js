@@ -16,7 +16,7 @@ const FamilyForm = () => {
 		items: {
 			title: '',
 			address: '',
-			levelId: 0,
+			levelId: 1,
 			description: '',
 			contactPersonName: '',
 			contactPersonPhone: '',
@@ -55,7 +55,7 @@ const FamilyForm = () => {
 				.post('ValiNematan/Add', dto)
 				.then((response) => response.data)
 				.then((data) => {
-					navigate(`../${data.data}`, { replace: true, relative: true });
+					navigate(`./../${data.data}`, { replace: true, relative: true });
 				})
 				.catch(console.error);
 		} else {
