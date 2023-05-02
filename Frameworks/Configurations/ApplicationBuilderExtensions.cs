@@ -11,7 +11,7 @@ namespace Frameworks.Configurations {
         public static void AddDbContext(this IServiceCollection services) {
             services.AddDbContext<ApplicationDbContext>(options => {
                 options
-                    .UseSqlite("Data Source=data/Keramat.db;");
+                    .UseSqlite("Data Source=data/Keramat.db;Cache=Shared");
             });
         }
 
