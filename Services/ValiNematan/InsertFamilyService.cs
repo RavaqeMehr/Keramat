@@ -36,7 +36,7 @@ namespace Services.ValiNematan {
 
             await familyRepo.AddAsync(item);
 
-            await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs {
+            await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<Family> {
                 ChangeType = Entities.AppUsingLogs.ChangeType.Add,
                 EnitityType = Entities.AppUsingLogs.EnitityType.Family,
                 EnitityId = item.Id,
