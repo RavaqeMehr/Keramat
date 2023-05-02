@@ -63,7 +63,7 @@ const FamilyForm = () => {
 				.put('ValiNematan/Edit', { id, ...dto })
 				.then((response) => response.data)
 				.then((data) => {
-					navigate(`../`, { relative: true });
+					navigate(`./../`, { relative: true });
 				})
 				.catch(console.error);
 		}
