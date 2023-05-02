@@ -52,3 +52,9 @@ html[dir='rtl'] .page-item:last-child .page-link {
 .card .table {
 	margin-bottom: 0;
 }
+
+html[dir='rtl'] .form-check .form-check-input {
+	float: right;
+	margin-left: 0.5em;
+	margin-right: 0;
+}
