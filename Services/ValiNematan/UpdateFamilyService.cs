@@ -35,6 +35,7 @@ namespace Services.ValiNematan {
             item.ContactPersonPhone = dto.ContactPersonPhone;
             item.ContactPersonDescription = dto.ContactPersonDescription;
             item.ConnectorId = dto.ConnectorId;
+            item.Finished = dto.Finished;
 
             await familyRepo.UpdateAsync(item);
 

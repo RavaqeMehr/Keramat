@@ -10,5 +10,6 @@
         public string ContactPersonDescription { get; set; } = "";
 
         public int? ConnectorId { get; set; }
+        public bool Finished { get; set; } = false;
     }
 }
