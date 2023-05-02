@@ -7,7 +7,7 @@ using Services.AppUsingLogs.Models;
 
 namespace Services.AppUsingLogs {
     public interface IAddEntityChangeService : ITransientDependency {
-        Task Exe(AddEntityChangeInputs inputs);
+        Task Exe<T>(AddEntityChangeInputs<T> inputs);
     }
 
     public class AddEntityChangeService : IAddEntityChangeService {
@@ -22,12 +22,13 @@ namespace Services.AppUsingLogs {
             this.entityChangesRepo = entityChangesRepo;
         }
 
-        public async Task Exe(AddEntityChangeInputs inputs) {
+        public async Task Exe<T>(AddEntityChangeInputs<T> inputs) {
             var now = DateTime.Now;
             var nowFa = now.ToPersianDateTime();
             var diff = inputs.ObjA.Compare(inputs.ObjB, typeof(IEntity));
             var changes = inputs.ChangeType == ChangeType.Edit ? diff.Print() : diff.PrintA();
 
+            if (diff.Count > 0) {
             var item = new EntityChanges {
                 AppSessionId = appSessionService.ThisSession.Id,
                 Date = now,
@@ -42,8 +43,8 @@ namespace Services.AppUsingLogs {
                 Root3Id = inputs.Root3Id,
                 Changes = changes
             };
-
             await entityChangesRepo.AddAsync(item);
+            }
         }
     }
 }
