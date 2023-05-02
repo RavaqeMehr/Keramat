@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import InputText from '../../components/form/InputText';
 import MyForm from '../../components/form/MyForm';
@@ -12,7 +12,7 @@ const FamilyForm = () => {
 	const { familyLevels, connectors } = useSelector((x) => x.logic);
 
 	const [form, formSet] = useState({
-		loading: false,
+		loading: true,
 		items: {
 			title: '',
 			address: '',
@@ -25,15 +25,32 @@ const FamilyForm = () => {
 		},
 	});
 
+	useEffect(() => {
+		if (id > 0) {
+			formSet((old) => ({ ...old, loading: true }));
+			axios
+				.get('ValiNematan/Single', { params: { id } })
+				.then((response) => response.data)
+				.then((data) => {
+					formSet((old) => ({ ...old, items: data.data, loading: false }));
+				})
+				.catch(console.error)
+				.finally(() => formSet((old) => ({ ...old, loading: false })));
+		} else {
+			formSet((old) => ({ ...old, loading: false }));
+		}
+	}, []);
+
 	const submit = () => {
 		console.log('submit');
 
+		const dto = {
+			...form.items,
+			levelId: +form.items.levelId > 0 ? form.items.levelId : null,
+			connectorId: +form.items.connectorId > 0 ? form.items.connectorId : null,
+		};
+
 		if (id == 0) {
-			const dto = {
-				...form.items,
-				levelId: +form.items.levelId > 0 ? form.items.levelId : null,
-				connectorId: +form.items.connectorId > 0 ? form.items.connectorId : null,
-			};
 			axios
 				.post('ValiNematan/Add', dto)
 				.then((response) => response.data)
@@ -42,17 +59,11 @@ const FamilyForm = () => {
 				})
 				.catch(console.error);
 		} else {
-			const dto = {
-				id,
-				...form.items,
-				levelId: +form.items.levelId > 0 ? form.items.levelId : null,
-				connectorId: +form.items.connectorId > 0 ? form.items.connectorId : null,
-			};
 			axios
-				.put('ValiNematan/Add', dto)
+				.put('ValiNematan/Edit', { id, ...dto })
 				.then((response) => response.data)
 				.then((data) => {
-					navigate(`../${data.data}`, { replace: true, relative: true });
+					navigate(`../`, { relative: true });
 				})
 				.catch(console.error);
 		}
