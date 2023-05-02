@@ -5,6 +5,7 @@ import MyForm from '../../components/form/MyForm';
 import { useSelector } from 'react-redux';
 import InputSelect from '../../components/form/InputSelect';
 import axios from 'axios';
+import InputSwitch from '../../components/form/InputSwitch';
 
 const FamilyForm = () => {
 	const navigate = useNavigate();
@@ -22,6 +23,7 @@ const FamilyForm = () => {
 			contactPersonPhone: '',
 			contactPersonDescription: '',
 			connectorId: 0,
+			finished: false,
 		},
 	});
 
@@ -73,6 +75,15 @@ const FamilyForm = () => {
 		<>
 			<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} خانواده`} onSubmit={submit} loading={form.loading}>
 				<InputText id='id' label='کد' readOnly value={id} />
+				{id > 0 ? (
+					<InputSwitch
+						id='finished'
+						label='مختومه'
+						description='به معنای پایان تحت پوشش بودن'
+						check={form.items.finished}
+						onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, finished: val } }))}
+					/>
+				) : null}
 				<InputText
 					id='title'
 					label='عنوان'

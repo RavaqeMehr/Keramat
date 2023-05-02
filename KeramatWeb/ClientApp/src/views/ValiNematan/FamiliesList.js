@@ -58,7 +58,7 @@ const rowRenderer = (x) => (
 	<>
 		<th scope='row'>{x.id}</th>
 		<td>
-			{x.title} {x.finished ? <Badge color='danger'>غیر فعال</Badge> : null}
+			{x.title} {x.finished ? <Badge color='danger'>مختومه</Badge> : null}
 		</td>
 		<td>{x.level}</td>
 		<td>{x.membersCount}</td>
