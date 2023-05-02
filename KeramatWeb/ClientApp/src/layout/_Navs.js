@@ -1,9 +1,5 @@
-import NavLink from './components/NavLink';
-import NavDropDown from './components/NavDropDown';
-
 const _Navs = [
 	{
-		component: NavLink,
 		title: 'پیش‌خان',
 		to: '/',
 	},
@@ -50,9 +46,18 @@ const _Navs = [
 	// 	],
 	// },
 	{
-		component: NavLink,
 		title: 'ولی‌نعمتان',
-		to: '/vali-nematan',
+		items: [
+			{ title: 'خانواده‌ها', to: '/vali-nematan' },
+			{ title: 'سطح‌ها', to: '/vali-nematan-levels' },
+			{
+				title: 'ولی‌نعمتان',
+				items: [
+					{ title: 'خانواده‌ها', to: '/vali-nematan' },
+					{ title: 'سطح‌ها', to: '/vali-nematan-levels' },
+				],
+			},
+		],
 	},
 ];
 
