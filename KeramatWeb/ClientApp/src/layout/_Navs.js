@@ -20,7 +20,7 @@ const _Navs = [
 				items: [
 					{ title: 'نیازهای اعضا', to: '/vali-nematan/member-needs' },
 					{ title: 'بیماری‌های خاص', to: '/vali-nematan/special-disease' },
-					{ title: 'روابط خانوادگی', to: '/vali-nematan/relations' },
+					{ title: 'نسبت‌های خانوادگی', to: '/vali-nematan/relations' },
 				],
 			},
 		],
