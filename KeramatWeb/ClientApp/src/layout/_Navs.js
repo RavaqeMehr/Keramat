@@ -4,64 +4,46 @@ const _Navs = [
 		to: '/',
 	},
 	{
-		title: 'تست',
-		to: '/test',
-	},
-	// {
-	// 	component: NavDropDown,
-	// 	title: 'ولی‌نعمتان',
-	// 	items: [
-	// 		{
-	// 			component: NavLink,
-	// 			title: 'الف',
-	// 			to: '/',
-	// 		},
-	// 		{
-	// 			component: NavDropDown,
-	// 			title: 'سطح 2',
-	// 			items: [
-	// 				{
-	// 					component: NavLink,
-	// 					title: 'الف',
-	// 					to: '/',
-	// 				},
-	// 				{
-	// 					component: NavLink,
-	// 					title: 'ب',
-	// 					to: '/',
-	// 				},
-	// 				{
-	// 					component: NavLink,
-	// 					title: 'جیم3',
-	// 					to: '/',
-	// 				},
-	// 			],
-	// 		},
-	// 		{
-	// 			component: NavLink,
-	// 			title: 'ب',
-	// 			to: '/',
-	// 		},
-	// 		{
-	// 			component: NavLink,
-	// 			title: 'جیم3',
-	// 			to: '/',
-	// 		},
-	// 	],
-	// },
-	{
 		title: 'ولی‌نعمتان',
 		items: [
-			{ title: 'خانواده‌ها', to: '/vali-nematan' },
-			{ title: 'سطح‌ها', to: '/vali-nematan-levels' },
+			{ title: 'خانواده‌ها', to: '/vali-nematan/families' },
 			{
-				title: 'ولی‌نعمتان',
+				title: 'مرتبط با خانواده',
 				items: [
-					{ title: 'خانواده‌ها', to: '/vali-nematan' },
-					{ title: 'سطح‌ها', to: '/vali-nematan-levels' },
+					{ title: 'سطح‌ها', to: '/vali-nematan/levels' },
+					{ title: 'رابط‌ها', to: '/vali-nematan/connectors' },
+					{ title: 'نیازهای خانواده', to: '/vali-nematan/family-needs' },
+				],
+			},
+			{
+				title: 'مرتبط با اعضای خانواده',
+				items: [
+					{ title: 'نیازهای اعضا', to: '/vali-nematan/member-needs' },
+					{ title: 'بیماری‌های خاص', to: '/vali-nematan/special-disease' },
+					{ title: 'روابط خانوادگی', to: '/vali-nematan/relations' },
 				],
 			},
 		],
+	},
+	{
+		title: 'مدیریت',
+		items: [
+			{ title: 'نشست‌ها', to: '/manage/sessions' },
+			{ title: 'لاگ تغییرات', to: '/manage/changes-log' },
+			{ title: 'تنظیمات', to: '/manage/settings' },
+		],
+	},
+	{
+		title: 'درباره',
+		items: [
+			{ title: 'اپلیکیشن', to: '/about/app' },
+			{ title: 'گزارش خطا', to: '/about/issues' },
+			{ title: 'ابزارهای شخص ثالث', to: '/about/tools' },
+		],
+	},
+	{
+		title: 'حمایت مالی از پروژه',
+		to: '/donation',
 	},
 ];
 

@@ -4,8 +4,8 @@ import FamilyForm from '../views/ValiNematan/FamilyForm';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
-	{ path: '/vali-nematan', name: 'ولی‌نعمتان', element: FamiliesList, exact: true },
-	{ path: '/vali-nematan/:id', name: 'فرم خانواده', element: FamilyForm },
+	{ path: '/vali-nematan/families', name: 'ولی‌نعمتان', element: FamiliesList, exact: true },
+	{ path: '/vali-nematan/families/:id', name: 'فرم خانواده', element: FamilyForm },
 ];
 
 export default routes;
