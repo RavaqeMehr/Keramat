@@ -3,6 +3,10 @@ const _Navs = [
 		title: 'پیش‌خان',
 		to: '/',
 	},
+	{
+		title: 'تست',
+		to: '/test',
+	},
 	// {
 	// 	component: NavDropDown,
 	// 	title: 'ولی‌نعمتان',

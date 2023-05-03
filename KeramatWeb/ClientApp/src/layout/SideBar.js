@@ -8,7 +8,7 @@ const SideBar = () => {
 			<Menu
 				menuItemStyles={{
 					subMenuContent: {
-						background: 'transparent',
+						background: '#FBFBFB',
 						marginRight: '1em',
 						borderRightWidth: 1,
 						borderRightColor: 'black',
