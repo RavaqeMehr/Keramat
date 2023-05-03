@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, MenuItem, Sidebar, SubMenu } from 'react-pro-sidebar';
 import React, { Link } from 'react-router-dom';
 import _Navs from './_Navs';
@@ -41,6 +41,16 @@ const MItem = ({ title, to }) => <MenuItem component={<Link to={to} />}> {title}
 
 const MSubMenu = ({ title, items, open = false, onOpenChange }) => {
 	const [opens, opensSet] = useState({});
+
+	useEffect(() => {
+		if (!open) {
+			opensSet((old) => {
+				let newOpens = {};
+				Object.keys(old).forEach((v) => (newOpens[v] = false));
+				return newOpens;
+			});
+		}
+	}, [open]);
 
 	return (
 		<SubMenu label={title} onOpenChange={onOpenChange} open={open}>
