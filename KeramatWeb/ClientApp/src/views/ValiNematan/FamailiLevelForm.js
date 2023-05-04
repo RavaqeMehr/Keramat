@@ -6,6 +6,7 @@ import InputText from '../../components/form/InputText';
 import { normalizeNumberInt } from '../../helpers/Utils';
 import { ReduxActions } from '../../store';
 import axios from 'axios';
+import MyTable from '../../components/table/MyTable';
 
 const FamailiLevelForm = () => {
 	const navigate = useNavigate();
@@ -61,6 +62,31 @@ const FamailiLevelForm = () => {
 		}
 	};
 
+	const [tbl, tblSet] = useState({
+		search: '',
+		page: 1,
+		loading: true,
+		data: null,
+		pagination: null,
+	});
+
+	const GetPage = (page) => {
+		tblSet((old) => ({ ...old, loading: true }));
+		axios
+			.get('ValiNematan/FamilyLevelUsesList', { params: { id, page } })
+			.then((x) => x.data.data)
+			.then((x) => {
+				const { items, ...pagination } = x;
+				tblSet((old) => ({ ...old, loading: false, data: items, pagination: pagination }));
+			})
+			.catch((e) => {})
+			.finally(() => tblSet((old) => ({ ...old, loading: false })));
+	};
+
+	useEffect(() => {
+		GetPage(1);
+	}, []);
+
 	return (
 		<>
 			<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} سطح خانواده`} onSubmit={submit} loading={form.loading}>
@@ -88,8 +114,29 @@ const FamailiLevelForm = () => {
 					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, description: val } }))}
 				/>
 			</MyForm>
+
+			<MyTable
+				title='لیست خانواده‌های این سطح'
+				cols={cols}
+				rows={tbl.data}
+				pagination={tbl.pagination}
+				loading={tbl.loading}
+				rowRenderer={rowRenderer}
+				onPageClick={(x) => GetPage(x)}
+				onRowClick={(x) => navigate(`./../../families/${x.id}`, { relative: true })}
+			/>
 		</>
 	);
 };
 
 export default FamailiLevelForm;
+
+const cols = ['کد', 'عنوان', 'درج'];
+
+const rowRenderer = (x) => (
+	<>
+		<th scope='row'>{x.id}</th>
+		<td>{x.title}</td>
+		<td>{x.addDate}</td>
+	</>
+);

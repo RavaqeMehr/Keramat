@@ -16,6 +16,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IUpdateFamilyService updateFamilyService;
         private readonly IInsertFamilyLevelService insertFamilyLevelService;
         private readonly IUpdateFamilyLevelService updateFamilyLevelService;
+        private readonly IGetFamilyLevelUsesListService getFamilyLevelUsesListService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -25,7 +26,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             IGetFamilyByIdService getFamilyByIdService,
             IUpdateFamilyService updateFamilyService,
             IInsertFamilyLevelService insertFamilyLevelService,
-            IUpdateFamilyLevelService updateFamilyLevelService
+            IUpdateFamilyLevelService updateFamilyLevelService,
+            IGetFamilyLevelUsesListService getFamilyLevelUsesListService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -35,6 +37,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.updateFamilyService = updateFamilyService;
             this.insertFamilyLevelService = insertFamilyLevelService;
             this.updateFamilyLevelService = updateFamilyLevelService;
+            this.getFamilyLevelUsesListService = getFamilyLevelUsesListService;
         }
 
         [HttpGet]
@@ -75,6 +78,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpPut]
         public async Task<bool> EditFamilyLevel([FromBody] UpdateFamilyLevelDto dto) {
             return await updateFamilyLevelService.Exe(dto);
+        }
+
+        [HttpGet]
+        public async Task<WithPagination<GetFamilyLevelUsesListItemDto>> FamilyLevelUsesList([FromQuery] GetFamilyLevelUsesListQuery query) {
+            return await getFamilyLevelUsesListService.Exe(query);
         }
     }
 }
