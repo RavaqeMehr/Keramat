@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import MyTable from '../../components/table/MyTable';
 import { sleep } from '../../helpers/Utils';
 import { useNavigate } from 'react-router-dom';
-import { Badge } from 'reactstrap';
+import { Badge, Button } from 'reactstrap';
 
 const FamiliesList = () => {
 	const navigate = useNavigate();
@@ -37,15 +37,18 @@ const FamiliesList = () => {
 	return (
 		<>
 			<MyTable
-				title='تست'
+				title='لیست خانواده‌ها'
 				cols={tbl.cols}
 				rows={tbl.data}
 				pagination={tbl.pagination}
 				loading={tbl.loading}
 				rowRenderer={rowRenderer}
 				onPageClick={(x) => GetPage(x)}
-				onRowClick={(x) => navigate(`./${x.id}`, { relative: false })}
+				onRowClick={(x) => navigate(`./${x.id}`, { relative: true })}
 			/>
+			<Button color='success' onClick={(x) => navigate(`./0`, { relative: true })}>
+				افزودن
+			</Button>
 		</>
 	);
 };
