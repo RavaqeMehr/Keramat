@@ -4,8 +4,6 @@ import React, { Link } from 'react-router-dom';
 import _Navs from './_Navs';
 
 const SideBar = () => {
-	const [opens, opensSet] = useState({});
-
 	return (
 		<Sidebar rtl>
 			<Menu
@@ -18,18 +16,7 @@ const SideBar = () => {
 						borderRightStyle: 'dashed',
 					},
 				}}>
-				{_Navs.map((x, i) =>
-					x.to ? (
-						<MItem key={i} {...x} />
-					) : (
-						<MSubMenu
-							key={i}
-							{...x}
-							open={opens[i] ?? false}
-							onOpenChange={(e) => globalOpenHandler(i, e, opens, opensSet)}
-						/>
-					)
-				)}
+				<MSubMenu open items={_Navs} isRoot />
 			</Menu>
 		</Sidebar>
 	);
@@ -39,7 +26,7 @@ export default SideBar;
 
 const MItem = ({ title, to }) => <MenuItem component={<Link to={to} />}> {title}</MenuItem>;
 
-const MSubMenu = ({ title, items, open = false, onOpenChange }) => {
+const MSubMenu = ({ title, items, open = false, onOpenChange, isRoot = false }) => {
 	const [opens, opensSet] = useState({});
 
 	useEffect(() => {
@@ -52,22 +39,28 @@ const MSubMenu = ({ title, items, open = false, onOpenChange }) => {
 		}
 	}, [open]);
 
-	return (
-		<SubMenu label={title} onOpenChange={onOpenChange} open={open}>
-			{items.map((x, i) =>
-				x.to ? (
-					<MItem key={i} {...x} />
-				) : (
-					<MSubMenu
-						key={i}
-						{...x}
-						open={opens[i] ?? false}
-						onOpenChange={(e) => globalOpenHandler(i, e, opens, opensSet)}
-					/>
-				)
-			)}
-		</SubMenu>
+	const children = items.map((x, i) =>
+		x.to ? (
+			<MItem key={i} {...x} />
+		) : (
+			<MSubMenu
+				key={i}
+				{...x}
+				open={opens[i] ?? false}
+				onOpenChange={(e) => globalOpenHandler(i, e, opens, opensSet)}
+			/>
+		)
 	);
+
+	if (isRoot) {
+		return <>{children}</>;
+	} else {
+		return (
+			<SubMenu label={title} onOpenChange={onOpenChange} open={open}>
+				{children}
+			</SubMenu>
+		);
+	}
 };
 
 const globalOpenHandler = (key, isOpen, opens, opensSet) => {
