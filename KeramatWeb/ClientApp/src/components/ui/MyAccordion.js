@@ -14,16 +14,18 @@ const MyAccordion = ({ headers, defaultOpenIndex = 0, headersClassName, bodiesCl
 
 	return (
 		<Accordion open={open} toggle={toggle}>
-			{children.map((x, i) => (
-				<AccordionItem key={i}>
-					<AccordionHeader targetId={'' + i} className={headersClassName}>
-						{headers ? headers[i] ?? i : i}
-					</AccordionHeader>
-					<AccordionBody accordionId={'' + i} className={bodiesClassName}>
-						{x}
-					</AccordionBody>
-				</AccordionItem>
-			))}
+			{children.map((x, i) =>
+				x ? (
+					<AccordionItem key={i}>
+						<AccordionHeader targetId={'' + i} className={headersClassName}>
+							{headers ? headers[i] ?? i : i}
+						</AccordionHeader>
+						<AccordionBody accordionId={'' + i} className={bodiesClassName}>
+							{x}
+						</AccordionBody>
+					</AccordionItem>
+				) : null
+			)}
 		</Accordion>
 	);
 };
