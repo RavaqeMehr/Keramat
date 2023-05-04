@@ -8,6 +8,7 @@ import { ReduxActions } from '../../store';
 import axios from 'axios';
 import MyTable from '../../components/table/MyTable';
 import MyAccordion from '../../components/ui/MyAccordion';
+import { Button, Alert } from 'reactstrap';
 
 const FamailiLevelForm = () => {
 	const navigate = useNavigate();
@@ -88,9 +89,22 @@ const FamailiLevelForm = () => {
 		GetPage(1);
 	}, []);
 
+	const remove = () => {
+		axios
+			.delete('ValiNematan/RemoveFamilyLevel', { params: { id } })
+			.then((x) => x.data.data)
+			.then(async (x) => {
+				if (x) {
+					dispatch(await ReduxActions.logicActions.updateFamilyLevels());
+					navigate(`./../`, { relative: true });
+				}
+			})
+			.catch((e) => console.error);
+	};
+
 	return (
 		<>
-			<MyAccordion headers={['فرم', 'لیست وابسطه']}>
+			<MyAccordion headers={['فرم', 'لیست وابسطه', 'حذف']}>
 				<MyForm
 					title={`${id == 0 ? 'افزودن' : 'ویرایش'} سطح خانواده`}
 					onSubmit={submit}
@@ -130,6 +144,17 @@ const FamailiLevelForm = () => {
 						onPageClick={(x) => GetPage(x)}
 						onRowClick={(x) => navigate(`./../../families/${x.id}`, { relative: true })}
 					/>
+				)}
+				{id == '0' ? null : (
+					<>
+						<Alert color='warning' className='text-center'>
+							توجه داشته باشید که عملیات حذف، برگشت‌پذیر نیست و تنها زمانی امکان حذف وجود دارد که اطلاعات
+							وابسطه‌ای وجود نداشته باشد.
+						</Alert>
+						<Button color='danger' onClick={remove}>
+							حذف
+						</Button>
+					</>
 				)}
 			</MyAccordion>
 		</>

@@ -17,6 +17,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IInsertFamilyLevelService insertFamilyLevelService;
         private readonly IUpdateFamilyLevelService updateFamilyLevelService;
         private readonly IGetFamilyLevelUsesListService getFamilyLevelUsesListService;
+        private readonly IRemoveFamilyLevelService removeFamilyLevelService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -27,7 +28,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             IUpdateFamilyService updateFamilyService,
             IInsertFamilyLevelService insertFamilyLevelService,
             IUpdateFamilyLevelService updateFamilyLevelService,
-            IGetFamilyLevelUsesListService getFamilyLevelUsesListService
+            IGetFamilyLevelUsesListService getFamilyLevelUsesListService,
+            IRemoveFamilyLevelService removeFamilyLevelService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -38,6 +40,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.insertFamilyLevelService = insertFamilyLevelService;
             this.updateFamilyLevelService = updateFamilyLevelService;
             this.getFamilyLevelUsesListService = getFamilyLevelUsesListService;
+            this.removeFamilyLevelService = removeFamilyLevelService;
         }
 
         [HttpGet]
@@ -65,11 +68,6 @@ namespace KeramatWeb.Api.V1.Controllers {
             return await getFamilyLevelsListService.Exe();
         }
 
-        [HttpGet]
-        public async Task<List<GetConnectorsListItemDto>> Connectors() {
-            return await getConnectorsListService.Exe();
-        }
-
         [HttpPost]
         public async Task<int> AddFamilyLevel([FromBody] InsertFamilyLevelDto dto) {
             return await insertFamilyLevelService.Exe(dto);
@@ -84,5 +82,16 @@ namespace KeramatWeb.Api.V1.Controllers {
         public async Task<WithPagination<GetFamilyLevelUsesListItemDto>> FamilyLevelUsesList([FromQuery] GetFamilyLevelUsesListQuery query) {
             return await getFamilyLevelUsesListService.Exe(query);
         }
+
+        [HttpDelete]
+        public async Task<bool> RemoveFamilyLevel([FromQuery] int id) {
+            return await removeFamilyLevelService.Exe(id);
+        }
+
+        [HttpGet]
+        public async Task<List<GetConnectorsListItemDto>> Connectors() {
+            return await getConnectorsListService.Exe();
+        }
+
     }
 }
