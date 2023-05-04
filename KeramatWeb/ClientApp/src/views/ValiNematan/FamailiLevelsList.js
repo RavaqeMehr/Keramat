@@ -12,8 +12,9 @@ const FamailiLevelsList = () => {
 		<>
 			<MyTable
 				title='لیست سطح‌ها'
-				cols={['کد', 'عنوان', 'ملاحظات', 'سطح']}
+				cols={['کد', 'عنوان', 'سطح', 'ملاحظات']}
 				rows={familyLevels}
+				rowRenderer={rowRenderer}
 				onRowClick={(x) => navigate(`./${x.id}`, { relative: true })}
 			/>
 			<Button color='success' onClick={(x) => navigate(`./0`, { relative: true })}>
@@ -24,3 +25,12 @@ const FamailiLevelsList = () => {
 };
 
 export default FamailiLevelsList;
+
+const rowRenderer = (x) => (
+	<>
+		<th scope='row'>{x.id}</th>
+		<td>{x.title}</td>
+		<td>{x.level}</td>
+		<td>{x.description}</td>
+	</>
+);

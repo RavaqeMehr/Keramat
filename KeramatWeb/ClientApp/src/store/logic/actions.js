@@ -2,13 +2,13 @@ import axios from 'axios';
 
 export const updateLogics = () => {
 	return async (dispatch) => {
-		dispatch(updateAppInfo());
+		dispatch(updateFamilyLevels());
 		dispatch(updateConnectors());
 	};
 };
 
 export const UPDATE_FAMILY_LEVELS = 'LOGIC::UPDATE_FAMILY_LEVELS';
-export const updateAppInfo = () => {
+export const updateFamilyLevels = () => {
 	return async (dispatch) => {
 		axios
 			.get('ValiNematan/FamilyLevels')

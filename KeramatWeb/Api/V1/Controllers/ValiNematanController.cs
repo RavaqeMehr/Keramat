@@ -14,6 +14,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IGetConnectorsListService getConnectorsListService;
         private readonly IGetFamilyByIdService getFamilyByIdService;
         private readonly IUpdateFamilyService updateFamilyService;
+        private readonly IInsertFamilyLevelService insertFamilyLevelService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -21,7 +22,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             IGetFamilyLevelsListService getFamilyLevelsListService,
             IGetConnectorsListService getConnectorsListService,
             IGetFamilyByIdService getFamilyByIdService,
-            IUpdateFamilyService updateFamilyService
+            IUpdateFamilyService updateFamilyService,
+            IInsertFamilyLevelService insertFamilyLevelService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -29,6 +31,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.getConnectorsListService = getConnectorsListService;
             this.getFamilyByIdService = getFamilyByIdService;
             this.updateFamilyService = updateFamilyService;
+            this.insertFamilyLevelService = insertFamilyLevelService;
         }
 
         [HttpGet]
@@ -59,6 +62,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpGet]
         public async Task<List<GetConnectorsListItemDto>> Connectors() {
             return await getConnectorsListService.Exe();
+        }
+
+        [HttpPost]
+        public async Task<int> AddFamilyLevel([FromBody] InsertFamilyLevelDto dto) {
+            return await insertFamilyLevelService.Exe(dto);
         }
     }
 }
