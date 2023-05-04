@@ -50,14 +50,14 @@ const FamailiLevelForm = () => {
 				})
 				.catch(console.error);
 		} else {
-			// axios
-			// 	.put('ValiNematan/EditFamilyLevel', { id, ...dto })
-			// 	.then((response) => response.data)
-			// 	.then(async (data) => {
-			// dispatch(await ReduxActions.logicActions.updateFamilyLevels());
-			// 		navigate(`./../`, { relative: true });
-			// 	})
-			// 	.catch(console.error);
+			axios
+				.put('ValiNematan/EditFamilyLevel', { id, ...dto })
+				.then((response) => response.data)
+				.then(async (data) => {
+					dispatch(await ReduxActions.logicActions.updateFamilyLevels());
+					navigate(`./../`, { relative: true });
+				})
+				.catch(console.error);
 		}
 	};
 
