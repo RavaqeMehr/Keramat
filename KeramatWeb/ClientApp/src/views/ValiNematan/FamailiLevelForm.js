@@ -7,6 +7,7 @@ import { normalizeNumberInt } from '../../helpers/Utils';
 import { ReduxActions } from '../../store';
 import axios from 'axios';
 import MyTable from '../../components/table/MyTable';
+import MyAccordion from '../../components/ui/MyAccordion';
 
 const FamailiLevelForm = () => {
 	const navigate = useNavigate();
@@ -89,42 +90,48 @@ const FamailiLevelForm = () => {
 
 	return (
 		<>
-			<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} سطح خانواده`} onSubmit={submit} loading={form.loading}>
-				<InputText id='id' label='کد' readOnly value={id} />
-				<InputText
-					id='title'
-					label='عنوان'
-					value={form.items.title}
-					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, title: val } }))}
-				/>
-				<InputText
-					id='level'
-					label='سطح'
-					value={form.items.level}
-					onChange={(val) =>
-						formSet((old) => ({ ...old, items: { ...old.items, level: '' + normalizeNumberInt(val) } }))
-					}
-				/>
+			<MyAccordion headers={['فرم', 'لیست وابسطه']}>
+				<MyForm
+					title={`${id == 0 ? 'افزودن' : 'ویرایش'} سطح خانواده`}
+					onSubmit={submit}
+					loading={form.loading}>
+					<InputText id='id' label='کد' readOnly value={id} />
+					<InputText
+						id='title'
+						label='عنوان'
+						value={form.items.title}
+						onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, title: val } }))}
+					/>
+					<InputText
+						id='level'
+						label='سطح'
+						value={form.items.level}
+						onChange={(val) =>
+							formSet((old) => ({ ...old, items: { ...old.items, level: '' + normalizeNumberInt(val) } }))
+						}
+					/>
 
-				<InputText
-					multiLine
-					id='description'
-					label='ملاحظات'
-					value={form.items.description}
-					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, description: val } }))}
-				/>
-			</MyForm>
-
-			<MyTable
-				title='لیست خانواده‌های این سطح'
-				cols={cols}
-				rows={tbl.data}
-				pagination={tbl.pagination}
-				loading={tbl.loading}
-				rowRenderer={rowRenderer}
-				onPageClick={(x) => GetPage(x)}
-				onRowClick={(x) => navigate(`./../../families/${x.id}`, { relative: true })}
-			/>
+					<InputText
+						multiLine
+						id='description'
+						label='ملاحظات'
+						value={form.items.description}
+						onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, description: val } }))}
+					/>
+				</MyForm>
+				{id == '0' ? null : (
+					<MyTable
+						title='لیست خانواده‌های این سطح'
+						cols={cols}
+						rows={tbl.data}
+						pagination={tbl.pagination}
+						loading={tbl.loading}
+						rowRenderer={rowRenderer}
+						onPageClick={(x) => GetPage(x)}
+						onRowClick={(x) => navigate(`./../../families/${x.id}`, { relative: true })}
+					/>
+				)}
+			</MyAccordion>
 		</>
 	);
 };
