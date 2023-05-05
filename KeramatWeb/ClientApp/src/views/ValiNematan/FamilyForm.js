@@ -88,7 +88,7 @@ const FamilyForm = () => {
 	};
 
 	return (
-		<MyAccordion headers={['فرم', 'نیازها', 'اعضا', 'حذف']}>
+		<MyAccordion headers={['فرم', 'نیازها', 'اعضا', 'حذف']} defaultOpenIndex={id == 0 ? 0 : -1}>
 			<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} خانواده`} onSubmit={submit} loading={form.loading}>
 				<InputText id='id' label='کد' readOnly value={id} />
 				{id > 0 ? (
