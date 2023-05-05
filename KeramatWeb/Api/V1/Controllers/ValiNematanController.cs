@@ -24,6 +24,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IRemoveConnectorService removeConnectorService;
         private readonly IGetFamilyNeedSubjectsListService getFamilyNeedSubjectsListService;
         private readonly IInsertFamilyNeedSubjectService insertFamilyNeedSubjectService;
+        private readonly IUpdateFamilyNeedSubjectService updateFamilyNeedSubjectService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -41,7 +42,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             IGetConnectorUsesListService getConnectorUsesListService,
             IRemoveConnectorService removeConnectorService,
             IGetFamilyNeedSubjectsListService getFamilyNeedSubjectsListService,
-            IInsertFamilyNeedSubjectService insertFamilyNeedSubjectService
+            IInsertFamilyNeedSubjectService insertFamilyNeedSubjectService,
+            IUpdateFamilyNeedSubjectService updateFamilyNeedSubjectService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -59,6 +61,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.removeConnectorService = removeConnectorService;
             this.getFamilyNeedSubjectsListService = getFamilyNeedSubjectsListService;
             this.insertFamilyNeedSubjectService = insertFamilyNeedSubjectService;
+            this.updateFamilyNeedSubjectService = updateFamilyNeedSubjectService;
         }
 
         [HttpGet]
@@ -139,6 +142,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpPost]
         public async Task<int> AddFamilyNeedSubject([FromBody] InsertFamilyNeedSubjectDto dto) {
             return await insertFamilyNeedSubjectService.Exe(dto);
+        }
+
+        [HttpPut]
+        public async Task<bool> EditFamilyNeedSubject([FromBody] FamilyNeedSubject dto) {
+            return await updateFamilyNeedSubjectService.Exe(dto);
         }
     }
 }
