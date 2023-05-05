@@ -23,5 +23,10 @@ namespace KeramatWeb.Api.V1.Controllers {
         public GetAppInfoDto AppInfo() {
             return getAppInfoService.Exe();
         }
+
+        [HttpDelete]
+        public void Exit() {
+            Environment.Exit(786);
+        }
     }
 }

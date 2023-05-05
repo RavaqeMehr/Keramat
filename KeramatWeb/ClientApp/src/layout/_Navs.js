@@ -45,6 +45,10 @@ const _Navs = [
 		title: 'حمایت مالی از پروژه',
 		to: '/donation',
 	},
+	{
+		title: 'خروج',
+		to: '/exit',
+	},
 ];
 
 export default _Navs;

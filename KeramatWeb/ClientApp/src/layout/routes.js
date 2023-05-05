@@ -1,4 +1,5 @@
 import Home from '../views/Home';
+import Exit from '../views/Exit';
 import FamailiLevelForm from '../views/ValiNematan/FamailiLevelForm';
 import FamailiLevelsList from '../views/ValiNematan/FamailiLevelsList';
 import FamiliesList from '../views/ValiNematan/FamiliesList';
@@ -10,6 +11,7 @@ import FamilyNeedSubjectForm from './../views/ValiNematan/FamilyNeedSubjectForm'
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
+	{ path: '/exit', name: 'خروج', element: Exit, exact: true },
 	{ path: '/vali-nematan/families', name: 'ولی‌نعمتان', element: FamiliesList, exact: true },
 	{ path: '/vali-nematan/families/:id', name: 'فرم خانواده', element: FamilyForm },
 	{ path: '/vali-nematan/levels', name: 'سطح‌های خانواده', element: FamailiLevelsList, exact: true },
