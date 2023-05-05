@@ -1,0 +1,59 @@
+﻿using Common;
+using Common.Utilities;
+using Data;
+using Entities.ValiNematan;
+using Microsoft.EntityFrameworkCore;
+using Services.AppUsingLogs;
+using Services.ValiNematan.Models;
+
+namespace Services.ValiNematan {
+    public interface IReOrderFamilyNeedService : IScopedDependency {
+        Task<bool> Exe(ReOrderFamilyNeedDto dto);
+    }
+
+    public class ReOrderFamilyNeedService : IReOrderFamilyNeedService {
+        private readonly IRepository<FamilyNeed> familyNeedRepo;
+        private readonly IAddEntityChangeService addEntityChangeService;
+
+        public ReOrderFamilyNeedService(
+            IRepository<FamilyNeed> familyNeedRepo,
+            IAddEntityChangeService addEntityChangeService
+            ) {
+            this.familyNeedRepo = familyNeedRepo;
+            this.addEntityChangeService = addEntityChangeService;
+        }
+
+        public async Task<bool> Exe(ReOrderFamilyNeedDto dto) {
+            if (dto.SortedIds.Count() > 0) {
+                var items = await familyNeedRepo.TableNoTracking
+                .Where(x => dto.SortedIds.Contains(x.Id))
+                .ToListAsync();
+
+                var allNotFromSameFamily = items.Any(x => x.FamilyId != dto.SortedIds[0]);
+                if (allNotFromSameFamily) {
+                    throw new Exception("!");
+                }
+
+                int n = 0;
+                foreach (var item in items) {
+                    n += 1;
+                    var item_ = item.Clone();
+
+                    item.Order = n;
+                    await familyNeedRepo.UpdateAsync(item);
+
+                    await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<FamilyNeed> {
+                        ChangeType = Entities.AppUsingLogs.ChangeType.Edit,
+                        EnitityType = Entities.AppUsingLogs.EnitityType.FamilyNeed,
+                        Root1Id = item.FamilyId,
+                        EnitityId = item.Id,
+                        ObjA = item_,
+                        ObjB = item
+                    });
+                }
+            }
+
+            return true;
+        }
+    }
+}
