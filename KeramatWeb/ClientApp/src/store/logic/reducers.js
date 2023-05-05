@@ -3,6 +3,7 @@ import * as actions from './actions';
 const initialState = {
 	familyLevels: [],
 	connectors: [],
+	familyNeedSubjects: [],
 };
 
 export default (state = initialState, { type, ...rest }) => {
@@ -16,6 +17,11 @@ export default (state = initialState, { type, ...rest }) => {
 			return {
 				...state,
 				connectors: rest.data,
+			};
+		case actions.UPDATE_FAMILY_NEED_SUBJECTS:
+			return {
+				...state,
+				familyNeedSubjects: rest.data,
 			};
 
 		default:
