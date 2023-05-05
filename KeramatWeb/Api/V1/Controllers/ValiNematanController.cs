@@ -15,6 +15,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IRemoveFamilyService removeFamilyService;
         private readonly IGetFamilyNeedsListService getFamilyNeedsListService;
         private readonly IInsertFamilyNeedService insertFamilyNeedService;
+        private readonly IUpdateFamilyNeedService updateFamilyNeedService;
         private readonly IGetFamilyLevelsListService getFamilyLevelsListService;
         private readonly IInsertFamilyLevelService insertFamilyLevelService;
         private readonly IUpdateFamilyLevelService updateFamilyLevelService;
@@ -39,6 +40,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             IRemoveFamilyService removeFamilyService,
             IGetFamilyNeedsListService getFamilyNeedsListService,
             IInsertFamilyNeedService insertFamilyNeedService,
+            IUpdateFamilyNeedService updateFamilyNeedService,
             IGetFamilyLevelsListService getFamilyLevelsListService,
             IInsertFamilyLevelService insertFamilyLevelService,
             IUpdateFamilyLevelService updateFamilyLevelService,
@@ -62,6 +64,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.removeFamilyService = removeFamilyService;
             this.getFamilyNeedsListService = getFamilyNeedsListService;
             this.insertFamilyNeedService = insertFamilyNeedService;
+            this.updateFamilyNeedService = updateFamilyNeedService;
             this.getFamilyLevelsListService = getFamilyLevelsListService;
             this.insertFamilyLevelService = insertFamilyLevelService;
             this.updateFamilyLevelService = updateFamilyLevelService;
@@ -112,6 +115,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpPost]
         public async Task<int> AddFamilyNeed([FromBody] InsertFamilyNeedDto dto) {
             return await insertFamilyNeedService.Exe(dto);
+        }
+
+        [HttpPut]
+        public async Task<bool> EditFamilyNeed([FromBody] UpdateFamilyNeedDto dto) {
+            return await updateFamilyNeedService.Exe(dto);
         }
 
         [HttpGet]
