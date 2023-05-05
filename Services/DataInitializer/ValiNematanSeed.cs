@@ -8,6 +8,7 @@ namespace Services.DataInitializer {
         private readonly IRepository<FamilyLevel> familyLevelRepo;
         private readonly IRepository<FamilyMemberNeedSubject> familyMemberNeedSubjectRepo;
         private readonly IRepository<FamilyNeedSubject> familyNeedSubjectRepo;
+        private readonly IRepository<Connector> connectorRepo;
         private readonly IRepository<FamilyMemberRelation> familyMemberRelationRepo;
         private readonly IRepository<FamilyMemberSpecialDiseaseSubject> familyMemberSpecialDiseaseSubjectRepo;
 
@@ -15,6 +16,7 @@ namespace Services.DataInitializer {
             IRepository<AppSetting> appSettingRepo,
             IRepository<FamilyLevel> familyLevelRepo,
             IRepository<FamilyNeedSubject> familyNeedSubjectRepo,
+            IRepository<Connector> connectorRepo,
             IRepository<FamilyMemberNeedSubject> familyMemberNeedSubjectRepo,
             IRepository<FamilyMemberRelation> familyMemberRelationRepo,
             IRepository<FamilyMemberSpecialDiseaseSubject> familyMemberSpecialDiseaseSubjectRepo
@@ -22,6 +24,7 @@ namespace Services.DataInitializer {
             this.appSettingRepo = appSettingRepo;
             this.familyLevelRepo = familyLevelRepo;
             this.familyNeedSubjectRepo = familyNeedSubjectRepo;
+            this.connectorRepo = connectorRepo;
             this.familyMemberNeedSubjectRepo = familyMemberNeedSubjectRepo;
             this.familyMemberRelationRepo = familyMemberRelationRepo;
             this.familyMemberSpecialDiseaseSubjectRepo = familyMemberSpecialDiseaseSubjectRepo;
@@ -34,11 +37,12 @@ namespace Services.DataInitializer {
 
             var familyLevelAdd = new List<FamilyLevel>();
             var familyNeedSubjectAdd = new List<FamilyNeedSubject>();
+            var connectorAdd = new List<Connector>();
             var familyMemberNeedSubjectAdd = new List<FamilyMemberNeedSubject>();
             var familyMemberRelationAdd = new List<FamilyMemberRelation>();
             var familyMemberSpecialDiseaseSubjectAdd = new List<FamilyMemberSpecialDiseaseSubject>();
 
-            if (lastInstalledVerNum <= 3) {
+            if (lastInstalledVerNum < 1) {
                 familyLevelAdd.Add(new FamilyLevel { Level = 1, Title = "نامشخص" });
                 familyLevelAdd.Add(new FamilyLevel { Level = 2, Title = "محتاج" });
                 familyLevelAdd.Add(new FamilyLevel { Level = 3, Title = "خیلی محتاج" });
@@ -51,6 +55,8 @@ namespace Services.DataInitializer {
                 familyNeedSubjectAdd.Add(new FamilyNeedSubject { Title = "اسباب منزل" });
                 familyNeedSubjectAdd.Add(new FamilyNeedSubject { Title = "اسباب کار" });
                 familyNeedSubjectAdd.Add(new FamilyNeedSubject { Title = "کمک‌هزینه اجاره محل کار" });
+
+                connectorAdd.Add(new Connector { Name = "[بدون معرف]", Phone = "" });
 
                 familyMemberNeedSubjectAdd.Add(new FamilyMemberNeedSubject { Title = "شناسنامه" });
                 familyMemberNeedSubjectAdd.Add(new FamilyMemberNeedSubject { Title = "بیمه" });
@@ -92,6 +98,10 @@ namespace Services.DataInitializer {
 
             if (familyNeedSubjectAdd.Count > 0) {
                 familyNeedSubjectRepo.AddRange(familyNeedSubjectAdd);
+            }
+
+            if (connectorAdd.Count > 0) {
+                connectorRepo.AddRange(connectorAdd);
             }
 
             if (familyMemberNeedSubjectAdd.Count > 0) {
