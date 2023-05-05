@@ -6,6 +6,18 @@ namespace Entities.ValiNematan {
 
     public class FamilyMemberSpecialDisease : BaseEntity {
         [Order]
+        [Display(Name = "کد خانواده")]
+        public int FamilyId { get; set; }
+        [Order]
+        [Display(Name = "خانواده")]
+        public Family Family { get; set; }
+        [Order]
+        [Display(Name = "کد عضو")]
+        public int FamilyMemberId { get; set; }
+        [Order]
+        [Display(Name = "عضو")]
+        public FamilyMember FamilyMember { get; set; }
+        [Order]
         [Display(Name = "ترتیب")]
         public int Order { get; set; }
         [Order]
