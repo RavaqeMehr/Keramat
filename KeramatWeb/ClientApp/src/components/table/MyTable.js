@@ -36,7 +36,7 @@ const MyTable = ({
 	}
 
 	return (
-		<Card className='my-4'>
+		<Card className='mb-4'>
 			{title ? <CardHeader>{title}</CardHeader> : null}
 
 			{loading ? <Loading /> : null}

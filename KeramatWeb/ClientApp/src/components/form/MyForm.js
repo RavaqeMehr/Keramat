@@ -12,7 +12,7 @@ const MyForm = ({ title, children, onSubmit, loading = false }) => {
 					onSubmit();
 				}
 			}}>
-			<Card className='my-4'>
+			<Card className='mb-4'>
 				<BlurLayer show={loading} />
 				<CardHeader>
 					<Badge color='dark' role='button' onClick={() => isOpenSet((old) => !old)}>
