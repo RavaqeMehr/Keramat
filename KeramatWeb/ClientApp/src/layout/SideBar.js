@@ -5,7 +5,7 @@ import _Navs from './_Navs';
 
 const SideBar = () => {
 	return (
-		<Sidebar rtl>
+		<Sidebar rtl className='d-print-none'>
 			<Menu
 				menuItemStyles={{
 					subMenuContent: {
