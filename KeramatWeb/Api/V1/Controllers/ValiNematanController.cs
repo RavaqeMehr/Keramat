@@ -16,6 +16,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IGetFamilyNeedsListService getFamilyNeedsListService;
         private readonly IInsertFamilyNeedService insertFamilyNeedService;
         private readonly IUpdateFamilyNeedService updateFamilyNeedService;
+        private readonly IRemoveFamilyNeedService removeFamilyNeedService;
         private readonly IGetFamilyLevelsListService getFamilyLevelsListService;
         private readonly IInsertFamilyLevelService insertFamilyLevelService;
         private readonly IUpdateFamilyLevelService updateFamilyLevelService;
@@ -41,6 +42,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             IGetFamilyNeedsListService getFamilyNeedsListService,
             IInsertFamilyNeedService insertFamilyNeedService,
             IUpdateFamilyNeedService updateFamilyNeedService,
+            IRemoveFamilyNeedService removeFamilyNeedService,
             IGetFamilyLevelsListService getFamilyLevelsListService,
             IInsertFamilyLevelService insertFamilyLevelService,
             IUpdateFamilyLevelService updateFamilyLevelService,
@@ -65,6 +67,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.getFamilyNeedsListService = getFamilyNeedsListService;
             this.insertFamilyNeedService = insertFamilyNeedService;
             this.updateFamilyNeedService = updateFamilyNeedService;
+            this.removeFamilyNeedService = removeFamilyNeedService;
             this.getFamilyLevelsListService = getFamilyLevelsListService;
             this.insertFamilyLevelService = insertFamilyLevelService;
             this.updateFamilyLevelService = updateFamilyLevelService;
@@ -120,6 +123,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpPut]
         public async Task<bool> EditFamilyNeed([FromBody] UpdateFamilyNeedDto dto) {
             return await updateFamilyNeedService.Exe(dto);
+        }
+
+        [HttpDelete]
+        public async Task<bool> RemoveFamilyNeed([FromQuery] int id) {
+            return await removeFamilyNeedService.Exe(id);
         }
 
         [HttpGet]
