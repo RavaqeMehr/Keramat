@@ -25,6 +25,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IGetFamilyNeedSubjectsListService getFamilyNeedSubjectsListService;
         private readonly IInsertFamilyNeedSubjectService insertFamilyNeedSubjectService;
         private readonly IUpdateFamilyNeedSubjectService updateFamilyNeedSubjectService;
+        private readonly IGetFamilyNeedSubjectUsesListService getFamilyNeedSubjectUsesListService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -43,7 +44,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             IRemoveConnectorService removeConnectorService,
             IGetFamilyNeedSubjectsListService getFamilyNeedSubjectsListService,
             IInsertFamilyNeedSubjectService insertFamilyNeedSubjectService,
-            IUpdateFamilyNeedSubjectService updateFamilyNeedSubjectService
+            IUpdateFamilyNeedSubjectService updateFamilyNeedSubjectService,
+            IGetFamilyNeedSubjectUsesListService getFamilyNeedSubjectUsesListService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -62,6 +64,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.getFamilyNeedSubjectsListService = getFamilyNeedSubjectsListService;
             this.insertFamilyNeedSubjectService = insertFamilyNeedSubjectService;
             this.updateFamilyNeedSubjectService = updateFamilyNeedSubjectService;
+            this.getFamilyNeedSubjectUsesListService = getFamilyNeedSubjectUsesListService;
         }
 
         [HttpGet]
@@ -147,6 +150,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpPut]
         public async Task<bool> EditFamilyNeedSubject([FromBody] FamilyNeedSubject dto) {
             return await updateFamilyNeedSubjectService.Exe(dto);
+        }
+
+        [HttpGet]
+        public async Task<WithPagination<GetUsesListFamilyItemDto>> FamilyNeedSubjectUsesList([FromQuery] GetUsesListQuery query) {
+            return await getFamilyNeedSubjectUsesListService.Exe(query);
         }
     }
 }
