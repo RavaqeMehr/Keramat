@@ -141,7 +141,7 @@ const FamilyForm = () => {
 					onChange={(val) =>
 						formSet((old) => ({ ...old, items: { ...old.items, connectorId: Number(val) } }))
 					}
-					items={connectors.map((x) => ({ id: x.id, text: `${x.Name}` }))}
+					items={connectors.map((x) => ({ id: x.id, text: `${x.name}` }))}
 				/>
 			</MyForm>
 		</>
