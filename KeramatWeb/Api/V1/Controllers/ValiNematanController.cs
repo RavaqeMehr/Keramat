@@ -26,6 +26,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IInsertFamilyNeedSubjectService insertFamilyNeedSubjectService;
         private readonly IUpdateFamilyNeedSubjectService updateFamilyNeedSubjectService;
         private readonly IGetFamilyNeedSubjectUsesListService getFamilyNeedSubjectUsesListService;
+        private readonly IRemoveFamilyNeedSubjectService removeFamilyNeedSubjectService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -45,7 +46,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             IGetFamilyNeedSubjectsListService getFamilyNeedSubjectsListService,
             IInsertFamilyNeedSubjectService insertFamilyNeedSubjectService,
             IUpdateFamilyNeedSubjectService updateFamilyNeedSubjectService,
-            IGetFamilyNeedSubjectUsesListService getFamilyNeedSubjectUsesListService
+            IGetFamilyNeedSubjectUsesListService getFamilyNeedSubjectUsesListService,
+            IRemoveFamilyNeedSubjectService removeFamilyNeedSubjectService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -65,6 +67,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.insertFamilyNeedSubjectService = insertFamilyNeedSubjectService;
             this.updateFamilyNeedSubjectService = updateFamilyNeedSubjectService;
             this.getFamilyNeedSubjectUsesListService = getFamilyNeedSubjectUsesListService;
+            this.removeFamilyNeedSubjectService = removeFamilyNeedSubjectService;
         }
 
         [HttpGet]
@@ -155,6 +158,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpGet]
         public async Task<WithPagination<GetUsesListFamilyItemDto>> FamilyNeedSubjectUsesList([FromQuery] GetUsesListQuery query) {
             return await getFamilyNeedSubjectUsesListService.Exe(query);
+        }
+
+        [HttpDelete]
+        public async Task<bool> RemoveFamilyNeedSubject([FromQuery] int id) {
+            return await removeFamilyNeedSubjectService.Exe(id);
         }
     }
 }
