@@ -6,6 +6,10 @@ import { useSelector } from 'react-redux';
 import InputSelect from '../../components/form/InputSelect';
 import axios from 'axios';
 import InputSwitch from '../../components/form/InputSwitch';
+import MyAccordion from '../../components/ui/MyAccordion';
+import FamilyNeeds from './components/FamilyNeeds';
+import FamilyMembers from './components/FamilyMembers';
+import { Alert, Button } from 'reactstrap';
 
 const FamilyForm = () => {
 	const navigate = useNavigate();
@@ -22,7 +26,7 @@ const FamilyForm = () => {
 			contactPersonName: '',
 			contactPersonPhone: '',
 			contactPersonDescription: '',
-			connectorId: 0,
+			connectorId: 1,
 			finished: false,
 		},
 	});
@@ -71,8 +75,20 @@ const FamilyForm = () => {
 		}
 	};
 
+	const remove = () => {
+		axios
+			.delete('ValiNematan/Remove', { params: { id } })
+			.then((x) => x.data.data)
+			.then((x) => {
+				if (x) {
+					navigate(`./../`, { relative: true });
+				}
+			})
+			.catch((e) => console.error);
+	};
+
 	return (
-		<>
+		<MyAccordion headers={['فرم', 'نیازها', 'اعضا', 'حذف']}>
 			<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} خانواده`} onSubmit={submit} loading={form.loading}>
 				<InputText id='id' label='کد' readOnly value={id} />
 				{id > 0 ? (
@@ -139,12 +155,29 @@ const FamilyForm = () => {
 					label='معرف'
 					value={'' + form.items.connectorId}
 					onChange={(val) =>
-						formSet((old) => ({ ...old, items: { ...old.items, connectorId: Number(val) } }))
+						formSet((old) => ({ ...old, items: { ...old.items, connectorId: val ? Number(val) : 0 } }))
 					}
 					items={connectors.map((x) => ({ id: x.id, text: `${x.name}` }))}
 				/>
 			</MyForm>
-		</>
+			{id == '0' ? null : <FamilyNeeds familyId={id} />}
+			{id == '0' ? null : <FamilyMembers familyId={id} />}
+			{id == '0' ? null : (
+				<>
+					<Alert color='warning' className='text-center'>
+						توجه داشته باشید که عملیات حذف، برگشت‌پذیر نیست و تنها زمانی امکان حذف وجود دارد که اطلاعات
+						وابسطه‌ای وجود نداشته باشد.
+					</Alert>
+					<Alert color='info' className='text-center'>
+						پیشنهاد می‌شود جهت حفظ تاریخچه هر خانواده و استخراج آمارهای صحیح از عملکرد، حتی پس از اتمام
+						خدمات‌دهی، خانواده‌ها را حذف نکنید.
+					</Alert>
+					<Button color='danger' onClick={remove}>
+						حذف
+					</Button>
+				</>
+			)}
+		</MyAccordion>
 	);
 };
 
