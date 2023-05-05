@@ -10,7 +10,9 @@ const Layout = (props) => {
 			<SideBar />
 			<div style={{ display: 'block', flex: 1, height: '100%' }}>
 				<Header />
-				<Container tag='main'>{props.children}</Container>
+				<Container tag='main' className='py-3'>
+					{props.children}
+				</Container>
 			</div>
 		</div>
 	);

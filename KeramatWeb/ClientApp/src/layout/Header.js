@@ -12,7 +12,7 @@ const Header = () => {
 	const { appInfo } = useSelector((x) => x.general);
 
 	return (
-		<Navbar className='mb-3' color='light' light>
+		<Navbar color='light' light>
 			{/* <NavbarToggler
 				onClick={() => {
 					collapseSidebar();
