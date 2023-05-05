@@ -10,7 +10,7 @@
         public string ContactPersonPhone { get; set; } = "";
         public string ContactPersonDescription { get; set; } = "";
 
-        public int? ConnectorId { get; set; }
+        public int ConnectorId { get; set; }
 
         public bool Finished { get; set; } = false;
     }
