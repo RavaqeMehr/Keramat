@@ -13,6 +13,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IGetFamilyByIdService getFamilyByIdService;
         private readonly IUpdateFamilyService updateFamilyService;
         private readonly IRemoveFamilyService removeFamilyService;
+        private readonly IGetFamilyNeedsListService getFamilyNeedsListService;
         private readonly IGetFamilyLevelsListService getFamilyLevelsListService;
         private readonly IInsertFamilyLevelService insertFamilyLevelService;
         private readonly IUpdateFamilyLevelService updateFamilyLevelService;
@@ -35,6 +36,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             IGetFamilyByIdService getFamilyByIdService,
             IUpdateFamilyService updateFamilyService,
             IRemoveFamilyService removeFamilyService,
+            IGetFamilyNeedsListService getFamilyNeedsListService,
             IGetFamilyLevelsListService getFamilyLevelsListService,
             IInsertFamilyLevelService insertFamilyLevelService,
             IUpdateFamilyLevelService updateFamilyLevelService,
@@ -56,6 +58,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.getFamilyByIdService = getFamilyByIdService;
             this.updateFamilyService = updateFamilyService;
             this.removeFamilyService = removeFamilyService;
+            this.getFamilyNeedsListService = getFamilyNeedsListService;
             this.getFamilyLevelsListService = getFamilyLevelsListService;
             this.insertFamilyLevelService = insertFamilyLevelService;
             this.updateFamilyLevelService = updateFamilyLevelService;
@@ -96,6 +99,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpDelete]
         public async Task<bool> Remove([FromQuery] int id) {
             return await removeFamilyService.Exe(id);
+        }
+
+        [HttpGet]
+        public async Task<List<GetFamilyNeedsListItemDto>> FamilyNeeds([FromQuery] int familyId) {
+            return await getFamilyNeedsListService.Exe(familyId);
         }
 
         [HttpGet]
