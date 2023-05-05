@@ -14,6 +14,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IUpdateFamilyService updateFamilyService;
         private readonly IRemoveFamilyService removeFamilyService;
         private readonly IGetFamilyNeedsListService getFamilyNeedsListService;
+        private readonly IInsertFamilyNeedService insertFamilyNeedService;
         private readonly IGetFamilyLevelsListService getFamilyLevelsListService;
         private readonly IInsertFamilyLevelService insertFamilyLevelService;
         private readonly IUpdateFamilyLevelService updateFamilyLevelService;
@@ -37,6 +38,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             IUpdateFamilyService updateFamilyService,
             IRemoveFamilyService removeFamilyService,
             IGetFamilyNeedsListService getFamilyNeedsListService,
+            IInsertFamilyNeedService insertFamilyNeedService,
             IGetFamilyLevelsListService getFamilyLevelsListService,
             IInsertFamilyLevelService insertFamilyLevelService,
             IUpdateFamilyLevelService updateFamilyLevelService,
@@ -59,6 +61,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.updateFamilyService = updateFamilyService;
             this.removeFamilyService = removeFamilyService;
             this.getFamilyNeedsListService = getFamilyNeedsListService;
+            this.insertFamilyNeedService = insertFamilyNeedService;
             this.getFamilyLevelsListService = getFamilyLevelsListService;
             this.insertFamilyLevelService = insertFamilyLevelService;
             this.updateFamilyLevelService = updateFamilyLevelService;
@@ -104,6 +107,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpGet]
         public async Task<List<GetFamilyNeedsListItemDto>> FamilyNeeds([FromQuery] int familyId) {
             return await getFamilyNeedsListService.Exe(familyId);
+        }
+
+        [HttpPost]
+        public async Task<int> AddFamilyNeed([FromBody] InsertFamilyNeedDto dto) {
+            return await insertFamilyNeedService.Exe(dto);
         }
 
         [HttpGet]
