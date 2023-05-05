@@ -21,6 +21,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IInsertConnectorService insertConnectorService;
         private readonly IUpdateConnectorService updateConnectorService;
         private readonly IGetConnectorUsesListService getConnectorUsesListService;
+        private readonly IRemoveConnectorService removeConnectorService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -35,7 +36,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             IGetConnectorsListService getConnectorsListService,
             IInsertConnectorService insertConnectorService,
             IUpdateConnectorService updateConnectorService,
-            IGetConnectorUsesListService getConnectorUsesListService
+            IGetConnectorUsesListService getConnectorUsesListService,
+            IRemoveConnectorService removeConnectorService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -50,6 +52,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.insertConnectorService = insertConnectorService;
             this.updateConnectorService = updateConnectorService;
             this.getConnectorUsesListService = getConnectorUsesListService;
+            this.removeConnectorService = removeConnectorService;
         }
 
         [HttpGet]
@@ -115,6 +118,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpGet]
         public async Task<WithPagination<GetConnectorUsesListItemDto>> ConnectorUsesList([FromQuery] GetConnectorUsesListQuery query) {
             return await getConnectorUsesListService.Exe(query);
+        }
+
+        [HttpDelete]
+        public async Task<bool> RemoveConnector([FromQuery] int id) {
+            return await removeConnectorService.Exe(id);
         }
     }
 }
