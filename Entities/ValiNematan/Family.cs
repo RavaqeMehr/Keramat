@@ -36,10 +36,10 @@ namespace Entities.ValiNematan {
 
         [Order]
         [Display(Name = "کد معرف")]
-        public int? ConnectorId { get; set; }
+        public int ConnectorId { get; set; }
         [Order]
         [Display(Name = "معرف")]
-        public Connector? Connector { get; set; }
+        public Connector Connector { get; set; }
 
         [Order]
         [Display(Name = "تاریخ درج")]
