@@ -8,7 +8,7 @@ using Services.ValiNematan.Models;
 
 namespace Services.ValiNematan {
     public interface IGetFamilyLevelUsesListService : IScopedDependency {
-        Task<WithPagination<GetFamilyLevelUsesListItemDto>> Exe(GetFamilyLevelUsesListQuery query);
+        Task<WithPagination<GetUsesListFamilyItemDto>> Exe(GetUsesListQuery query);
     }
 
     public class GetFamilyLevelUsesListService : IGetFamilyLevelUsesListService {
@@ -20,7 +20,7 @@ namespace Services.ValiNematan {
             this.familyRepo = familyRepo;
         }
 
-        public async Task<WithPagination<GetFamilyLevelUsesListItemDto>> Exe(GetFamilyLevelUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyItemDto>> Exe(GetUsesListQuery query) {
             var p = query.Page ?? 1;
 
             IQueryable<Family> listAll = familyRepo.TableNoTracking
@@ -28,13 +28,13 @@ namespace Services.ValiNematan {
 
             var perPage = 10;
 
-            var output = new WithPagination<GetFamilyLevelUsesListItemDto>();
+            var output = new WithPagination<GetUsesListFamilyItemDto>();
             await output.Fill(listAll, p, perPage);
             output.Items = await listAll
                 .OrderBy(x => x.Title).ThenByDescending(x => x.AddDate)
                 .Skip((p - 1) * perPage)
                 .Take(perPage)
-                .Select(x => new GetFamilyLevelUsesListItemDto {
+                .Select(x => new GetUsesListFamilyItemDto {
                     Id = x.Id,
                     Title = x.Title,
                     AddDate = x.AddDate.ToPersianDateString()

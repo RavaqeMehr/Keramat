@@ -106,7 +106,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpGet]
-        public async Task<WithPagination<GetFamilyLevelUsesListItemDto>> FamilyLevelUsesList([FromQuery] GetFamilyLevelUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyItemDto>> FamilyLevelUsesList([FromQuery] GetUsesListQuery query) {
             return await getFamilyLevelUsesListService.Exe(query);
         }
 
@@ -131,7 +131,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpGet]
-        public async Task<WithPagination<GetConnectorUsesListItemDto>> ConnectorUsesList([FromQuery] GetConnectorUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyItemDto>> ConnectorUsesList([FromQuery] GetUsesListQuery query) {
             return await getConnectorUsesListService.Exe(query);
         }
 
