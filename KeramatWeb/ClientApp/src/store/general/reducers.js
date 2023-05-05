@@ -2,6 +2,7 @@ import * as actions from './actions';
 
 const initialState = {
 	appInfo: null,
+	exited: false,
 };
 
 export default (state = initialState, { type, ...rest }) => {
@@ -10,6 +11,11 @@ export default (state = initialState, { type, ...rest }) => {
 			return {
 				...state,
 				appInfo: rest.data,
+			};
+		case actions.EXIT:
+			return {
+				...state,
+				exited: true,
 			};
 
 		default:

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Spinner } from 'reactstrap';
+import ScreenCenter from '../ui/ScreenCenter';
 
 const LoadingCenter = () => (
-	<div style={{ height: '100vh' }} className='d-flex align-items-center justify-content-center'>
+	<ScreenCenter>
 		<Spinner color='success' />
-	</div>
+	</ScreenCenter>
 );
 
 export default LoadingCenter;

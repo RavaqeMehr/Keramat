@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
-import { Alert, Button } from 'reactstrap';
 import axios from 'axios';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Alert, Button } from 'reactstrap';
+import ScreenCenter from '../components/ui/ScreenCenter';
+import { ReduxActions } from '../store';
 
 const Exit = () => {
-	const [step, stepSet] = useState(0);
+	const dispatch = useDispatch();
+	const { exited } = useSelector((x) => x.general);
+
 	const exit = () => {
 		try {
 			axios.delete('Home/Exit');
 		} catch (error) {
 		} finally {
-			stepSet(1);
+			dispatch(ReduxActions.generalActions.exit());
 		}
 	};
-	if (step == 0) {
+	if (!exited) {
 		return (
 			<>
 				<Alert color='info' className='text-center'>
@@ -25,12 +30,16 @@ const Exit = () => {
 			</>
 		);
 	} else {
-		return (
-			<Alert color='success' className='text-center'>
-				حالا با خیال راحت مرورگر خود را ببندید!
-			</Alert>
-		);
+		return <AfterExit />;
 	}
 };
 
 export default Exit;
+
+export const AfterExit = () => (
+	<ScreenCenter>
+		<Alert color='success' className='text-center'>
+			حالا با خیال راحت مرورگر خود را ببندید!
+		</Alert>
+	</ScreenCenter>
+);

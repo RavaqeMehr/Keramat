@@ -4,11 +4,14 @@ import routes from './layout/routes';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LoadingCenter from './components/general/LoadingCenter';
+import { AfterExit } from './views/Exit';
 
 const App = () => {
-	const { appInfo } = useSelector((x) => x.general);
+	const { appInfo, exited } = useSelector((x) => x.general);
 
-	return appInfo ? (
+	return exited ? (
+		<AfterExit />
+	) : appInfo ? (
 		<Layout>
 			<Routes>
 				{routes.map((route, index) => {
