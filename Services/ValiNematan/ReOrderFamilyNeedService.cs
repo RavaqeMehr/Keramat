@@ -29,7 +29,7 @@ namespace Services.ValiNematan {
                 .Where(x => dto.SortedIds.Contains(x.Id))
                 .ToListAsync();
 
-                var allNotFromSameFamily = items.Any(x => x.FamilyId != dto.SortedIds[0]);
+                var allNotFromSameFamily = items.Any(x => x.FamilyId != items[0].FamilyId);
                 if (allNotFromSameFamily) {
                     throw new Exception("!");
                 }
