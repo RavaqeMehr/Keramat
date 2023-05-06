@@ -4,6 +4,7 @@ const initialState = {
 	familyLevels: [],
 	connectors: [],
 	familyNeedSubjects: [],
+	familyMemberNeedSubjects: [],
 };
 
 export default (state = initialState, { type, ...rest }) => {
@@ -22,6 +23,11 @@ export default (state = initialState, { type, ...rest }) => {
 			return {
 				...state,
 				familyNeedSubjects: rest.data,
+			};
+		case actions.UPDATE_FAMILY_MEMBER_NEED_SUBJECTS:
+			return {
+				...state,
+				familyMemberNeedSubjects: rest.data,
 			};
 
 		default:

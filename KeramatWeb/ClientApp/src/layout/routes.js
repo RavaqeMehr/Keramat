@@ -8,6 +8,8 @@ import ConnectorsList from './../views/ValiNematan/ConnectorsList';
 import ConnectorForm from './../views/ValiNematan/ConnectorForm';
 import FamilyNeedSubjectsList from './../views/ValiNematan/FamilyNeedSubjectsList';
 import FamilyNeedSubjectForm from './../views/ValiNematan/FamilyNeedSubjectForm';
+import FamilyMemberNeedSubjectsList from '../views/ValiNematan/FamilyMemberNeedSubjectsList';
+import FamilyMemberNeedSubjectForm from '../views/ValiNematan/FamilyMemberNeedSubjectForm';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
@@ -25,6 +27,17 @@ const routes = [
 		exact: true,
 	},
 	{ path: '/vali-nematan/family-needs/:id', name: 'فرم نیاز خانواده', element: FamilyNeedSubjectForm },
+	{
+		path: '/vali-nematan/member-needs',
+		name: 'نیازهای اعضای خانواده',
+		element: FamilyMemberNeedSubjectsList,
+		exact: true,
+	},
+	{
+		path: '/vali-nematan/member-needs/:id',
+		name: 'فرم نیاز اعضای خانواده',
+		element: FamilyMemberNeedSubjectForm,
+	},
 ];
 
 export default routes;

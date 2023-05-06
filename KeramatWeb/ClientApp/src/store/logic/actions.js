@@ -5,6 +5,7 @@ export const updateLogics = () => {
 		dispatch(updateFamilyLevels());
 		dispatch(updateConnectors());
 		dispatch(updateFamilyNeedSubjects());
+		dispatch(updateFamilyMemberNeedSubjects());
 	};
 };
 
@@ -42,6 +43,19 @@ export const updateFamilyNeedSubjects = () => {
 			.then((response) => response.data)
 			.then((data) => {
 				dispatch({ type: UPDATE_FAMILY_NEED_SUBJECTS, data: data.data });
+			})
+			.catch(console.error);
+	};
+};
+
+export const UPDATE_FAMILY_MEMBER_NEED_SUBJECTS = 'LOGIC::UPDATE_FAMILY_MEMBER_NEED_SUBJECTS';
+export const updateFamilyMemberNeedSubjects = () => {
+	return async (dispatch) => {
+		axios
+			.get('ValiNematan/FamilyMemberNeedSubjects')
+			.then((response) => response.data)
+			.then((data) => {
+				dispatch({ type: UPDATE_FAMILY_MEMBER_NEED_SUBJECTS, data: data.data });
 			})
 			.catch(console.error);
 	};
