@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Badge, Button, Card, CardBody, CardFooter, CardHeader, Collapse } from 'reactstrap';
 import BlurLayer from '../general/BlurLayer';
 
-const MyForm = ({ title, children, onSubmit, loading = false }) => {
+const MyForm = ({ title, children, onSubmit, loading = false, extraButtons }) => {
 	const [isOpen, isOpenSet] = useState(true);
 	return (
 		<form
@@ -28,6 +28,7 @@ const MyForm = ({ title, children, onSubmit, loading = false }) => {
 						<Button type='submit' color='primary' className='mx-1'>
 							ثبت
 						</Button>
+						{extraButtons}
 					</CardFooter>
 				</Collapse>
 			</Card>
