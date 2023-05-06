@@ -24,7 +24,13 @@ const SideBar = () => {
 
 export default SideBar;
 
-const MItem = ({ title, to }) => <MenuItem component={<Link to={to} />}> {title}</MenuItem>;
+const MItem = ({ title, to, open = false, onOpenChange }) => (
+	<MenuItem
+		onClick={() => onOpenChange(true)}
+		component={<Link to={to} className={open ? 'fw-bold' : 'fw-normal'} />}>
+		{title}
+	</MenuItem>
+);
 
 const MSubMenu = ({ title, items, open = false, onOpenChange, isRoot = false }) => {
 	const [active, activeSet] = useState(-1);
@@ -56,7 +62,7 @@ const MSubMenu = ({ title, items, open = false, onOpenChange, isRoot = false }) 
 
 	const children = items.map((x, i) =>
 		x.to ? (
-			<MItem key={i} {...x} />
+			<MItem key={i} {...x} open={active == i} onOpenChange={(e) => openHandler(e, i)} />
 		) : (
 			<MSubMenu key={i} {...x} open={active == i} onOpenChange={(e) => openHandler(e, i)} />
 		)
@@ -66,7 +72,12 @@ const MSubMenu = ({ title, items, open = false, onOpenChange, isRoot = false }) 
 		return <>{children}</>;
 	} else {
 		return (
-			<SubMenu label={title} onOpenChange={onOpenChange} open={open} ref={subMenuRef}>
+			<SubMenu
+				label={title}
+				onOpenChange={onOpenChange}
+				open={open}
+				ref={subMenuRef}
+				className={open ? 'fw-bold' : 'fw-normal'}>
 				{children}
 			</SubMenu>
 		);
