@@ -10,6 +10,8 @@ import FamilyNeedSubjectsList from './../views/ValiNematan/FamilyNeedSubjectsLis
 import FamilyNeedSubjectForm from './../views/ValiNematan/FamilyNeedSubjectForm';
 import FamilyMemberNeedSubjectsList from '../views/ValiNematan/FamilyMemberNeedSubjectsList';
 import FamilyMemberNeedSubjectForm from '../views/ValiNematan/FamilyMemberNeedSubjectForm';
+import FamilyMemberSpecialDiseaseSubjectsList from '../views/ValiNematan/FamilyMemberSpecialDiseaseSubjectsList';
+import FamilyMemberSpecialDiseaseSubjectForm from '../views/ValiNematan/FamilyMemberSpecialDiseaseSubjectForm';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
@@ -37,6 +39,17 @@ const routes = [
 		path: '/vali-nematan/member-needs/:id',
 		name: 'فرم نیاز اعضای خانواده',
 		element: FamilyMemberNeedSubjectForm,
+	},
+	{
+		path: '/vali-nematan/special-disease',
+		name: 'بیماری‌های خاص',
+		element: FamilyMemberSpecialDiseaseSubjectsList,
+		exact: true,
+	},
+	{
+		path: '/vali-nematan/special-disease/:id',
+		name: 'فرم بیماری خاص',
+		element: FamilyMemberSpecialDiseaseSubjectForm,
 	},
 ];
 
