@@ -34,12 +34,10 @@ namespace Services.ValiNematan {
                     throw new Exception("!");
                 }
 
-                int n = 0;
                 foreach (var item in items) {
-                    n += 1;
                     var item_ = item.Clone();
 
-                    item.Order = n;
+                    item.Order = dto.SortedIds.ToList().IndexOf(item.Id) + 1;
                     await familyNeedRepo.UpdateAsync(item);
 
                     await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<FamilyNeed> {
