@@ -33,6 +33,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IUpdateFamilyNeedSubjectService updateFamilyNeedSubjectService;
         private readonly IGetFamilyNeedSubjectUsesListService getFamilyNeedSubjectUsesListService;
         private readonly IRemoveFamilyNeedSubjectService removeFamilyNeedSubjectService;
+        private readonly IGetFamilyMemberNeedSubjectsListService getFamilyMemberNeedSubjectsListService;
+        private readonly IInsertFamilyMemberNeedSubjectService insertFamilyMemberNeedSubjectService;
+        private readonly IUpdateFamilyMemberNeedSubjectService updateFamilyMemberNeedSubjectService;
+        private readonly IGetFamilyMemberNeedSubjectUsesListService getFamilyMemberNeedSubjectUsesListService;
+        private readonly IRemoveFamilyMemberNeedSubjectService removeFamilyMemberNeedSubjectService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -40,26 +45,36 @@ namespace KeramatWeb.Api.V1.Controllers {
             IGetFamilyByIdService getFamilyByIdService,
             IUpdateFamilyService updateFamilyService,
             IRemoveFamilyService removeFamilyService,
+        ////////////
             IGetFamilyNeedsListService getFamilyNeedsListService,
             IInsertFamilyNeedService insertFamilyNeedService,
             IUpdateFamilyNeedService updateFamilyNeedService,
             IRemoveFamilyNeedService removeFamilyNeedService,
             IReOrderFamilyNeedService reOrderFamilyNeedService,
+        ////////////
             IGetFamilyLevelsListService getFamilyLevelsListService,
             IInsertFamilyLevelService insertFamilyLevelService,
             IUpdateFamilyLevelService updateFamilyLevelService,
             IGetFamilyLevelUsesListService getFamilyLevelUsesListService,
             IRemoveFamilyLevelService removeFamilyLevelService,
+        ////////////
             IGetConnectorsListService getConnectorsListService,
             IInsertConnectorService insertConnectorService,
             IUpdateConnectorService updateConnectorService,
             IGetConnectorUsesListService getConnectorUsesListService,
             IRemoveConnectorService removeConnectorService,
+        ////////////
             IGetFamilyNeedSubjectsListService getFamilyNeedSubjectsListService,
             IInsertFamilyNeedSubjectService insertFamilyNeedSubjectService,
             IUpdateFamilyNeedSubjectService updateFamilyNeedSubjectService,
             IGetFamilyNeedSubjectUsesListService getFamilyNeedSubjectUsesListService,
-            IRemoveFamilyNeedSubjectService removeFamilyNeedSubjectService
+            IRemoveFamilyNeedSubjectService removeFamilyNeedSubjectService,
+        ////////////
+            IGetFamilyMemberNeedSubjectsListService getFamilyMemberNeedSubjectsListService,
+            IInsertFamilyMemberNeedSubjectService insertFamilyMemberNeedSubjectService,
+            IUpdateFamilyMemberNeedSubjectService updateFamilyMemberNeedSubjectService,
+            IGetFamilyMemberNeedSubjectUsesListService getFamilyMemberNeedSubjectUsesListService,
+            IRemoveFamilyMemberNeedSubjectService removeFamilyMemberNeedSubjectService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -86,6 +101,11 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.updateFamilyNeedSubjectService = updateFamilyNeedSubjectService;
             this.getFamilyNeedSubjectUsesListService = getFamilyNeedSubjectUsesListService;
             this.removeFamilyNeedSubjectService = removeFamilyNeedSubjectService;
+            this.getFamilyMemberNeedSubjectsListService = getFamilyMemberNeedSubjectsListService;
+            this.insertFamilyMemberNeedSubjectService = insertFamilyMemberNeedSubjectService;
+            this.updateFamilyMemberNeedSubjectService = updateFamilyMemberNeedSubjectService;
+            this.getFamilyMemberNeedSubjectUsesListService = getFamilyMemberNeedSubjectUsesListService;
+            this.removeFamilyMemberNeedSubjectService = removeFamilyMemberNeedSubjectService;
         }
 
         [HttpGet]
@@ -113,6 +133,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             return await removeFamilyService.Exe(id);
         }
 
+        ////////////
+
         [HttpGet]
         public async Task<List<GetFamilyNeedsListItemDto>> FamilyNeeds([FromQuery] int familyId) {
             return await getFamilyNeedsListService.Exe(familyId);
@@ -137,6 +159,8 @@ namespace KeramatWeb.Api.V1.Controllers {
         public async Task<bool> ReOrderFamilyNeeds([FromBody] ReOrderFamilyNeedDto dto) {
             return await reOrderFamilyNeedService.Exe(dto);
         }
+
+        ////////////
 
         [HttpGet]
         public async Task<List<FamilyLevel>> FamilyLevels() {
@@ -163,6 +187,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             return await removeFamilyLevelService.Exe(id);
         }
 
+        ////////////
+
         [HttpGet]
         public async Task<List<GetConnectorsListItemDto>> Connectors() {
             return await getConnectorsListService.Exe();
@@ -188,6 +214,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             return await removeConnectorService.Exe(id);
         }
 
+        ////////////
+
         [HttpGet]
         public async Task<List<FamilyNeedSubject>> FamilyNeedSubjects() {
             return await getFamilyNeedSubjectsListService.Exe();
@@ -212,5 +240,34 @@ namespace KeramatWeb.Api.V1.Controllers {
         public async Task<bool> RemoveFamilyNeedSubject([FromQuery] int id) {
             return await removeFamilyNeedSubjectService.Exe(id);
         }
+
+        ////////////
+
+        [HttpGet]
+        public async Task<List<FamilyMemberNeedSubject>> FamilyMemberNeedSubjects() {
+            return await getFamilyMemberNeedSubjectsListService.Exe();
+        }
+
+        [HttpPost]
+        public async Task<int> AddFamilyMemberNeedSubject([FromBody] InsertFamilyMemberNeedSubjectDto dto) {
+            return await insertFamilyMemberNeedSubjectService.Exe(dto);
+        }
+
+        [HttpPut]
+        public async Task<bool> EditFamilyMemberNeedSubject([FromBody] FamilyMemberNeedSubject dto) {
+            return await updateFamilyMemberNeedSubjectService.Exe(dto);
+        }
+
+        [HttpGet]
+        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> FamilyMemberNeedSubjectUsesList([FromQuery] GetUsesListQuery query) {
+            return await getFamilyMemberNeedSubjectUsesListService.Exe(query);
+        }
+
+        [HttpDelete]
+        public async Task<bool> RemoveFamilyMemberNeedSubject([FromQuery] int id) {
+            return await removeFamilyMemberNeedSubjectService.Exe(id);
+        }
+
+        ////////////
     }
 }
