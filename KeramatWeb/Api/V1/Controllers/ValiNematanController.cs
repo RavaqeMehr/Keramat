@@ -43,6 +43,12 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IUpdateFamilyMemberSpecialDiseaseSubjectService updateFamilyMemberSpecialDiseaseSubjectService;
         private readonly IGetFamilyMemberSpecialDiseaseSubjectUsesListService getFamilyMemberSpecialDiseaseSubjectUsesListService;
         private readonly IRemoveFamilyMemberSpecialDiseaseSubjectService removeFamilyMemberSpecialDiseaseSubjectService;
+        private readonly IGetFamilyMemberRelationsListService getFamilyMemberRelationsListService;
+        private readonly IInsertFamilyMemberRelationService insertFamilyMemberRelationService;
+        private readonly IUpdateFamilyMemberRelationService updateFamilyMemberRelationService;
+        private readonly IGetFamilyMemberRelationUsesListService getFamilyMemberRelationUsesListService;
+        private readonly IRemoveFamilyMemberRelationService removeFamilyMemberRelationService;
+        private readonly IReOrderFamilyMemberRelationService reOrderFamilyMemberRelationService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -85,8 +91,14 @@ namespace KeramatWeb.Api.V1.Controllers {
             IInsertFamilyMemberSpecialDiseaseSubjectService insertFamilyMemberSpecialDiseaseSubjectService,
             IUpdateFamilyMemberSpecialDiseaseSubjectService updateFamilyMemberSpecialDiseaseSubjectService,
             IGetFamilyMemberSpecialDiseaseSubjectUsesListService getFamilyMemberSpecialDiseaseSubjectUsesListService,
-            IRemoveFamilyMemberSpecialDiseaseSubjectService removeFamilyMemberSpecialDiseaseSubjectService
-
+            IRemoveFamilyMemberSpecialDiseaseSubjectService removeFamilyMemberSpecialDiseaseSubjectService,
+        ////////////
+            IGetFamilyMemberRelationsListService getFamilyMemberRelationsListService,
+            IInsertFamilyMemberRelationService insertFamilyMemberRelationService,
+            IUpdateFamilyMemberRelationService updateFamilyMemberRelationService,
+            IGetFamilyMemberRelationUsesListService getFamilyMemberRelationUsesListService,
+            IRemoveFamilyMemberRelationService removeFamilyMemberRelationService,
+            IReOrderFamilyMemberRelationService reOrderFamilyMemberRelationService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -123,6 +135,12 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.updateFamilyMemberSpecialDiseaseSubjectService = updateFamilyMemberSpecialDiseaseSubjectService;
             this.getFamilyMemberSpecialDiseaseSubjectUsesListService = getFamilyMemberSpecialDiseaseSubjectUsesListService;
             this.removeFamilyMemberSpecialDiseaseSubjectService = removeFamilyMemberSpecialDiseaseSubjectService;
+            this.getFamilyMemberRelationsListService = getFamilyMemberRelationsListService;
+            this.insertFamilyMemberRelationService = insertFamilyMemberRelationService;
+            this.updateFamilyMemberRelationService = updateFamilyMemberRelationService;
+            this.getFamilyMemberRelationUsesListService = getFamilyMemberRelationUsesListService;
+            this.removeFamilyMemberRelationService = removeFamilyMemberRelationService;
+            this.reOrderFamilyMemberRelationService = reOrderFamilyMemberRelationService;
         }
 
         [HttpGet]
@@ -310,6 +328,38 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpDelete]
         public async Task<bool> RemoveFamilyMemberSpecialDiseaseSubject([FromQuery] int id) {
             return await removeFamilyMemberSpecialDiseaseSubjectService.Exe(id);
+        }
+
+        ////////////
+
+        [HttpGet]
+        public async Task<List<FamilyMemberRelation>> FamilyMemberRelations() {
+            return await getFamilyMemberRelationsListService.Exe();
+        }
+
+        [HttpPost]
+        public async Task<int> AddFamilyMemberRelation([FromBody] InsertFamilyMemberRelationDto dto) {
+            return await insertFamilyMemberRelationService.Exe(dto);
+        }
+
+        [HttpPut]
+        public async Task<bool> EditFamilyMemberRelation([FromBody] FamilyMemberRelation dto) {
+            return await updateFamilyMemberRelationService.Exe(dto);
+        }
+
+        [HttpGet]
+        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> FamilyMemberRelationUsesList([FromQuery] GetUsesListQuery query) {
+            return await getFamilyMemberRelationUsesListService.Exe(query);
+        }
+
+        [HttpDelete]
+        public async Task<bool> RemoveFamilyMemberRelation([FromQuery] int id) {
+            return await removeFamilyMemberRelationService.Exe(id);
+        }
+
+        [HttpPut]
+        public async Task<bool> ReOrderFamilyMemberRelations([FromBody] ReOrderFamilyMemberRelationDto dto) {
+            return await reOrderFamilyMemberRelationService.Exe(dto);
         }
 
         ////////////
