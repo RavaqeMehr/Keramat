@@ -26,11 +26,6 @@ const MyTable = ({
 	let pn1 = 0,
 		pn2 = 0;
 	if (pagination) {
-		// totalItems
-		// totalPages
-		// itemsPerPage
-		// currentPage
-
 		pn1 = Math.max(pagination.currentPage - 2, 1);
 		pn2 = Math.min(pagination.currentPage + 2, pagination.totalPages);
 	}

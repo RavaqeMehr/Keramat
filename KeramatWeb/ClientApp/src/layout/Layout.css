@@ -67,3 +67,19 @@ html[dir='rtl'] .accordion-button::after {
 html[dir='rtl'] .form-select {
 	padding: 0.375rem 2.25rem 0.375rem 0.75rem;
 }
+
+.sortable-at-sort {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	background-color: var(--bs-highlight-bg);
+}
+.sortable-at-sort td,
+.sortable-at-sort th {
+	display: flex;
+	flex: 1;
+	/* border: 1px solid red; */
+}
