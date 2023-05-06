@@ -38,6 +38,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IUpdateFamilyMemberNeedSubjectService updateFamilyMemberNeedSubjectService;
         private readonly IGetFamilyMemberNeedSubjectUsesListService getFamilyMemberNeedSubjectUsesListService;
         private readonly IRemoveFamilyMemberNeedSubjectService removeFamilyMemberNeedSubjectService;
+        private readonly IGetFamilyMemberSpecialDiseaseSubjectsListService getFamilyMemberSpecialDiseaseSubjectsListService;
+        private readonly IInsertFamilyMemberSpecialDiseaseSubjectService insertFamilyMemberSpecialDiseaseSubjectService;
+        private readonly IUpdateFamilyMemberSpecialDiseaseSubjectService updateFamilyMemberSpecialDiseaseSubjectService;
+        private readonly IGetFamilyMemberSpecialDiseaseSubjectUsesListService getFamilyMemberSpecialDiseaseSubjectUsesListService;
+        private readonly IRemoveFamilyMemberSpecialDiseaseSubjectService removeFamilyMemberSpecialDiseaseSubjectService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -74,7 +79,14 @@ namespace KeramatWeb.Api.V1.Controllers {
             IInsertFamilyMemberNeedSubjectService insertFamilyMemberNeedSubjectService,
             IUpdateFamilyMemberNeedSubjectService updateFamilyMemberNeedSubjectService,
             IGetFamilyMemberNeedSubjectUsesListService getFamilyMemberNeedSubjectUsesListService,
-            IRemoveFamilyMemberNeedSubjectService removeFamilyMemberNeedSubjectService
+            IRemoveFamilyMemberNeedSubjectService removeFamilyMemberNeedSubjectService,
+        ////////////
+            IGetFamilyMemberSpecialDiseaseSubjectsListService getFamilyMemberSpecialDiseaseSubjectsListService,
+            IInsertFamilyMemberSpecialDiseaseSubjectService insertFamilyMemberSpecialDiseaseSubjectService,
+            IUpdateFamilyMemberSpecialDiseaseSubjectService updateFamilyMemberSpecialDiseaseSubjectService,
+            IGetFamilyMemberSpecialDiseaseSubjectUsesListService getFamilyMemberSpecialDiseaseSubjectUsesListService,
+            IRemoveFamilyMemberSpecialDiseaseSubjectService removeFamilyMemberSpecialDiseaseSubjectService
+
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -106,6 +118,11 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.updateFamilyMemberNeedSubjectService = updateFamilyMemberNeedSubjectService;
             this.getFamilyMemberNeedSubjectUsesListService = getFamilyMemberNeedSubjectUsesListService;
             this.removeFamilyMemberNeedSubjectService = removeFamilyMemberNeedSubjectService;
+            this.getFamilyMemberSpecialDiseaseSubjectsListService = getFamilyMemberSpecialDiseaseSubjectsListService;
+            this.insertFamilyMemberSpecialDiseaseSubjectService = insertFamilyMemberSpecialDiseaseSubjectService;
+            this.updateFamilyMemberSpecialDiseaseSubjectService = updateFamilyMemberSpecialDiseaseSubjectService;
+            this.getFamilyMemberSpecialDiseaseSubjectUsesListService = getFamilyMemberSpecialDiseaseSubjectUsesListService;
+            this.removeFamilyMemberSpecialDiseaseSubjectService = removeFamilyMemberSpecialDiseaseSubjectService;
         }
 
         [HttpGet]
@@ -266,6 +283,33 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpDelete]
         public async Task<bool> RemoveFamilyMemberNeedSubject([FromQuery] int id) {
             return await removeFamilyMemberNeedSubjectService.Exe(id);
+        }
+
+        ////////////
+
+        [HttpGet]
+        public async Task<List<FamilyMemberSpecialDiseaseSubject>> FamilyMemberSpecialDiseaseSubjects() {
+            return await getFamilyMemberSpecialDiseaseSubjectsListService.Exe();
+        }
+
+        [HttpPost]
+        public async Task<int> AddFamilyMemberSpecialDiseaseSubject([FromBody] InsertFamilyMemberSpecialDiseaseSubjectDto dto) {
+            return await insertFamilyMemberSpecialDiseaseSubjectService.Exe(dto);
+        }
+
+        [HttpPut]
+        public async Task<bool> EditFamilyMemberSpecialDiseaseSubject([FromBody] FamilyMemberSpecialDiseaseSubject dto) {
+            return await updateFamilyMemberSpecialDiseaseSubjectService.Exe(dto);
+        }
+
+        [HttpGet]
+        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> FamilyMemberSpecialDiseaseSubjectUsesList([FromQuery] GetUsesListQuery query) {
+            return await getFamilyMemberSpecialDiseaseSubjectUsesListService.Exe(query);
+        }
+
+        [HttpDelete]
+        public async Task<bool> RemoveFamilyMemberSpecialDiseaseSubject([FromQuery] int id) {
+            return await removeFamilyMemberSpecialDiseaseSubjectService.Exe(id);
         }
 
         ////////////
