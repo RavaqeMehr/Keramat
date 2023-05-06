@@ -6,6 +6,7 @@ import InputSelect from '../../../components/form/InputSelect';
 import InputText from '../../../components/form/InputText';
 import MyForm from '../../../components/form/MyForm';
 import MyTable from '../../../components/table/MyTable';
+import MyTableSortable from '../../../components/table/MyTableSortable';
 
 const FamilyNeeds = ({ familyId }) => {
 	const { familyNeedSubjects } = useSelector((x) => x.logic);
@@ -92,10 +93,30 @@ const FamilyNeeds = ({ familyId }) => {
 			.finally(() => formSet((old) => ({ ...old, loading: false })));
 	};
 
+	const saveReOrder = () => {
+		const sortedIds = tbl.data.map((x) => x.id);
+		axios
+			.put('ValiNematan/ReOrderFamilyNeeds', { sortedIds })
+			.then((response) => response.data)
+			.then((data) => {
+				loadTable();
+			})
+			.catch(console.error);
+	};
+
 	const [tbl, tblSet] = useState({
 		loading: true,
 		data: null,
+		beforeSort: null,
+		needSaveReOrder: false,
 	});
+
+	const onSortEnd = (sortedData) => {
+		var o = tbl.beforeSort.reduce((a, b) => `${a},${b.id}`, '');
+		var n = sortedData.reduce((a, b) => `${a},${b.id}`, '');
+
+		tblSet((old) => ({ ...old, data: sortedData, needSaveReOrder: o != n }));
+	};
 
 	const loadTable = () => {
 		tblSet((old) => ({ ...old, loading: true }));
@@ -103,7 +124,7 @@ const FamilyNeeds = ({ familyId }) => {
 			.get('ValiNematan/FamilyNeeds', { params: { familyId } })
 			.then((x) => x.data.data)
 			.then((x) => {
-				tblSet((old) => ({ ...old, loading: false, data: x }));
+				tblSet((old) => ({ ...old, loading: false, data: x, beforeSort: x, needSaveReOrder: false }));
 			})
 			.catch((e) => {})
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
@@ -162,16 +183,22 @@ const FamilyNeeds = ({ familyId }) => {
 				</MyForm>
 			) : null}
 
-			<MyTable
+			<MyTableSortable
 				title='لیست نیازها'
 				cols={cols}
 				rows={tbl.data}
 				loading={tbl.loading}
 				rowRenderer={(x) => rowRenderer(x, familyNeedSubjects)}
 				onRowClick={rowClick}
+				onSortEnd={onSortEnd}
 			/>
+			{tbl.needSaveReOrder ? (
+				<Button color='info' onClick={saveReOrder} className='mx-1'>
+					ذخیره تغییر ترتیب
+				</Button>
+			) : null}
 			{remainingNeeds.length > 0 ? (
-				<Button color='success' onClick={toggleForm}>
+				<Button color='success' onClick={toggleForm} className='mx-1'>
 					افزودن
 				</Button>
 			) : null}
@@ -181,10 +208,9 @@ const FamilyNeeds = ({ familyId }) => {
 
 export default FamilyNeeds;
 
-const cols = ['ترتیب', 'عنوان', 'ملاحظات'];
+const cols = ['عنوان', 'ملاحظات'];
 const rowRenderer = (x, familyNeedSubjects) => (
 	<>
-		<th scope='row'></th>
 		<td>{familyNeedSubjects.find((f) => f.id == x.familyNeedSubjectId).title}</td>
 		<td>{x.description}</td>
 	</>
