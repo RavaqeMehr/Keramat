@@ -132,7 +132,7 @@ const ConnectorForm = () => {
 				</MyForm>
 				{id == '0' ? null : (
 					<MyTable
-						title='لیست خانواده‌های این رابط'
+						title='لیست خانواده‌های این سطح'
 						cols={cols}
 						rows={tbl.data}
 						pagination={tbl.pagination}

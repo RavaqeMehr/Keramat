@@ -11,7 +11,7 @@ const FamilyNeedSubjectsList = () => {
 	return (
 		<>
 			<MyTable
-				title='لیست سطح‌ها'
+				title='لیست نیازهای خانواده'
 				cols={['کد', 'عنوان', 'ملاحظات']}
 				rows={familyNeedSubjects}
 				rowRenderer={rowRenderer}

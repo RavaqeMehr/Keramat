@@ -135,7 +135,7 @@ const FamailiLevelForm = () => {
 				</MyForm>
 				{id == '0' ? null : (
 					<MyTable
-						title='لیست خانواده‌های این سطح'
+						title='لیست وابسطه'
 						cols={cols}
 						rows={tbl.data}
 						pagination={tbl.pagination}

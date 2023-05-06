@@ -125,7 +125,7 @@ const FamilyNeedSubjectForm = () => {
 				</MyForm>
 				{id == '0' ? null : (
 					<MyTable
-						title='لیست خانواده‌های این رابط'
+						title='لیست وابسطه'
 						cols={cols}
 						rows={tbl.data}
 						pagination={tbl.pagination}
