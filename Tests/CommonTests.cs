@@ -56,5 +56,26 @@ namespace Tests {
             var obj2 = new Connector();
             Assert.That(obj2.GetPropertyDisplayNameOrName(x => x.Id), Is.EqualTo("کد"));
         }
+
+        [Test]
+        public void TestAge1() {
+            var date = new DateTime(1992, 12, 20);
+            var result = date.GetAge();
+            Assert.Pass(result.ToString()); // for check output
+        }
+
+        [Test]
+        public void TestAge2() {
+            var date = "1371/09/29";
+            var result = date.GetAgeFromShamsiDateStringOrShamsiYearString();
+            Assert.Pass(result.ToString()); // for check output
+        }
+
+        [Test]
+        public void TestAge3() {
+            var date = "1371";
+            var result = date.GetAgeFromShamsiDateStringOrShamsiYearString();
+            Assert.Pass(result.ToString()); // for check output
+        }
     }
 }
