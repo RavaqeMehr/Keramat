@@ -64,6 +64,8 @@ namespace Services.ValiNematan {
                             await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<FamilyMemberNeed> {
                                 ChangeType = Entities.AppUsingLogs.ChangeType.Delete,
                                 EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMemberNeed,
+                                Root2Id = subItem.FamilyId,
+                                Root1Id = subItem.Id,
                                 EnitityId = subSubItem.Id,
                                 ObjA = subSubItem_,
                             });
@@ -77,6 +79,8 @@ namespace Services.ValiNematan {
                             await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<FamilyMemberSpecialDisease> {
                                 ChangeType = Entities.AppUsingLogs.ChangeType.Delete,
                                 EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMemberSpecialDisease,
+                                Root2Id = subItem.FamilyId,
+                                Root1Id = subItem.Id,
                                 EnitityId = subSubItem.Id,
                                 ObjA = subSubItem_,
                             });
@@ -88,6 +92,7 @@ namespace Services.ValiNematan {
                     await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<FamilyMember> {
                         ChangeType = Entities.AppUsingLogs.ChangeType.Delete,
                         EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMember,
+                        Root1Id = subItem.FamilyId,
                         EnitityId = subItem.Id,
                         ObjA = subItem_,
                     });
