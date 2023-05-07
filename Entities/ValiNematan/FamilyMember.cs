@@ -31,6 +31,12 @@ namespace Entities.ValiNematan {
         [Display(Name = "نام")]
         public string Name { get; set; }
         [Order]
+        [Display(Name = "نام خانوادگی")]
+        public string LastName { get; set; }
+        [Order]
+        [Display(Name = "نام پدر")]
+        public string FathersName { get; set; }
+        [Order]
         [Display(Name = "تلفن")]
         public string Phone { get; set; }
         [Order]
