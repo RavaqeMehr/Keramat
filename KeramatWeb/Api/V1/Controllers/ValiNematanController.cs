@@ -49,6 +49,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IGetFamilyMemberRelationUsesListService getFamilyMemberRelationUsesListService;
         private readonly IRemoveFamilyMemberRelationService removeFamilyMemberRelationService;
         private readonly IReOrderFamilyMemberRelationService reOrderFamilyMemberRelationService;
+        private readonly IGetFamilyMembersListService getFamilyMembersListService;
+        private readonly IGetFamilyMemberByIdService getFamilyMemberByIdService;
+        private readonly IInsertFamilyMemberService insertFamilyMemberService;
+        private readonly IUpdateFamilyMemberService updateFamilyMemberService;
+        private readonly IRemoveFamilyMemberService removeFamilyMemberService;
 
         public ValiNematanController(
             IGetFamiliesListService getFamiliesListService,
@@ -98,7 +103,13 @@ namespace KeramatWeb.Api.V1.Controllers {
             IUpdateFamilyMemberRelationService updateFamilyMemberRelationService,
             IGetFamilyMemberRelationUsesListService getFamilyMemberRelationUsesListService,
             IRemoveFamilyMemberRelationService removeFamilyMemberRelationService,
-            IReOrderFamilyMemberRelationService reOrderFamilyMemberRelationService
+            IReOrderFamilyMemberRelationService reOrderFamilyMemberRelationService,
+        ////////////
+            IGetFamilyMembersListService getFamilyMembersListService,
+            IGetFamilyMemberByIdService getFamilyMemberByIdService,
+            IInsertFamilyMemberService insertFamilyMemberService,
+            IUpdateFamilyMemberService updateFamilyMemberService,
+            IRemoveFamilyMemberService removeFamilyMemberService
             ) {
             this.getFamiliesListService = getFamiliesListService;
             this.insertFamilyService = insertFamilyService;
@@ -141,6 +152,11 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.getFamilyMemberRelationUsesListService = getFamilyMemberRelationUsesListService;
             this.removeFamilyMemberRelationService = removeFamilyMemberRelationService;
             this.reOrderFamilyMemberRelationService = reOrderFamilyMemberRelationService;
+            this.getFamilyMembersListService = getFamilyMembersListService;
+            this.getFamilyMemberByIdService = getFamilyMemberByIdService;
+            this.insertFamilyMemberService = insertFamilyMemberService;
+            this.updateFamilyMemberService = updateFamilyMemberService;
+            this.removeFamilyMemberService = removeFamilyMemberService;
         }
 
         [HttpGet]
@@ -363,5 +379,31 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         ////////////
+
+        [HttpGet]
+        public async Task<List<GetFamilyMembersItemDto>> MembersList([FromQuery] int familyId) {
+            return await getFamilyMembersListService.Exe(familyId);
+        }
+
+        [HttpGet]
+        public async Task<GetFamilyMemberDto> MemberSingle([FromQuery] int id) {
+            return await getFamilyMemberByIdService.Exe(id);
+        }
+
+        [HttpPost]
+        public async Task<int> AddMember([FromBody] InsertFamilyMemberDto dto) {
+            return await insertFamilyMemberService.Exe(dto);
+        }
+
+
+        [HttpPut]
+        public async Task<bool> EditMember([FromBody] UpdateFamilyMemberDto dto) {
+            return await updateFamilyMemberService.Exe(dto);
+        }
+
+        [HttpDelete]
+        public async Task<bool> RemoveMember([FromQuery] int id) {
+            return await removeFamilyMemberService.Exe(id);
+        }
     }
 }
