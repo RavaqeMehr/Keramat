@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import MyTable from '../../components/table/MyTable';
-import { sleep } from '../../helpers/Utils';
 import { useNavigate } from 'react-router-dom';
 import { Badge, Button } from 'reactstrap';
+import MyTable from '../../components/table/MyTable';
 
 const FamiliesList = () => {
 	const navigate = useNavigate();
