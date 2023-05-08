@@ -22,7 +22,7 @@ namespace Entities.ValiNematan {
             [Display(Name = "مجرد")] Single = 0,
             [Display(Name = "متاهل")] Married = 1,
             [Display(Name = "بیوه")] Widow = 2,
-            [Display(Name = "مطلقه")] Divorced = 2,
+            [Display(Name = "مطلقه")] Divorced = 3,
         }
     }
 }
