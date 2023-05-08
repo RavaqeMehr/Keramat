@@ -87,96 +87,101 @@ const FamilyForm = () => {
 			.catch((e) => console.error);
 	};
 
+	const formCmp = (
+		<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} خانواده`} onSubmit={submit} loading={form.loading}>
+			<InputText id='id' label='کد' readOnly value={id} />
+			{id > 0 ? (
+				<InputSwitch
+					id='finished'
+					label='مختومه'
+					description='به معنای پایان تحت پوشش بودن'
+					check={form.items.finished}
+					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, finished: val } }))}
+				/>
+			) : null}
+			<InputText
+				id='title'
+				label='عنوان'
+				value={form.items.title}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, title: val } }))}
+			/>
+			<InputText
+				id='address'
+				label='آدرس'
+				value={form.items.address}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, address: val } }))}
+			/>
+			<InputSelect
+				id='levelId'
+				label='سطح'
+				value={'' + form.items.levelId}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, levelId: Number(val) } }))}
+				items={familyLevels.map((x) => ({ id: x.id, text: `${x.title} [${x.level}]` }))}
+			/>
+			<InputText
+				multiLine
+				id='description'
+				label='ملاحظات'
+				value={form.items.description}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, description: val } }))}
+			/>
+			<InputText
+				id='contactPersonName'
+				label='نام'
+				description='رابط خانواده'
+				value={form.items.contactPersonName}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, contactPersonName: val } }))}
+			/>
+			<InputText
+				id='contactPersonPhone'
+				label='تلفن'
+				description='رابط خانواده'
+				value={form.items.contactPersonPhone}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, contactPersonPhone: val } }))}
+			/>
+			<InputText
+				multiLine
+				id='contactPersonDescription'
+				label='ملاحظات'
+				description='رابط خانواده'
+				value={form.items.contactPersonDescription}
+				onChange={(val) =>
+					formSet((old) => ({ ...old, items: { ...old.items, contactPersonDescription: val } }))
+				}
+			/>
+			<InputSelect
+				id='connectorId'
+				label='معرف'
+				value={'' + form.items.connectorId}
+				onChange={(val) =>
+					formSet((old) => ({ ...old, items: { ...old.items, connectorId: val ? Number(val) : 0 } }))
+				}
+				items={connectors.map((x) => ({ id: x.id, text: `${x.name}` }))}
+			/>
+		</MyForm>
+	);
+	if (id == 0) {
+		return formCmp;
+	}
+
 	return (
 		<MyAccordion headers={['فرم', 'نیازها', 'اعضا', 'حذف']} defaultOpenIndex={id == 0 ? 0 : -1}>
-			<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} خانواده`} onSubmit={submit} loading={form.loading}>
-				<InputText id='id' label='کد' readOnly value={id} />
-				{id > 0 ? (
-					<InputSwitch
-						id='finished'
-						label='مختومه'
-						description='به معنای پایان تحت پوشش بودن'
-						check={form.items.finished}
-						onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, finished: val } }))}
-					/>
-				) : null}
-				<InputText
-					id='title'
-					label='عنوان'
-					value={form.items.title}
-					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, title: val } }))}
-				/>
-				<InputText
-					id='address'
-					label='آدرس'
-					value={form.items.address}
-					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, address: val } }))}
-				/>
-				<InputSelect
-					id='levelId'
-					label='سطح'
-					value={'' + form.items.levelId}
-					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, levelId: Number(val) } }))}
-					items={familyLevels.map((x) => ({ id: x.id, text: `${x.title} [${x.level}]` }))}
-				/>
-				<InputText
-					multiLine
-					id='description'
-					label='ملاحظات'
-					value={form.items.description}
-					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, description: val } }))}
-				/>
-				<InputText
-					id='contactPersonName'
-					label='نام'
-					description='رابط خانواده'
-					value={form.items.contactPersonName}
-					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, contactPersonName: val } }))}
-				/>
-				<InputText
-					id='contactPersonPhone'
-					label='تلفن'
-					description='رابط خانواده'
-					value={form.items.contactPersonPhone}
-					onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, contactPersonPhone: val } }))}
-				/>
-				<InputText
-					multiLine
-					id='contactPersonDescription'
-					label='ملاحظات'
-					description='رابط خانواده'
-					value={form.items.contactPersonDescription}
-					onChange={(val) =>
-						formSet((old) => ({ ...old, items: { ...old.items, contactPersonDescription: val } }))
-					}
-				/>
-				<InputSelect
-					id='connectorId'
-					label='معرف'
-					value={'' + form.items.connectorId}
-					onChange={(val) =>
-						formSet((old) => ({ ...old, items: { ...old.items, connectorId: val ? Number(val) : 0 } }))
-					}
-					items={connectors.map((x) => ({ id: x.id, text: `${x.name}` }))}
-				/>
-			</MyForm>
-			{id == '0' ? null : <FamilyNeeds familyId={id} />}
-			{id == '0' ? null : <FamilyMembers familyId={id} />}
-			{id == '0' ? null : (
-				<>
-					<Alert color='warning' className='text-center'>
-						توجه داشته باشید که عملیات حذف، برگشت‌پذیر نیست و تنها زمانی امکان حذف وجود دارد که اطلاعات
-						وابسطه‌ای وجود نداشته باشد.
-					</Alert>
-					<Alert color='info' className='text-center'>
-						پیشنهاد می‌شود جهت حفظ تاریخچه هر خانواده و استخراج آمارهای صحیح از عملکرد، حتی پس از اتمام
-						خدمات‌دهی، خانواده‌ها را حذف نکنید.
-					</Alert>
-					<Button color='danger' onClick={remove}>
-						حذف
-					</Button>
-				</>
-			)}
+			{formCmp}
+			<FamilyNeeds familyId={id} />
+			<FamilyMembers familyId={id} />
+			<>
+				<Alert color='warning' className='text-center'>
+					توجه داشته باشید که عملیات حذف، برگشت‌پذیر نیست و تنها زمانی امکان حذف وجود دارد که اطلاعات
+					وابسطه‌ای وجود نداشته باشد.
+				</Alert>
+				<Alert color='info' className='text-center'>
+					پیشنهاد می‌شود جهت حفظ تاریخچه هر خانواده و استخراج آمارهای صحیح از عملکرد، حتی پس از اتمام
+					خدمات‌دهی، خانواده‌ها را حذف نکنید.
+				</Alert>
+				<Button color='danger' onClick={remove}>
+					حذف
+				</Button>
+			</>
 		</MyAccordion>
 	);
 };

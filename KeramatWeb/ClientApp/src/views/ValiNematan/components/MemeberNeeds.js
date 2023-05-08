@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MemeberNeeds = ({}) => {
+const MemeberNeeds = ({ familyId, id }) => {
 	return <></>;
 };
 

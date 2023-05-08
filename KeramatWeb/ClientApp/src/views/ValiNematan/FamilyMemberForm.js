@@ -68,31 +68,40 @@ const FamilyMemberForm = () => {
 		console.log(form);
 	}, []);
 
-	const submit = () => {};
+	const submit = () => {
+		if (id > 0) {
+		} else {
+		}
+	};
 	const remove = () => {};
 
+	const formCmp = (
+		<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} عضو`} onSubmit={submit} loading={form.loading}>
+			<InputText id='id' label='کد' readOnly value={id} />
+		</MyForm>
+	);
+
+	if (id == 0) {
+		return formCmp;
+	}
 	return (
 		<MyAccordion headers={['فرم', 'نیازها', 'بیماری‌های خاص', 'حذف']} defaultOpenIndex={id == 0 ? 0 : -1}>
-			<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} عضو`} onSubmit={submit} loading={form.loading}>
-				<InputText id='id' label='کد' readOnly value={id} />
-			</MyForm>
-			{id == '0' ? null : <MemeberNeeds familyId={id} />}
-			{id == '0' ? null : <MemeberSpecialDiseases familyId={id} />}
-			{id == '0' ? null : (
-				<>
-					<Alert color='warning' className='text-center'>
-						توجه داشته باشید که عملیات حذف، برگشت‌پذیر نیست و تنها زمانی امکان حذف وجود دارد که اطلاعات
-						وابسطه‌ای وجود نداشته باشد.
-					</Alert>
-					<Alert color='info' className='text-center'>
-						پیشنهاد می‌شود جهت حفظ تاریخچه و استخراج آمارهای صحیح از عملکرد، حتی پس از اتمام خدمات‌دهی،
-						خانواده‌ها و یا اعضای آن‌ها را حذف نکنید.
-					</Alert>
-					<Button color='danger' onClick={remove}>
-						حذف
-					</Button>
-				</>
-			)}
+			{formCmp}
+			<MemeberNeeds familyId={familyId} id={id} />
+			<MemeberSpecialDiseases familyId={familyId} id={id} />
+			<>
+				<Alert color='warning' className='text-center'>
+					توجه داشته باشید که عملیات حذف، برگشت‌پذیر نیست و تنها زمانی امکان حذف وجود دارد که اطلاعات
+					وابسطه‌ای وجود نداشته باشد.
+				</Alert>
+				<Alert color='info' className='text-center'>
+					پیشنهاد می‌شود جهت حفظ تاریخچه و استخراج آمارهای صحیح از عملکرد، حتی پس از اتمام خدمات‌دهی،
+					خانواده‌ها و یا اعضای آن‌ها را حذف نکنید.
+				</Alert>
+				<Button color='danger' onClick={remove}>
+					حذف
+				</Button>
+			</>
 		</MyAccordion>
 	);
 };
