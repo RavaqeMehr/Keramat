@@ -47,7 +47,7 @@ namespace Services.ValiNematan {
                 }
             }
 
-            if (dto.DeathDate.HasValue()) {
+            if ((dto.LiveStatus == Enums.LiveStatus.Dead || dto.LiveStatus == Enums.LiveStatus.Martyr) && dto.DeathDate.HasValue()) {
                 if (dto.IsDeathDateImprecise) {
                     item.DeathDate = null;
                     item.ImpreciseDeathDate = dto.DeathDate;
@@ -67,6 +67,14 @@ namespace Services.ValiNematan {
                     }
                 }
             }
+            else {
+                item.DeathDate = null;
+                item.DeathDateY = null;
+                item.DeathDateM = null;
+                item.DeathDateD = null;
+                item.ImpreciseDeathDate = "";
+            }
+
 
             await familyMemberRepo.AddAsync(item);
 

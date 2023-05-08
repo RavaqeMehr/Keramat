@@ -71,7 +71,7 @@ namespace Services.ValiNematan {
                 item.ImpreciseBirthDate = "";
             }
 
-            if (dto.DeathDate.HasValue()) {
+            if ((dto.LiveStatus == Enums.LiveStatus.Dead || dto.LiveStatus == Enums.LiveStatus.Martyr) && dto.DeathDate.HasValue()) {
                 if (dto.IsDeathDateImprecise) {
                     item.DeathDate = null;
                     item.ImpreciseDeathDate = dto.DeathDate;
