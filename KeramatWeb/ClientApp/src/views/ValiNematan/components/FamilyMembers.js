@@ -1,11 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button } from 'reactstrap';
-import MyTable from '../../../components/table/MyTable';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Badge, Button } from 'reactstrap';
+import MyTable from '../../../components/table/MyTable';
+import * as enums from '../../../enums';
 
 const FamilyMembers = ({ familyId }) => {
 	const navigate = useNavigate();
+
+	const { familyMemberRelations } = useSelector((x) => x.logic);
 
 	const [tbl, tblSet] = useState({
 		loading: true,
@@ -35,7 +39,7 @@ const FamilyMembers = ({ familyId }) => {
 				cols={cols}
 				rows={tbl.data}
 				loading={tbl.loading}
-				rowRenderer={rowRenderer}
+				rowRenderer={(x) => rowRenderer(x, familyMemberRelations)}
 				onRowClick={(x) => navigate(`./${x.id}`, { relative: true })}
 			/>
 			<Button color='success' onClick={(x) => navigate(`./0`, { relative: true })} className='mx-1'>
@@ -47,15 +51,24 @@ const FamilyMembers = ({ familyId }) => {
 
 export default FamilyMembers;
 
-const cols = ['عنوان', 'ملاحظات'];
-const rowRenderer = (x) => (
-	<>
-		<td>{x.id}</td>
-		<td>{x.familyMemberRelationId}</td>
-		<td>{x.gender}</td>
-		<td>{x.maritalStatus}</td>
-		<td>{x.name}</td>
-		<td>{x.liveStatus}</td>
-		<td>{x.age}</td>
-	</>
-);
+const cols = ['کد', 'نسبت', 'نام', 'وضعیت تاهل', 'سن'];
+const rowRenderer = (x, familyMemberRelations) => {
+	return (
+		<>
+			<td>{x.id}</td>
+			<td>{familyMemberRelations.find((y) => y.id == x.familyMemberRelationId).title}</td>
+			<td>
+				{x.name} {liveLabel(x.liveStatus)}
+			</td>
+			<td>{enums._MaritalStatus.find((y) => y.val == x.maritalStatus).text}</td>
+			<td>{x.age}</td>
+		</>
+	);
+};
+
+const liveLabel = (liveStatus) =>
+	liveStatus <= 0 ? null : (
+		<Badge color='warning' className='text-dark'>
+			{enums._LiveStatus.find((x) => x.val == liveStatus).text}
+		</Badge>
+	);
