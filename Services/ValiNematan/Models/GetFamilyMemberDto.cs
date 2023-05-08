@@ -2,8 +2,6 @@
 
 namespace Services.ValiNematan.Models {
     public class GetFamilyMemberDto {
-        public int Id { get; set; }
-        public int FamilyId { get; set; }
         public int FamilyMemberRelationId { get; set; }
         public Gender Gender { get; set; } = Gender.NotSet;
         public MaritalStatus MaritalStatus { get; set; } = MaritalStatus.NotSet;
