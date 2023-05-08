@@ -13,7 +13,7 @@ const InputSwitch = ({
 	invalid = false,
 }) => {
 	return (
-		<FormGroup switch disabled={readOnly}>
+		<FormGroup switch disabled={readOnly} className='mb-3'>
 			<Label for={id} check>
 				<strong>{label}</strong> {description && <small className='text-primary'>{description}</small>}
 			</Label>
