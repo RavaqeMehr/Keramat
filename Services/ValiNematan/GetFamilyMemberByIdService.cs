@@ -27,22 +27,22 @@ namespace Services.ValiNematan {
             var dto = item.Adapt<GetFamilyMemberDto>();
 
             if (item.ImpreciseBirthDate.isValueLess()) {
-                dto.BirthDate = item.BirthDate?.ToPersianDateString() ?? null;
-                dto.IsBirthDateImprecise = item.BirthDate.HasValue ? false : null;
+                dto.BirthDateStr = item.BirthDate?.ToPersianDateString() ?? null;
+                dto.IsBirthDateImprecise = false;
                 dto.Age = item.BirthDate?.GetAge();
             }
             else {
-                dto.BirthDate = item.ImpreciseBirthDate;
+                dto.BirthDateStr = item.ImpreciseBirthDate;
                 dto.IsBirthDateImprecise = true;
                 dto.Age = item.ImpreciseBirthDate.GetAgeFromShamsiDateStringOrShamsiYearString();
             }
 
             if (item.ImpreciseDeathDate.isValueLess()) {
-                dto.DeathDate = item.DeathDate?.ToPersianDateString() ?? null;
-                dto.IsDeathDateImprecise = item.DeathDate.HasValue ? false : null;
+                dto.DeathDateStr = item.DeathDate?.ToPersianDateString() ?? null;
+                dto.IsDeathDateImprecise = false;
             }
             else {
-                dto.DeathDate = item.ImpreciseDeathDate;
+                dto.DeathDateStr = item.ImpreciseDeathDate;
                 dto.IsBirthDateImprecise = true;
             }
 

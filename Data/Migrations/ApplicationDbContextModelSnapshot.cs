@@ -33,7 +33,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppSettings");
+                    b.ToTable("AppSettings", (string)null);
                 });
 
             modelBuilder.Entity("Entities.AppUsingLogs.AppSession", b =>
@@ -71,7 +71,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppSessions");
+                    b.ToTable("AppSessions", (string)null);
                 });
 
             modelBuilder.Entity("Entities.AppUsingLogs.EntityChanges", b =>
@@ -120,7 +120,7 @@ namespace Data.Migrations
 
                     b.HasIndex("AppSessionId");
 
-                    b.ToTable("EntityChanges");
+                    b.ToTable("EntityChanges", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.Connector", b =>
@@ -142,7 +142,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Connectors");
+                    b.ToTable("Connectors", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.Family", b =>
@@ -202,7 +202,7 @@ namespace Data.Migrations
 
                     b.HasIndex("LevelId");
 
-                    b.ToTable("Families");
+                    b.ToTable("Families", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.FamilyLevel", b =>
@@ -222,7 +222,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FamilyLevels");
+                    b.ToTable("FamilyLevels", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.FamilyMember", b =>
@@ -324,7 +324,7 @@ namespace Data.Migrations
 
                     b.HasIndex("FamilyMemberRelationId");
 
-                    b.ToTable("FamilyMembers");
+                    b.ToTable("FamilyMembers", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.FamilyMemberNeed", b =>
@@ -356,7 +356,7 @@ namespace Data.Migrations
 
                     b.HasIndex("FamilyMemberNeedSubjectId");
 
-                    b.ToTable("FamilyMemberNeeds");
+                    b.ToTable("FamilyMemberNeeds", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.FamilyMemberNeedSubject", b =>
@@ -373,7 +373,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FamilyMemberNeedSubjects");
+                    b.ToTable("FamilyMemberNeedSubjects", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.FamilyMemberRelation", b =>
@@ -394,7 +394,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FamilyMemberRelations");
+                    b.ToTable("FamilyMemberRelations", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.FamilyMemberSpecialDisease", b =>
@@ -426,7 +426,7 @@ namespace Data.Migrations
 
                     b.HasIndex("FamilyMemberSpecialDiseaseSubjectId");
 
-                    b.ToTable("FamilyMemberSpecialDiseases");
+                    b.ToTable("FamilyMemberSpecialDiseases", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.FamilyMemberSpecialDiseaseSubject", b =>
@@ -443,7 +443,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FamilyMemberSpecialDiseaseSubjects");
+                    b.ToTable("FamilyMemberSpecialDiseaseSubjects", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.FamilyNeed", b =>
@@ -470,7 +470,7 @@ namespace Data.Migrations
 
                     b.HasIndex("FamilyNeedSubjectId");
 
-                    b.ToTable("FamilyNeeds");
+                    b.ToTable("FamilyNeeds", (string)null);
                 });
 
             modelBuilder.Entity("Entities.ValiNematan.FamilyNeedSubject", b =>
@@ -487,7 +487,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FamilyNeedSubjects");
+                    b.ToTable("FamilyNeedSubjects", (string)null);
                 });
 
             modelBuilder.Entity("Entities.AppUsingLogs.EntityChanges", b =>

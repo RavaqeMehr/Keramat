@@ -43,13 +43,13 @@ namespace Services.ValiNematan {
             item.JobPhone = dto.JobPhone;
             item.LiveStatus = dto.LiveStatus;
 
-            if (dto.BirthDate.HasValue()) {
+            if (dto.BirthDateStr.HasValue()) {
                 if (dto.IsBirthDateImprecise) {
                     item.BirthDate = null;
-                    item.ImpreciseBirthDate = dto.BirthDate;
+                    item.ImpreciseBirthDate = dto.BirthDateStr;
                 }
                 else {
-                    var date = dto.BirthDate?.GetDateTimeFromShamsiDateString();
+                    var date = dto.BirthDateStr?.GetDateTimeFromShamsiDateString();
                     if (date is null) {
                         throw new Exception("تاریخ تولد درست وارد نشده است!");
                     }
@@ -61,6 +61,7 @@ namespace Services.ValiNematan {
                         item.BirthDateM = fa.Month;
                         item.BirthDateD = fa.Day;
                     }
+                    item.ImpreciseBirthDate = "";
                 }
             }
             else {
@@ -71,13 +72,13 @@ namespace Services.ValiNematan {
                 item.ImpreciseBirthDate = "";
             }
 
-            if ((dto.LiveStatus == Enums.LiveStatus.Dead || dto.LiveStatus == Enums.LiveStatus.Martyr) && dto.DeathDate.HasValue()) {
+            if ((dto.LiveStatus == Enums.LiveStatus.Dead || dto.LiveStatus == Enums.LiveStatus.Martyr) && dto.DeathDateStr.HasValue()) {
                 if (dto.IsDeathDateImprecise) {
                     item.DeathDate = null;
-                    item.ImpreciseDeathDate = dto.DeathDate;
+                    item.ImpreciseDeathDate = dto.DeathDateStr;
                 }
                 else {
-                    var date = dto.DeathDate?.GetDateTimeFromShamsiDateString();
+                    var date = dto.DeathDateStr?.GetDateTimeFromShamsiDateString();
                     if (date is null) {
                         throw new Exception("تاریخ وفات/شهادت درست وارد نشده است!");
                     }
@@ -89,6 +90,7 @@ namespace Services.ValiNematan {
                         item.DeathDateM = fa.Month;
                         item.DeathDateD = fa.Day;
                     }
+                    item.ImpreciseDeathDate = "";
                 }
             }
             else {

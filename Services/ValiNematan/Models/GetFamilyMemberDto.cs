@@ -16,9 +16,9 @@ namespace Services.ValiNematan.Models {
         public string JobAddress { get; set; }
         public string JobPhone { get; set; }
         public LiveStatus LiveStatus { get; set; } = LiveStatus.NotSet;
-        public string? BirthDate { get; set; }
+        public string? BirthDateStr { get; set; }
         public bool? IsBirthDateImprecise { get; set; }
-        public string? DeathDate { get; set; }
+        public string? DeathDateStr { get; set; }
         public bool? IsDeathDateImprecise { get; set; }
         public int? Age { get; set; }
     }

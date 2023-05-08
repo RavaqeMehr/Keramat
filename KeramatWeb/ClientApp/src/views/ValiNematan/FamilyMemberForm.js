@@ -9,6 +9,8 @@ import InputText from './../../components/form/InputText';
 import { Alert, Button } from 'reactstrap';
 import MemeberNeeds from './components/MemeberNeeds';
 import MemeberSpecialDiseases from './components/MemeberSpecialDiseases';
+import InputSelect from './../../components/form/InputSelect';
+import InputSwitch from './../../components/form/InputSwitch';
 
 const FamilyMemberForm = () => {
 	const navigate = useNavigate();
@@ -21,20 +23,23 @@ const FamilyMemberForm = () => {
 		loading: true,
 		items: {
 			// ==> all
-			familyMemberRelationId: familyMemberRelations[0]?.id ?? 0,
+			familyMemberRelationId: null,
 			gender: -1,
-			maritalStatus: -1,
 			name: '',
 			lastName: '',
 			fathersName: '',
-			phone: '',
 			nationalCode: '',
-			description: '',
-			liveStatus: -1,
-			birthDate: '',
+			phone: '',
+			maritalStatus: -1,
+			birthDateStr: '',
 			isBirthDateImprecise: false,
-			deathDate: '',
+			liveStatus: -1,
+			deathDateStr: '',
 			isDeathDateImprecise: false,
+			description: '',
+
+			// ==> get
+			age: 0,
 
 			// ==> insert
 			familyId: familyId,
@@ -44,12 +49,20 @@ const FamilyMemberForm = () => {
 
 			// ==> get & update
 			job: '',
-			jobDescription: '',
-			jobAddress: '',
 			jobPhone: '',
-			age: 0,
+			jobAddress: '',
+			jobDescription: '',
 		},
 	});
+
+	useEffect(() => {
+		if (form.items.familyMemberRelationId == null && familyMemberRelations.length > 0) {
+			formSet((old) => ({
+				...old,
+				items: { ...old.items, familyMemberRelationId: familyMemberRelations[0].id },
+			}));
+		}
+	}, [familyMemberRelations]);
 
 	useEffect(() => {
 		if (id > 0) {
@@ -58,26 +71,209 @@ const FamilyMemberForm = () => {
 				.get('ValiNematan/MemberSingle', { params: { id } })
 				.then((response) => response.data)
 				.then((data) => {
-					formSet((old) => ({ ...old, items: data.data, loading: false }));
+					formSet((old) => ({ ...old, items: { ...old.items, ...data.data }, loading: false }));
 				})
 				.catch(console.error)
 				.finally(() => formSet((old) => ({ ...old, loading: false })));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
-		console.log(form);
 	}, []);
 
+	useEffect(() => {
+		formSet((old) => ({ ...old, items: { ...old.items, id: Number(id), familyId: Number(familyId) } }));
+	}, [id, familyId]);
+
 	const submit = () => {
-		if (id > 0) {
+		if (id == 0) {
+			axios
+				.post('ValiNematan/AddMember', form.items)
+				.then((response) => response.data)
+				.then((data) => {
+					navigate(`./../${data.data}`, { replace: true, relative: true });
+				})
+				.catch(console.error);
 		} else {
+			axios
+				.put('ValiNematan/EditMember', form.items)
+				.then((response) => response.data)
+				.then((data) => {
+					navigate(`./../`, { relative: true });
+				})
+				.catch(console.error);
 		}
 	};
-	const remove = () => {};
+
+	const remove = () => {
+		axios
+			.delete('ValiNematan/RemoveMember', { params: { id } })
+			.then((x) => x.data.data)
+			.then((x) => {
+				if (x) {
+					navigate(`./../`, { relative: true });
+				}
+			})
+			.catch((e) => console.error);
+	};
+
+	const [deathDateInputMode, deathDateInputModeSet] = useState({ mode: -1, text: '' });
+	useEffect(() => {
+		const notLives = ['Dead', 'Martyr'];
+		const __x = enums._LiveStatus
+			.filter((a) => notLives.some((b) => b == a.key))
+			.map((x) => x.val)
+			.indexOf(form.items.liveStatus);
+
+		deathDateInputModeSet({ mode: __x, text: __x == 0 ? 'وفات' : 'شهادت' });
+	}, [form]);
 
 	const formCmp = (
 		<MyForm title={`${id == 0 ? 'افزودن' : 'ویرایش'} عضو`} onSubmit={submit} loading={form.loading}>
 			<InputText id='id' label='کد' readOnly value={id} />
+			<InputSelect
+				id='familyMemberRelationId'
+				label='نسبت'
+				value={'' + form.items.familyMemberRelationId}
+				onChange={(val) =>
+					formSet((old) => ({ ...old, items: { ...old.items, familyMemberRelationId: Number(val) } }))
+				}
+				items={familyMemberRelations.map((x) => ({ id: x.id, text: x.title }))}
+			/>
+			<InputSelect
+				id='gender'
+				label='جنسیت'
+				value={'' + form.items.gender}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, gender: Number(val) } }))}
+				items={enums._Gender.map((x) => ({ id: x.val, text: x.text }))}
+			/>
+			<InputText
+				id='name'
+				label='نام'
+				value={form.items.name}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, name: val } }))}
+			/>
+			<InputText
+				id='lastName'
+				label='نام خانوادگی'
+				value={form.items.lastName}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, lastName: val } }))}
+			/>
+			<InputText
+				id='fathersName'
+				label='نام پدر'
+				value={form.items.fathersName}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, fathersName: val } }))}
+			/>
+			<InputText
+				id='nationalCode'
+				label='کد ملی'
+				value={form.items.nationalCode}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, nationalCode: val } }))}
+			/>
+			<InputText
+				id='phone'
+				label='تلفن'
+				value={form.items.phone}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, phone: val } }))}
+			/>
+			<InputSelect
+				id='maritalStatus'
+				label='وضعیت تاهل'
+				value={'' + form.items.maritalStatus}
+				onChange={(val) =>
+					formSet((old) => ({ ...old, items: { ...old.items, maritalStatus: Number(val) } }))
+				}
+				items={enums._MaritalStatus.map((x) => ({ id: x.val, text: x.text }))}
+			/>
+			<InputText
+				id='birthDateStr'
+				label='تاریخ تولد'
+				hint={
+					form.items.isBirthDateImprecise
+						? 'یا فقط سال شمسی و یا به صورت کامل وارد شود.'
+						: 'به صورت کامل : 1402/03/15'
+				}
+				maxLength={10}
+				value={form.items.birthDateStr}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, birthDateStr: val } }))}
+			/>
+			<InputSwitch
+				id='isBirthDateImprecise'
+				label='آیا تاریخ تولد حدودی وارد شده؟'
+				hint='تعیین دقیق یا حدودی بودت تاریخ تولد'
+				check={form.items.isBirthDateImprecise}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, isBirthDateImprecise: val } }))}
+			/>
+			<InputSelect
+				id='liveStatus'
+				label='وضعیت حیات'
+				value={'' + form.items.liveStatus}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, liveStatus: Number(val) } }))}
+				items={enums._LiveStatus.map((x) => ({ id: x.val, text: x.text }))}
+			/>
+			{deathDateInputMode.mode >= 0 ? (
+				<>
+					<InputText
+						id='deathDateStr'
+						label={`تاریخ ${deathDateInputMode.text}`}
+						hint={
+							form.items.isDeathDateImprecise
+								? 'یا فقط سال شمسی و یا به صورت کامل وارد شود.'
+								: 'به صورت کامل : 1402/03/15'
+						}
+						maxLength={10}
+						value={form.items.deathDateStr}
+						onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, deathDateStr: val } }))}
+					/>
+					<InputSwitch
+						id='isDeathDateImprecise'
+						label={`آیا تاریخ ${deathDateInputMode.text} حدودی وارد شده؟`}
+						hint={`تعیین دقیق یا حدودی بودت تاریخ ${deathDateInputMode.text}`}
+						check={form.items.isDeathDateImprecise}
+						onChange={(val) =>
+							formSet((old) => ({ ...old, items: { ...old.items, isDeathDateImprecise: val } }))
+						}
+					/>
+				</>
+			) : null}
+
+			<InputText
+				multiLine
+				id='description'
+				label='ملاحظات'
+				value={form.items.description}
+				onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, description: val } }))}
+			/>
+
+			{id == 0 ? null : (
+				<>
+					<InputText
+						id='job'
+						label='شغل'
+						value={form.items.job}
+						onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, job: val } }))}
+					/>
+					<InputText
+						id='jobPhone'
+						label='تلفن محل کار'
+						value={form.items.jobPhone}
+						onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, jobPhone: val } }))}
+					/>
+					<InputText
+						id='jobAddress'
+						label='آدرس محل کار'
+						value={form.items.jobAddress}
+						onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, jobAddress: val } }))}
+					/>
+					<InputText
+						multiLine
+						id='jobDescription'
+						label='ملاحظات شغل'
+						value={form.items.jobDescription}
+						onChange={(val) => formSet((old) => ({ ...old, items: { ...old.items, jobDescription: val } }))}
+					/>
+				</>
+			)}
 		</MyForm>
 	);
 
