@@ -6,7 +6,7 @@ const MyAccordion = ({ headers, defaultOpenIndex = 0, headersClassName, bodiesCl
 
 	const toggle = (id) => {
 		if (open === id) {
-			openSet();
+			openSet('');
 		} else {
 			openSet(id);
 		}
