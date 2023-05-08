@@ -14,12 +14,14 @@ import FamilyMemberSpecialDiseaseSubjectsList from '../views/ValiNematan/FamilyM
 import FamilyMemberSpecialDiseaseSubjectForm from '../views/ValiNematan/FamilyMemberSpecialDiseaseSubjectForm';
 import FamilyMemberRelationsList from './../views/ValiNematan/FamilyMemberRelationsList';
 import FamilyMemberRelationForm from './../views/ValiNematan/FamilyMemberRelationForm';
+import FamilyMemberForm from '../views/ValiNematan/FamilyMemberForm';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
 	{ path: '/exit', name: 'خروج', element: Exit, exact: true },
 	{ path: '/vali-nematan/families', name: 'ولی‌نعمتان', element: FamiliesList, exact: true },
-	{ path: '/vali-nematan/families/:id', name: 'فرم خانواده', element: FamilyForm },
+	{ path: '/vali-nematan/families/:id', name: 'فرم خانواده', element: FamilyForm, exact: true },
+	{ path: '/vali-nematan/families/:familyId/:id', name: 'فرم عضو خانواده', element: FamilyMemberForm },
 	{ path: '/vali-nematan/levels', name: 'سطح‌های خانواده', element: FamailiLevelsList, exact: true },
 	{ path: '/vali-nematan/levels/:id', name: 'فرم سطح خانواده', element: FamailiLevelForm },
 	{ path: '/vali-nematan/connectors', name: 'رابط‌های خانواده', element: ConnectorsList, exact: true },
