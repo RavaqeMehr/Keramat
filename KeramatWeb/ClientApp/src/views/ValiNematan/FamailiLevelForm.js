@@ -9,6 +9,7 @@ import axios from 'axios';
 import MyTable from '../../components/table/MyTable';
 import MyAccordion from '../../components/ui/MyAccordion';
 import { Button, Alert } from 'reactstrap';
+import FamilyUsesTable from './components/FamilyUsesTable';
 
 const FamailiLevelForm = () => {
 	const navigate = useNavigate();
@@ -134,15 +135,12 @@ const FamailiLevelForm = () => {
 					/>
 				</MyForm>
 				{id == '0' ? null : (
-					<MyTable
-						title='لیست وابسطه'
-						cols={cols}
-						rows={tbl.data}
+					<FamilyUsesTable
+						navigate={navigate}
+						GetPage={GetPage}
+						data={tbl.data}
 						pagination={tbl.pagination}
 						loading={tbl.loading}
-						rowRenderer={rowRenderer}
-						onPageClick={(x) => GetPage(x)}
-						onRowClick={(x) => navigate(`./../../families/${x.id}`, { relative: true })}
 					/>
 				)}
 				{id == '0' ? null : (
@@ -162,13 +160,3 @@ const FamailiLevelForm = () => {
 };
 
 export default FamailiLevelForm;
-
-const cols = ['کد', 'عنوان', 'درج'];
-
-const rowRenderer = (x) => (
-	<>
-		<th scope='row'>{x.id}</th>
-		<td>{x.title}</td>
-		<td>{x.addDate}</td>
-	</>
-);

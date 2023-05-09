@@ -9,6 +9,7 @@ import axios from 'axios';
 import MyTable from '../../components/table/MyTable';
 import MyAccordion from '../../components/ui/MyAccordion';
 import { Button, Alert } from 'reactstrap';
+import FamilyUsesTable from './components/FamilyUsesTable';
 
 const ConnectorForm = () => {
 	const navigate = useNavigate();
@@ -131,15 +132,12 @@ const ConnectorForm = () => {
 					/>
 				</MyForm>
 				{id == '0' ? null : (
-					<MyTable
-						title='لیست خانواده‌های این سطح'
-						cols={cols}
-						rows={tbl.data}
+					<FamilyUsesTable
+						navigate={navigate}
+						GetPage={GetPage}
+						data={tbl.data}
 						pagination={tbl.pagination}
 						loading={tbl.loading}
-						rowRenderer={rowRenderer}
-						onPageClick={(x) => GetPage(x)}
-						onRowClick={(x) => navigate(`./../../families/${x.id}`, { relative: true })}
 					/>
 				)}
 				{id == '0' ? null : (
@@ -159,13 +157,3 @@ const ConnectorForm = () => {
 };
 
 export default ConnectorForm;
-
-const cols = ['کد', 'عنوان', 'درج'];
-
-const rowRenderer = (x) => (
-	<>
-		<th scope='row'>{x.id}</th>
-		<td>{x.title}</td>
-		<td>{x.addDate}</td>
-	</>
-);
