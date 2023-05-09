@@ -207,7 +207,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpPut]
-        public async Task<bool> ReOrderFamilyNeeds([FromBody] ReOrderFamilyNeedDto dto) {
+        public async Task<bool> ReOrderFamilyNeeds([FromBody] ReOrderDto dto) {
             return await reOrderFamilyNeedService.Exe(dto);
         }
 
