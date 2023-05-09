@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MemeberSpecialDiseases = ({ familyId, id }) => {
+const MemeberSpecialDiseases = ({ familyId, familyMemberId }) => {
 	return <></>;
 };
 

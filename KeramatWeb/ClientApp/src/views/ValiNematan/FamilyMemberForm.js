@@ -283,8 +283,8 @@ const FamilyMemberForm = () => {
 	return (
 		<MyAccordion headers={['فرم', 'نیازها', 'بیماری‌های خاص', 'حذف']} defaultOpenIndex={id == 0 ? 0 : -1}>
 			{formCmp}
-			<MemeberNeeds familyId={familyId} id={id} />
-			<MemeberSpecialDiseases familyId={familyId} id={id} />
+			<MemeberNeeds familyId={familyId} familyMemberId={id} />
+			<MemeberSpecialDiseases familyId={familyId} familyMemberId={id} />
 			<>
 				<Alert color='warning' className='text-center'>
 					توجه داشته باشید که عملیات حذف، برگشت‌پذیر نیست و تنها زمانی امکان حذف وجود دارد که اطلاعات
