@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Badge, Button } from 'reactstrap';
+import { Badge } from 'reactstrap';
+import MyDateTime from '../../components/dateTime/MyDateTime';
 import MyTable from '../../components/table/MyTable';
-import { daysAgo, faDate } from '../../helpers/TimeHelpers';
 import { duration2String, NumberWithCommas } from '../../helpers/Utils';
 
 const Sesseions = () => {
@@ -56,16 +56,12 @@ const cols = ['کد', 'شروع', 'پایان', 'مدت', 'تغییرات'];
 const rowRenderer = (x) => (
 	<>
 		<th scope='row'>{x.id}</th>
-		{/* <td>{x.startDate}</td> */}
 		<td>
-			{faDate(x.startDate)} <small>[{daysAgo(x.startDate)}]</small>
+			<MyDateTime dateTime={x.startDate} />
 		</td>
-
 		<td>
 			{x.durationSeconds > 0 ? (
-				<>
-					{faDate(x.endDate)} <small>[{daysAgo(x.endDate)}]</small>
-				</>
+				<MyDateTime dateTime={x.endDate} />
 			) : (
 				<Badge color='warning'>پایان ثبت نشده</Badge>
 			)}
