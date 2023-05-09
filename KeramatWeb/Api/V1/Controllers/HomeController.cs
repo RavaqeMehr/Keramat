@@ -1,5 +1,6 @@
 ﻿using Frameworks.Api;
 using Microsoft.AspNetCore.Mvc;
+using Services.AppUsingLogs;
 using Services.Dashboard;
 using Services.Dashboard.Models;
 
@@ -7,11 +8,14 @@ namespace KeramatWeb.Api.V1.Controllers {
     [ApiVersion("1")]
     public class HomeController : BaseApi {
         private readonly IGetAppInfoService getAppInfoService;
+        private readonly IAppSessionService appSessionService;
 
         public HomeController(
-            IGetAppInfoService getAppInfoService
+            IGetAppInfoService getAppInfoService,
+            IAppSessionService appSessionService
             ) {
             this.getAppInfoService = getAppInfoService;
+            this.appSessionService = appSessionService;
         }
 
         [HttpGet]
@@ -26,7 +30,7 @@ namespace KeramatWeb.Api.V1.Controllers {
 
         [HttpDelete]
         public void Exit() {
-            Environment.Exit(786);
+            appSessionService.Stop();
         }
     }
 }

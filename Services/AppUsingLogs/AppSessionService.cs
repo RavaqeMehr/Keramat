@@ -48,6 +48,8 @@ namespace Services.AppUsingLogs {
             _ThisSession.DurationSeconds = (now - _ThisSession.StartDate).Seconds;
 
             await appSessionRepo.UpdateAsync(_ThisSession);
+
+            Environment.Exit(786);
         }
     }
 }
