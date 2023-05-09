@@ -36,7 +36,7 @@ const FamilyMemberNeedSubjectForm = () => {
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
-	}, []);
+	}, [id]);
 
 	const submit = () => {
 		const dto = {
@@ -87,7 +87,7 @@ const FamilyMemberNeedSubjectForm = () => {
 
 	useEffect(() => {
 		GetPage(1);
-	}, []);
+	}, [id]);
 
 	const remove = () => {
 		axios

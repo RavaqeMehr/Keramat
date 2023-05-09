@@ -37,7 +37,7 @@ const FamailiLevelForm = () => {
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
-	}, []);
+	}, [id]);
 
 	const submit = () => {
 		const dto = {
@@ -88,7 +88,7 @@ const FamailiLevelForm = () => {
 
 	useEffect(() => {
 		GetPage(1);
-	}, []);
+	}, [id]);
 
 	const remove = () => {
 		axios

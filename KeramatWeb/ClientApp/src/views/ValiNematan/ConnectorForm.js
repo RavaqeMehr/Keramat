@@ -37,7 +37,7 @@ const ConnectorForm = () => {
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
-	}, []);
+	}, [id]);
 
 	const submit = () => {
 		const dto = {
@@ -88,7 +88,7 @@ const ConnectorForm = () => {
 
 	useEffect(() => {
 		GetPage(1);
-	}, []);
+	}, [id]);
 
 	const remove = () => {
 		axios

@@ -78,7 +78,7 @@ const FamilyMemberForm = () => {
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
-	}, []);
+	}, [id, familyId]);
 
 	useEffect(() => {
 		formSet((old) => ({ ...old, items: { ...old.items, id: Number(id), familyId: Number(familyId) } }));

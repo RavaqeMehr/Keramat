@@ -36,7 +36,7 @@ const FamilyMemberSpecialDiseaseSubjectForm = () => {
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
-	}, []);
+	}, [id]);
 
 	const submit = () => {
 		const dto = {
@@ -87,7 +87,7 @@ const FamilyMemberSpecialDiseaseSubjectForm = () => {
 
 	useEffect(() => {
 		GetPage(1);
-	}, []);
+	}, [id]);
 
 	const remove = () => {
 		axios

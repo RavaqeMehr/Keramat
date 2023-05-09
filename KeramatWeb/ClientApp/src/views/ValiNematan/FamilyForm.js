@@ -45,7 +45,7 @@ const FamilyForm = () => {
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
-	}, []);
+	}, [id]);
 
 	const submit = () => {
 		console.log('submit');
