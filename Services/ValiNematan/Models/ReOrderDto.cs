@@ -1,5 +1,5 @@
 ﻿namespace Services.ValiNematan.Models {
-    public class ReOrderFamilyNeedDto {
+    public class ReOrderDto {
         public int[] SortedIds { get; set; }
     }
 }

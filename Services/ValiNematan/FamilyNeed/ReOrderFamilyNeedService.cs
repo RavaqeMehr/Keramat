@@ -8,7 +8,7 @@ using Services.ValiNematan.Models;
 
 namespace Services.ValiNematan {
     public interface IReOrderFamilyNeedService : IScopedDependency {
-        Task<bool> Exe(ReOrderFamilyNeedDto dto);
+        Task<bool> Exe(ReOrderDto dto);
     }
 
     public class ReOrderFamilyNeedService : IReOrderFamilyNeedService {
@@ -23,7 +23,7 @@ namespace Services.ValiNematan {
             this.addEntityChangeService = addEntityChangeService;
         }
 
-        public async Task<bool> Exe(ReOrderFamilyNeedDto dto) {
+        public async Task<bool> Exe(ReOrderDto dto) {
             if (dto.SortedIds.Count() > 0) {
                 var items = await familyNeedRepo.TableNoTracking
                 .Where(x => dto.SortedIds.Contains(x.Id))
