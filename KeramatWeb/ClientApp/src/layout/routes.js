@@ -15,6 +15,7 @@ import FamilyMemberSpecialDiseaseSubjectForm from '../views/ValiNematan/FamilyMe
 import FamilyMemberRelationsList from './../views/ValiNematan/FamilyMemberRelationsList';
 import FamilyMemberRelationForm from './../views/ValiNematan/FamilyMemberRelationForm';
 import FamilyMemberForm from '../views/ValiNematan/FamilyMemberForm';
+import Sesseions from './../views/Manage/Sesseions';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
@@ -66,6 +67,8 @@ const routes = [
 		name: 'فرم نسبت خانوادگی',
 		element: FamilyMemberRelationForm,
 	},
+	///////////
+	{ path: '/manage/sessions', name: 'نشست‌ها', element: Sesseions, exact: true },
 ];
 
 export default routes;

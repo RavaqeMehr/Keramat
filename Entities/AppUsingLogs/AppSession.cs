@@ -1,4 +1,5 @@
 ﻿using Entities.Common;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Entities.AppUsingLogs {
     public class AppSession : BaseEntity {
@@ -13,5 +14,7 @@ namespace Entities.AppUsingLogs {
         public int EndDateD { get; set; }
 
         public int DurationSeconds { get; set; }
+
+        public virtual ObservableCollectionListSource<EntityChanges> ChangesList { get; } = new();
     }
 }
