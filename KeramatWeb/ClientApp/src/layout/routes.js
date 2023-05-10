@@ -17,6 +17,7 @@ import FamilyMemberRelationForm from './../views/ValiNematan/FamilyMemberRelatio
 import FamilyMemberForm from '../views/ValiNematan/FamilyMemberForm';
 import Sesseions from './../views/Manage/Sesseions';
 import ChangesLog from '../views/Manage/ChangesLog';
+import Settings from './../views/Manage/Settings';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
@@ -71,6 +72,7 @@ const routes = [
 	///////////
 	{ path: '/manage/sessions', name: 'نشست‌ها', element: Sesseions, exact: true },
 	{ path: '/manage/changes-log/:id?', name: 'لاگ تغییرات', element: ChangesLog },
+	{ path: '/manage/settings', name: 'تنظیمات', element: Settings, exact: true },
 ];
 
 export default routes;
