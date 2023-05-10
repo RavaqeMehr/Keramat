@@ -33,16 +33,6 @@ namespace Services.DataInitializer {
                         Val = thisVerNum.ToString()
                     });
 
-                    settingsAdd.Add(new AppSetting {
-                        Key = AppSettingsKeys.Ui_Fonts_Defaults_Family,
-                        Val = "Vazirmatn"
-                    });
-
-                    settingsAdd.Add(new AppSetting {
-                        Key = AppSettingsKeys.Ui_Fonts_Defaults_Size,
-                        Val = "14"
-                    });
-
                     goto case 1;
                 case 1:
                     settingsAdd.Add(new AppSetting {
@@ -66,11 +56,11 @@ namespace Services.DataInitializer {
             }
 
             if (settingsAdd.Count > 0) {
-                settingsRepo.AddRange(settingsAdd);
+                await settingsRepo.AddRangeAsync(settingsAdd);
             }
 
             if (settingsUpdate.Count > 0) {
-                settingsRepo.UpdateRange(settingsUpdate);
+                await settingsRepo.UpdateRangeAsync(settingsUpdate);
             }
         }
     }
