@@ -85,7 +85,7 @@ namespace Services.ValiNematan {
                 ChangeType = Entities.AppUsingLogs.ChangeType.Add,
                 EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMember,
                 Root1Id = item.FamilyId,
-                EnitityId = item.Id,
+                EntityId = item.Id,
                 ObjA = item
             });
 

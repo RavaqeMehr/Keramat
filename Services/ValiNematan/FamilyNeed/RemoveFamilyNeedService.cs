@@ -32,7 +32,7 @@ namespace Services.ValiNematan {
                 ChangeType = Entities.AppUsingLogs.ChangeType.Delete,
                 EnitityType = Entities.AppUsingLogs.EnitityType.FamilyNeed,
                 Root1Id = item.FamilyId,
-                EnitityId = item.Id,
+                EntityId = item.Id,
                 ObjA = item_,
             });
 

@@ -45,7 +45,7 @@ namespace Services.ValiNematan {
                         EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMemberSpecialDisease,
                         Root2Id = item.FamilyId,
                         Root1Id = item.FamilyMemberId,
-                        EnitityId = item.Id,
+                        EntityId = item.Id,
                         ObjA = item_,
                         ObjB = item
                     });

@@ -42,7 +42,7 @@ namespace Services.ValiNematan {
             await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<Family> {
                 ChangeType = Entities.AppUsingLogs.ChangeType.Edit,
                 EnitityType = Entities.AppUsingLogs.EnitityType.Family,
-                EnitityId = item.Id,
+                EntityId = item.Id,
                 ObjA = item_,
                 ObjB = item
             });

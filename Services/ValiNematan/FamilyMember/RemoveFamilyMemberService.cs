@@ -41,7 +41,7 @@ namespace Services.ValiNematan {
                         EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMemberNeed,
                         Root2Id = item.FamilyId,
                         Root1Id = item.Id,
-                        EnitityId = subItem.Id,
+                        EntityId = subItem.Id,
                         ObjA = subItem_,
                     });
                 }
@@ -56,7 +56,7 @@ namespace Services.ValiNematan {
                         EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMemberSpecialDisease,
                         Root2Id = item.FamilyId,
                         Root1Id = item.Id,
-                        EnitityId = subItem.Id,
+                        EntityId = subItem.Id,
                         ObjA = subItem_,
                     });
                 }
@@ -69,7 +69,7 @@ namespace Services.ValiNematan {
                 ChangeType = Entities.AppUsingLogs.ChangeType.Delete,
                 EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMember,
                 Root1Id = item.FamilyId,
-                EnitityId = item.Id,
+                EntityId = item.Id,
                 ObjA = item_,
             });
 

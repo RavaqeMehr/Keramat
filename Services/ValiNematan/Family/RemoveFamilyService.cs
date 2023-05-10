@@ -49,7 +49,7 @@ namespace Services.ValiNematan {
                     await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<FamilyNeed> {
                         ChangeType = Entities.AppUsingLogs.ChangeType.Delete,
                         EnitityType = Entities.AppUsingLogs.EnitityType.FamilyNeed,
-                        EnitityId = subItem.Id,
+                        EntityId = subItem.Id,
                         ObjA = subItem_,
                     });
                 }
@@ -66,7 +66,7 @@ namespace Services.ValiNematan {
                                 EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMemberNeed,
                                 Root2Id = subItem.FamilyId,
                                 Root1Id = subItem.Id,
-                                EnitityId = subSubItem.Id,
+                                EntityId = subSubItem.Id,
                                 ObjA = subSubItem_,
                             });
                         }
@@ -81,7 +81,7 @@ namespace Services.ValiNematan {
                                 EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMemberSpecialDisease,
                                 Root2Id = subItem.FamilyId,
                                 Root1Id = subItem.Id,
-                                EnitityId = subSubItem.Id,
+                                EntityId = subSubItem.Id,
                                 ObjA = subSubItem_,
                             });
                         }
@@ -93,7 +93,7 @@ namespace Services.ValiNematan {
                         ChangeType = Entities.AppUsingLogs.ChangeType.Delete,
                         EnitityType = Entities.AppUsingLogs.EnitityType.FamilyMember,
                         Root1Id = subItem.FamilyId,
-                        EnitityId = subItem.Id,
+                        EntityId = subItem.Id,
                         ObjA = subItem_,
                     });
                 }
@@ -106,7 +106,7 @@ namespace Services.ValiNematan {
             await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<Family> {
                 ChangeType = Entities.AppUsingLogs.ChangeType.Delete,
                 EnitityType = Entities.AppUsingLogs.EnitityType.Family,
-                EnitityId = item.Id,
+                EntityId = item.Id,
                 ObjA = item_,
             });
 

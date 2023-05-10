@@ -8,7 +8,7 @@ namespace Services.AppUsingLogs.Models {
         public T ObjA { get; set; }
         public T? ObjB { get; set; }
 
-        public int EnitityId { get; set; }
+        public int EntityId { get; set; }
         public int? Root1Id { get; set; }
         public int? Root2Id { get; set; }
         public int? Root3Id { get; set; }

@@ -29,21 +29,21 @@ namespace Services.AppUsingLogs {
             var changes = inputs.ChangeType == ChangeType.Edit ? diff.Print() : diff.PrintA();
 
             if (diff.Count > 0) {
-            var item = new EntityChanges {
-                AppSessionId = appSessionService.ThisSession.Id,
-                Date = now,
-                DateY = nowFa.Year,
-                DateM = nowFa.Month,
-                DateD = nowFa.Day,
-                EnitityType = inputs.EnitityType,
-                ChangeType = inputs.ChangeType,
-                EnitityId = inputs.EnitityId,
-                Root1Id = inputs.Root1Id,
-                Root2Id = inputs.Root2Id,
-                Root3Id = inputs.Root3Id,
-                Changes = changes
-            };
-            await entityChangesRepo.AddAsync(item);
+                var item = new EntityChanges {
+                    AppSessionId = appSessionService.ThisSession.Id,
+                    Date = now,
+                    DateY = nowFa.Year,
+                    DateM = nowFa.Month,
+                    DateD = nowFa.Day,
+                    EnitityType = inputs.EnitityType,
+                    ChangeType = inputs.ChangeType,
+                    EntityId = inputs.EntityId,
+                    Root1Id = inputs.Root1Id,
+                    Root2Id = inputs.Root2Id,
+                    Root3Id = inputs.Root3Id,
+                    Changes = changes
+                };
+                await entityChangesRepo.AddAsync(item);
             }
         }
     }

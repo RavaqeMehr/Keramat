@@ -43,7 +43,7 @@ namespace Services.ValiNematan {
                 ChangeType = Entities.AppUsingLogs.ChangeType.Add,
                 EnitityType = Entities.AppUsingLogs.EnitityType.FamilyNeed,
                 Root1Id = family.Id,
-                EnitityId = item.Id,
+                EntityId = item.Id,
                 ObjA = item,
             });
 
