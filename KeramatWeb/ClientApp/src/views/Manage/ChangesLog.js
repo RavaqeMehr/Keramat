@@ -67,12 +67,16 @@ const rowRenderer = (x, open = false) =>
 				{changeTypeBadge(x.changeType)}
 			</th>
 			<td colSpan={5} className='bg-warning'>
-				{x.changedProps.map((c, i) => changePropItem(c))}
+				{x.changedProps.map((c, i) => (
+					<ChangePropItem key={i} prop={c} />
+				))}
 			</td>
 		</>
 	) : (
 		<>
-			<th scope='row'>{x.id}</th>
+			<th scope='row' onClick={() => console.log(x)}>
+				{x.id}
+			</th>
 			<td>{x.appSessionId}</td>
 			<td>
 				<MyDateTime dateTime={x.date} showTime timeOnNewLine showTimeAgo={false} />
@@ -130,7 +134,7 @@ const entity = (item) => {
 	);
 };
 
-const changePropItem = (prop = '') => {
+const ChangePropItem = ({ prop = '' }) => {
 	const p = prop.split(':');
 	var title = p[0].replace('[', '').replace(']', '');
 	var desc = p[1];
