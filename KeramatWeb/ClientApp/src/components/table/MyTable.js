@@ -70,43 +70,51 @@ const MyTable = ({
 			)}
 
 			{pagination && pagination.totalPages > 0 ? (
-				<CardFooter>
-					<Pagination
-						aria-label='صفحات'
-						listClassName='justify-content-center'
-						size={small ? 'sm' : undefined}>
-						<PaginationItem disabled={pagination.currentPage == 1}>
-							<PaginationLink first onClick={onPageClick ? () => onPageClick(1) : undefined} />
-						</PaginationItem>
-						<PaginationItem disabled={pagination.currentPage == 1}>
-							<PaginationLink
-								previous
-								onClick={onPageClick ? () => onPageClick(pagination.currentPage - 1) : undefined}
-							/>
-						</PaginationItem>
-
-						{arrayRange(pn1, pn2).map((x, i) => (
-							<PaginationItem key={i} active={pagination.currentPage == x}>
-								<PaginationLink
-									onClick={onPageClick && pagination.currentPage != x ? () => onPageClick(x) : undefined}>
-									{x}
-								</PaginationLink>
+				<CardFooter className='row g-0'>
+					<div className='col align-self-center  text-end'>
+						<span>موارد: {pagination.totalItems}</span>
+					</div>
+					<div className='col align-self-center'>
+						<Pagination
+							aria-label='صفحات'
+							listClassName='justify-content-center'
+							size={small ? 'sm' : undefined}>
+							<PaginationItem disabled={pagination.currentPage == 1}>
+								<PaginationLink first onClick={onPageClick ? () => onPageClick(1) : undefined} />
 							</PaginationItem>
-						))}
+							<PaginationItem disabled={pagination.currentPage == 1}>
+								<PaginationLink
+									previous
+									onClick={onPageClick ? () => onPageClick(pagination.currentPage - 1) : undefined}
+								/>
+							</PaginationItem>
 
-						<PaginationItem disabled={pagination.currentPage == pagination.totalPages}>
-							<PaginationLink
-								next
-								onClick={onPageClick ? () => onPageClick(pagination.currentPage + 1) : undefined}
-							/>
-						</PaginationItem>
-						<PaginationItem disabled={pagination.currentPage == pagination.totalPages}>
-							<PaginationLink
-								last
-								onClick={onPageClick ? () => onPageClick(pagination.totalPages) : undefined}
-							/>
-						</PaginationItem>
-					</Pagination>
+							{arrayRange(pn1, pn2).map((x, i) => (
+								<PaginationItem key={i} active={pagination.currentPage == x}>
+									<PaginationLink
+										onClick={onPageClick && pagination.currentPage != x ? () => onPageClick(x) : undefined}>
+										{x}
+									</PaginationLink>
+								</PaginationItem>
+							))}
+
+							<PaginationItem disabled={pagination.currentPage == pagination.totalPages}>
+								<PaginationLink
+									next
+									onClick={onPageClick ? () => onPageClick(pagination.currentPage + 1) : undefined}
+								/>
+							</PaginationItem>
+							<PaginationItem disabled={pagination.currentPage == pagination.totalPages}>
+								<PaginationLink
+									last
+									onClick={onPageClick ? () => onPageClick(pagination.totalPages) : undefined}
+								/>
+							</PaginationItem>
+						</Pagination>
+					</div>
+					<div className='col align-self-center text-start'>
+						<span>صفحات: {pagination.totalPages}</span>
+					</div>
 				</CardFooter>
 			) : null}
 		</Card>
