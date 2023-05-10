@@ -50,6 +50,7 @@ const MyTableSortable = ({
 									<tr
 										key={'r' + i}
 										onClick={onRowClick ? () => onRowClick(x) : undefined}
+										className='user-select-none'
 										role={onRowClick ? 'button' : undefined}>
 										{/* <th scope='row'>
 											<SortableKnob>
