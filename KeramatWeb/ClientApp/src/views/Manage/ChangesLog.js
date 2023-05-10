@@ -63,6 +63,8 @@ const rowRenderer = (x, open = false) =>
 		<>
 			<th scope='row' className='bg-warning'>
 				{x.id}
+				<br />
+				{changeTypeBadge(x.changeType)}
 			</th>
 			<td colSpan={5} className='bg-warning'>
 				{x.changedProps.map((c, i) => changePropItem(c))}
@@ -81,13 +83,18 @@ const rowRenderer = (x, open = false) =>
 		</>
 	);
 
+const changeTypeColor = (changeType) => {
+	const _type = _ChangeType.find((x) => x.val == changeType);
+	return _type.key == 'Add' ? 'success' : _type.key == 'Edit' ? 'warning' : 'danger';
+};
+
 const changeTypeBadge = (changeType) => {
 	const _type = _ChangeType.find((x) => x.val == changeType);
 	const chars = ['', '+', '=', '-'];
 	return (
 		<Badge
 			title={_type.text}
-			color={_type.key == 'Add' ? 'success' : _type.key == 'Edit' ? 'warning' : 'danger'}
+			color={changeTypeColor(changeType)}
 			className={_type.key == 'Edit' ? 'text-dark' : undefined}>
 			{/* {_type.text} */}
 			<strong>{chars[changeType]}</strong>
