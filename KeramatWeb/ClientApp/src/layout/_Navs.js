@@ -11,7 +11,7 @@ const _Navs = [
 				title: 'مرتبط با خانواده',
 				items: [
 					{ title: 'سطح‌ها', to: '/vali-nematan/levels' },
-					{ title: 'رابط‌ها', to: '/vali-nematan/connectors' },
+					{ title: 'معرف‌ها', to: '/vali-nematan/connectors' },
 					{ title: 'نیازهای خانواده', to: '/vali-nematan/family-needs' },
 				],
 			},

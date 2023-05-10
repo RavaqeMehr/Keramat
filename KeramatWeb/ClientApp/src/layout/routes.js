@@ -16,6 +16,7 @@ import FamilyMemberRelationsList from './../views/ValiNematan/FamilyMemberRelati
 import FamilyMemberRelationForm from './../views/ValiNematan/FamilyMemberRelationForm';
 import FamilyMemberForm from '../views/ValiNematan/FamilyMemberForm';
 import Sesseions from './../views/Manage/Sesseions';
+import ChangesLog from '../views/Manage/ChangesLog';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
@@ -25,7 +26,7 @@ const routes = [
 	{ path: '/vali-nematan/families/:familyId/:id', name: 'فرم عضو خانواده', element: FamilyMemberForm },
 	{ path: '/vali-nematan/levels', name: 'سطح‌های خانواده', element: FamailiLevelsList, exact: true },
 	{ path: '/vali-nematan/levels/:id', name: 'فرم سطح خانواده', element: FamailiLevelForm },
-	{ path: '/vali-nematan/connectors', name: 'رابط‌های خانواده', element: ConnectorsList, exact: true },
+	{ path: '/vali-nematan/connectors', name: 'معرف‌های خانواده', element: ConnectorsList, exact: true },
 	{ path: '/vali-nematan/connectors/:id', name: 'فرم رابط خانواده', element: ConnectorForm },
 	{
 		path: '/vali-nematan/family-needs',
@@ -69,6 +70,7 @@ const routes = [
 	},
 	///////////
 	{ path: '/manage/sessions', name: 'نشست‌ها', element: Sesseions, exact: true },
+	{ path: '/manage/changes-log/:id?', name: 'لاگ تغییرات', element: ChangesLog },
 ];
 
 export default routes;
