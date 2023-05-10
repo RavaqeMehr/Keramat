@@ -65,6 +65,8 @@ const rowRenderer = (x, open = false) =>
 				{x.id}
 				<br />
 				{changeTypeBadge(x.changeType)}
+				<br />
+				<ChangeLogLink data={x} />
 			</th>
 			<td colSpan={5} className='bg-warning'>
 				{x.changedProps.map((c, i) => (
@@ -74,9 +76,7 @@ const rowRenderer = (x, open = false) =>
 		</>
 	) : (
 		<>
-			<th scope='row' onClick={() => console.log(x)}>
-				{x.id}
-			</th>
+			<th scope='row'>{x.id}</th>
 			<td>{x.appSessionId}</td>
 			<td>
 				<MyDateTime dateTime={x.date} showTime timeOnNewLine showTimeAgo={false} />
@@ -146,5 +146,91 @@ const ChangePropItem = ({ prop = '' }) => {
 			{' : '}
 			{desc}
 		</span>
+	);
+};
+
+const ChangeLogLink = ({ data }) => {
+	const navigate = useNavigate();
+	const _changeType = _ChangeType.find((x) => x.val == data.changeType);
+
+	const deleted = _changeType.key == 'Delete';
+
+	const _type = _EnitityType.find((x) => x.val == data.enitityType);
+	let url = null;
+
+	switch (_type.key) {
+		case 'Family':
+			if (deleted) {
+				return null;
+			}
+			url = `./../../vali-nematan/families/${data.entityId}`;
+			break;
+		case 'FamilyLevel':
+			url = `./../../vali-nematan/families/${data.root1Id}`;
+			break;
+		case 'FamilyNeed':
+			url = `./../../vali-nematan/families/${data.root1Id}`;
+			break;
+		case 'FamilyNeedSubject':
+			if (deleted) {
+				return null;
+			}
+			url = `./../../vali-nematan/family-needs/${data.entityId}`;
+			break;
+		case 'Connector':
+			if (deleted) {
+				return null;
+			}
+			url = `./../../vali-nematan/connectors/${data.entityId}`;
+			break;
+		case 'FamilyMember':
+			if (deleted) {
+				url = `./../../vali-nematan/families/${data.root1Id}`;
+			} else {
+				url = `./../../vali-nematan/families/${data.root1Id}/${data.entityId}`;
+			}
+			break;
+		case 'FamilyMemberNeed':
+			url = `./../../vali-nematan/families/${data.root2Id}/${data.root1Id}`;
+			break;
+		case 'FamilyMemberNeedSubject':
+			if (deleted) {
+				return null;
+			}
+			url = `./../../vali-nematan/member-needs/${data.entityId}`;
+			break;
+		case 'FamilyMemberRelation':
+			if (deleted) {
+				return null;
+			}
+			url = `./../../vali-nematan/relations/${data.entityId}`;
+			break;
+		case 'FamilyMemberSpecialDisease':
+			url = `./../../vali-nematan/families/${data.root2Id}/${data.root1Id}`;
+			break;
+		case 'FamilyMemberSpecialDiseaseSubject':
+			if (deleted) {
+				return null;
+			}
+			url = `./../../vali-nematan/special-disease/${data.entityId}`;
+			break;
+
+		default:
+			break;
+	}
+
+	return (
+		<Badge
+			title='لینک'
+			color='secondary'
+			onClick={(e) => {
+				e.stopPropagation();
+				console.log(data, _type);
+				if (url) {
+					navigate(url, { relative: true });
+				}
+			}}>
+			...
+		</Badge>
 	);
 };
