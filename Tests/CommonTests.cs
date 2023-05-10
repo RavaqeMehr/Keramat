@@ -52,6 +52,14 @@ namespace Tests {
         }
 
         [Test]
+        public void TestCompare4() {
+            var obj1 = new FamilyMember { Name = "علی", LiveStatus = Enums.LiveStatus.Live };
+            var obj2 = new FamilyMember { Name = "حسین", LiveStatus = Enums.LiveStatus.Martyr };
+            var result = obj1.Compare(obj2).Print();
+            Assert.Pass(result); // for check output
+        }
+
+        [Test]
         public void TestGetPropertyDisplayNameOrName() {
             var obj2 = new Connector();
             Assert.That(obj2.GetPropertyDisplayNameOrName(x => x.Id), Is.EqualTo("کد"));

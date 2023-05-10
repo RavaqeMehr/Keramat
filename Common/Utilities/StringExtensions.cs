@@ -92,7 +92,7 @@ namespace Common.Utilities {
             return str?.Trim().Length == 0 ? null : str;
         }
 
-        public static string NullIfEmpty(this object self) {
+        public static string NullIfEmpty<T>(this T self) {
             var val = self is null ? "" : self.ToStringOrJson();
             return val.NullIfEmpty();
         }

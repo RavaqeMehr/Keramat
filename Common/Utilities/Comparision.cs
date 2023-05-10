@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace Common.Utilities {
 
@@ -18,11 +19,24 @@ namespace Common.Utilities {
                 .ToList();
             }
             foreach (var property in properties) {
+                var isEnum = property.PropertyType.BaseType == typeof(Enum);
+
+                var val1Str = property.GetValue(val1);
+                var val2Str = property.GetValue(val2);
+                if (isEnum) {
+                    val1Str = property.PropertyType
+                        .GetField(property.GetValue(val1).ToString())
+                        .GetCustomAttributes<DisplayAttribute>().FirstOrDefault().Name ?? val1Str;
+
+                    val2Str = property.PropertyType
+                        .GetField(property.GetValue(val2).ToString())
+                        .GetCustomAttributes<DisplayAttribute>().FirstOrDefault().Name ?? val2Str;
+                }
+
                 var v = new Variance {
                     PropName = property.GetDisplayName() ?? property.Name,
-                    valA = property.GetValue(val1).NullIfEmpty(),
-                    //valB = property.GetValue(val2)
-                    valB = val2 == null ? null : property.GetValue(val2).NullIfEmpty()
+                    valA = val1Str.NullIfEmpty(),
+                    valB = val2 == null ? null : val2Str.NullIfEmpty()
                 };
                 if (v.valA == null && v.valB == null) {
                     continue;
