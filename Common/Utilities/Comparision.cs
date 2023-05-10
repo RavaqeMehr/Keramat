@@ -25,12 +25,12 @@ namespace Common.Utilities {
                 var val2Str = property.GetValue(val2);
                 if (isEnum) {
                     val1Str = property.PropertyType
-                        .GetField(property.GetValue(val1).ToString())
-                        .GetCustomAttributes<DisplayAttribute>().FirstOrDefault().Name ?? val1Str;
+                        .GetField(property.GetValue(val1).ToString() ?? "")?
+                        .GetCustomAttributes<DisplayAttribute>().FirstOrDefault()?.Name ?? val1Str;
 
                     val2Str = property.PropertyType
-                        .GetField(property.GetValue(val2).ToString())
-                        .GetCustomAttributes<DisplayAttribute>().FirstOrDefault().Name ?? val2Str;
+                        .GetField(property.GetValue(val2).ToString() ?? "")?
+                        .GetCustomAttributes<DisplayAttribute>().FirstOrDefault()?.Name ?? val2Str;
                 }
 
                 var v = new Variance {
