@@ -18,10 +18,12 @@ import FamilyMemberForm from '../views/ValiNematan/FamilyMemberForm';
 import Sesseions from './../views/Manage/Sesseions';
 import ChangesLog from '../views/Manage/ChangesLog';
 import Settings from './../views/Manage/Settings';
+import Donation from './../views/Donation';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
 	{ path: '/exit', name: 'خروج', element: Exit, exact: true },
+	{ path: '/donation', name: 'حمایت مالی از پروژه', element: Donation, exact: true },
 	{ path: '/vali-nematan/families', name: 'ولی‌نعمتان', element: FamiliesList, exact: true },
 	{ path: '/vali-nematan/families/:id', name: 'فرم خانواده', element: FamilyForm, exact: true },
 	{ path: '/vali-nematan/families/:familyId/:id', name: 'فرم عضو خانواده', element: FamilyMemberForm },
