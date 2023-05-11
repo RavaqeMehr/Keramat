@@ -43,6 +43,11 @@ const AboutApp = () => {
 							اشکالات
 						</a>
 					</li>
+					<li>
+						<a href='https://github.com/RavaqeMehr/Keramat/commits/master' target='_Blank'>
+							لیست و جزئیات آخرین تغییرات
+						</a>
+					</li>
 				</ul>
 				در صورتی که تمایل و تخصص در این زمینه‌ها دارید، می‌توانید با ایجاد Fork از این پروژه و ثبت تغییرات به
 				صورت Commit و ارسال به صورت Pull Request در توسعه آن مشارکت داشته باشید.
