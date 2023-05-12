@@ -22,13 +22,13 @@ namespace Common.Utilities {
                 var isEnum = property.PropertyType.BaseType == typeof(Enum);
 
                 var val1Str = property.GetValue(val1);
-                var val2Str = property.GetValue(val2);
+                var val2Str = val2 is null ? null : property.GetValue(val2);
                 if (isEnum) {
                     val1Str = property.PropertyType
                         .GetField(property.GetValue(val1).ToString() ?? "")?
                         .GetCustomAttributes<DisplayAttribute>().FirstOrDefault()?.Name ?? val1Str;
 
-                    val2Str = property.PropertyType
+                    val2Str = val2 is null ? null : property.PropertyType
                         .GetField(property.GetValue(val2).ToString() ?? "")?
                         .GetCustomAttributes<DisplayAttribute>().FirstOrDefault()?.Name ?? val2Str;
                 }
