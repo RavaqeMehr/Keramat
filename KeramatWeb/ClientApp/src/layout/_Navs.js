@@ -26,6 +26,13 @@ const _Navs = [
 		],
 	},
 	{
+		title: 'خیرات',
+		items: [
+			{ title: 'نیکوکاران', to: '/kheyrat/nikoo-karan' },
+			{ title: 'دریافتی‌ها', to: '/kheyrat/reciveds' },
+		],
+	},
+	{
 		title: 'مدیریت',
 		items: [
 			{ title: 'نشست‌ها', to: '/manage/sessions' },

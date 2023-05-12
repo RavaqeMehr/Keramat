@@ -21,6 +21,10 @@ import FamilyMemberRelationForm from './../views/ValiNematan/FamilyMemberRelatio
 import FamilyMemberRelationsList from './../views/ValiNematan/FamilyMemberRelationsList';
 import FamilyNeedSubjectForm from './../views/ValiNematan/FamilyNeedSubjectForm';
 import FamilyNeedSubjectsList from './../views/ValiNematan/FamilyNeedSubjectsList';
+import NikooKaranList from './../views/Kheyrat/NikooKaranList';
+import NikooKaranForm from './../views/Kheyrat/NikooKaranForm';
+import RecivedsList from './../views/Kheyrat/RecivedsList';
+import RecivedsForm from './../views/Kheyrat/RecivedsForm';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
@@ -79,6 +83,12 @@ const routes = [
 		name: 'فرم نسبت خانوادگی',
 		element: FamilyMemberRelationForm,
 	},
+	///////////
+	{ path: '/kheyrat/nikoo-karan', name: 'لیست نیکوکاران', element: NikooKaranList, exact: true },
+	{ path: '/kheyrat/nikoo-karan/:id', name: 'فرم نیکوکار', element: NikooKaranForm },
+	{ path: '/kheyrat/reciveds', name: 'لیست دریافتی‌ها', element: RecivedsList, exact: true },
+	{ path: '/kheyrat/reciveds/:id', name: 'فرم دریافتی', element: RecivedsForm },
+
 	///////////
 	{ path: '/manage/sessions', name: 'نشست‌ها', element: Sesseions, exact: true },
 	{ path: '/manage/changes-log/:id?', name: 'لاگ تغییرات', element: ChangesLog },
