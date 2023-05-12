@@ -44,4 +44,7 @@ export const _EnitityType = [
 	enumItemMaker('FamilyMemberRelation', 113, 'نسبت خانوادگی'),
 	enumItemMaker('FamilyMemberSpecialDisease', 114, 'بیماری خاص عضو'),
 	enumItemMaker('FamilyMemberSpecialDiseaseSubject', 115, 'موضوع بیماری خاص عضو'),
+
+	enumItemMaker('NikooKar', 130, 'نیکوکار'),
+	enumItemMaker('Kheyr', 131, 'خیرات'),
 ];
