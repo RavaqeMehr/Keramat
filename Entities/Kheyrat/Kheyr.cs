@@ -12,12 +12,28 @@ namespace Entities.Kheyrat {
         public NikooKar NikooKar { get; set; }
 
         [Order]
-        [Display(Name = "شرح")]
-        public string Description { get; set; }
+        [Display(Name = "پرداخت نقدی")]
+        public bool HasCash { get; set; }
         [Order]
-        [Display(Name = "ارزش ریالی")]
-        public int Value { get; set; }
+        [Display(Name = "ارزش ریالی پرداخت نقدی")]
+        public int CashValue { get; set; }
+        [Order]
+        [Display(Name = "شرح پرداخت نقدی")]
+        public string CashDescription { get; set; }
 
+        [Order]
+        [Display(Name = "پرداخت غیر نقدی")]
+        public bool HasNotCash { get; set; }
+        [Order]
+        [Display(Name = "ارزش ریالی پرداخت غیر نقدی")]
+        public int NotCashValue { get; set; }
+        [Order]
+        [Display(Name = "شرح پرداخت غیر نقدی")]
+        public string NotCashDescription { get; set; }
+
+        [Order]
+        [Display(Name = "ارزش ریالی کل")]
+        public int CashAndNotCashValues { get; set; }
 
         [Order]
         [Display(Name = "تاریخ")]
