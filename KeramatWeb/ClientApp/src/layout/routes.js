@@ -1,27 +1,26 @@
-import Home from '../views/Home';
 import Exit from '../views/Exit';
+import Home from '../views/Home';
+import ChangesLog from '../views/Manage/ChangesLog';
 import FamailiLevelForm from '../views/ValiNematan/FamailiLevelForm';
 import FamailiLevelsList from '../views/ValiNematan/FamailiLevelsList';
 import FamiliesList from '../views/ValiNematan/FamiliesList';
 import FamilyForm from '../views/ValiNematan/FamilyForm';
-import ConnectorsList from './../views/ValiNematan/ConnectorsList';
-import ConnectorForm from './../views/ValiNematan/ConnectorForm';
-import FamilyNeedSubjectsList from './../views/ValiNematan/FamilyNeedSubjectsList';
-import FamilyNeedSubjectForm from './../views/ValiNematan/FamilyNeedSubjectForm';
-import FamilyMemberNeedSubjectsList from '../views/ValiNematan/FamilyMemberNeedSubjectsList';
-import FamilyMemberNeedSubjectForm from '../views/ValiNematan/FamilyMemberNeedSubjectForm';
-import FamilyMemberSpecialDiseaseSubjectsList from '../views/ValiNematan/FamilyMemberSpecialDiseaseSubjectsList';
-import FamilyMemberSpecialDiseaseSubjectForm from '../views/ValiNematan/FamilyMemberSpecialDiseaseSubjectForm';
-import FamilyMemberRelationsList from './../views/ValiNematan/FamilyMemberRelationsList';
-import FamilyMemberRelationForm from './../views/ValiNematan/FamilyMemberRelationForm';
 import FamilyMemberForm from '../views/ValiNematan/FamilyMemberForm';
-import Sesseions from './../views/Manage/Sesseions';
-import ChangesLog from '../views/Manage/ChangesLog';
-import Settings from './../views/Manage/Settings';
-import Donation from './../views/Donation';
+import FamilyMemberNeedSubjectForm from '../views/ValiNematan/FamilyMemberNeedSubjectForm';
+import FamilyMemberNeedSubjectsList from '../views/ValiNematan/FamilyMemberNeedSubjectsList';
+import FamilyMemberSpecialDiseaseSubjectForm from '../views/ValiNematan/FamilyMemberSpecialDiseaseSubjectForm';
+import FamilyMemberSpecialDiseaseSubjectsList from '../views/ValiNematan/FamilyMemberSpecialDiseaseSubjectsList';
 import AboutApp from './../views/About/AboutApp';
 import AboutIssues from './../views/About/AboutIssues';
-import AboutTools from './../views/About/AboutTools';
+import Donation from './../views/Donation';
+import Sesseions from './../views/Manage/Sesseions';
+import Settings from './../views/Manage/Settings';
+import ConnectorForm from './../views/ValiNematan/ConnectorForm';
+import ConnectorsList from './../views/ValiNematan/ConnectorsList';
+import FamilyMemberRelationForm from './../views/ValiNematan/FamilyMemberRelationForm';
+import FamilyMemberRelationsList from './../views/ValiNematan/FamilyMemberRelationsList';
+import FamilyNeedSubjectForm from './../views/ValiNematan/FamilyNeedSubjectForm';
+import FamilyNeedSubjectsList from './../views/ValiNematan/FamilyNeedSubjectsList';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
@@ -87,7 +86,6 @@ const routes = [
 	///////////
 	{ path: '/about/app', name: 'معرفی اپلیکیشن', element: AboutApp, exact: true },
 	{ path: '/about/issues', name: 'گزارش خطا', element: AboutIssues, exact: true },
-	{ path: '/about/tools', name: 'ابزارهای شخص ثالث', element: AboutTools, exact: true },
 ];
 
 export default routes;

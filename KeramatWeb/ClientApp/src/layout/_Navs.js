@@ -38,7 +38,6 @@ const _Navs = [
 		items: [
 			{ title: 'اپلیکیشن', to: '/about/app' },
 			{ title: 'گزارش خطا', to: '/about/issues' },
-			{ title: 'ابزارهای شخص ثالث', to: '/about/tools' },
 		],
 	},
 	{
