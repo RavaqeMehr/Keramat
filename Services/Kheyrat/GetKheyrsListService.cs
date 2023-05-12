@@ -9,7 +9,7 @@ using Services.Kheyrat.Models;
 
 namespace Services.Kheyrat {
     public interface IGetKheyrsListService : IScopedDependency {
-        Task<WithPagination<GetKheyrsListItemDto>> Search(int page);
+        Task<WithPagination<GetKheyrsListItemDto>> Exe(GetKheyrsListQuery query);
     }
 
     public class GetKheyrsListService : IGetKheyrsListService {
@@ -21,16 +21,20 @@ namespace Services.Kheyrat {
             this.kheyrRepo = kheyrRepo;
         }
 
-        public async Task<WithPagination<GetKheyrsListItemDto>> Search(int page) {
+        public async Task<WithPagination<GetKheyrsListItemDto>> Exe(GetKheyrsListQuery query) {
             IQueryable<Kheyr> listAll = kheyrRepo.TableNoTracking;
+
+            if (query.NikooKarId is not null) {
+                listAll = listAll.Where(x => x.NikooKarId == query.NikooKarId);
+            }
 
             var perPage = 10;
 
             var output = new WithPagination<GetKheyrsListItemDto>();
-            await output.Fill(listAll, page, perPage);
+            await output.Fill(listAll, query.Page, perPage);
             var items = await listAll
                 .OrderByDescending(x => x.Date)
-                .Skip((page - 1) * perPage)
+                .Skip((query.Page - 1) * perPage)
                 .Take(perPage)
                 .ToListAsync();
 
