@@ -59,8 +59,8 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpPut]
-        public async Task<bool> EditNikooKar([FromQuery] int id, [FromBody] NikooKarDto dto) {
-            return await updateNikooKarService.Exe(id, dto);
+        public async Task<bool> EditNikooKar([FromBody] NikooKarUpdateDto dto) {
+            return await updateNikooKarService.Exe(dto);
         }
 
         [HttpDelete]

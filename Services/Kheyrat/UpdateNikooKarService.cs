@@ -8,7 +8,7 @@ using Services.Kheyrat.Models;
 
 namespace Services.Kheyrat {
     public interface IUpdateNikooKarService : IScopedDependency {
-        Task<bool> Exe(int id, NikooKarDto dto);
+        Task<bool> Exe(NikooKarUpdateDto dto);
     }
 
     public class UpdateNikooKarService : IUpdateNikooKarService {
@@ -23,8 +23,8 @@ namespace Services.Kheyrat {
             this.addEntityChangeService = addEntityChangeService;
         }
 
-        public async Task<bool> Exe(int id, NikooKarDto dto) {
-            var item = await nikooKarRepo.TableNoTracking.FirstAsync(x => x.Id == id);
+        public async Task<bool> Exe(NikooKarUpdateDto dto) {
+            var item = await nikooKarRepo.TableNoTracking.FirstAsync(x => x.Id == dto.Id);
             var item_ = item.Clone();
 
             item.FullName = dto.FullName;
