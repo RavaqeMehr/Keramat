@@ -47,5 +47,8 @@ namespace Entities.Kheyrat {
         [Order]
         [Display(Name = "خیرات")]
         public virtual ObservableCollectionListSource<Kheyr> Kheyrat { get; } = new();
+        [Order]
+        [Display(Name = "تعداد دفعات خیرات")]
+        public int KheyratCount { get; set; }
     }
 }
