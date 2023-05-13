@@ -1,4 +1,4 @@
-﻿![](Keramat/assets/images/emam-hasan.jpg)
+﻿![](KeramatWeb/ClientApp/public/assets/images/emam-hasan.jpg)
 
 # اپلیکیشن کرامت
 
