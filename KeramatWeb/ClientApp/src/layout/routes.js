@@ -86,8 +86,8 @@ const routes = [
 	///////////
 	{ path: '/kheyrat/nikoo-karan', name: 'لیست نیکوکاران', element: NikooKaranList, exact: true },
 	{ path: '/kheyrat/nikoo-karan/:id', name: 'فرم نیکوکار', element: NikooKaranForm },
+	{ path: '/kheyrat/nikoo-karan/:nikooKarId/:id', name: 'فرم دریافتی', element: RecivedsForm },
 	{ path: '/kheyrat/reciveds', name: 'لیست دریافتی‌ها', element: RecivedsList, exact: true },
-	{ path: '/kheyrat/reciveds/:id', name: 'فرم دریافتی', element: RecivedsForm },
 
 	///////////
 	{ path: '/manage/sessions', name: 'نشست‌ها', element: Sesseions, exact: true },
