@@ -33,6 +33,13 @@ const _Navs = [
 		],
 	},
 	{
+		title: 'خدمات',
+		items: [
+			{ title: 'موضوعات', to: '/services/subjects' },
+			{ title: 'ارائه‌شده', to: '/services/provided' },
+		],
+	},
+	{
 		title: 'مدیریت',
 		items: [
 			{ title: 'نشست‌ها', to: '/manage/sessions' },

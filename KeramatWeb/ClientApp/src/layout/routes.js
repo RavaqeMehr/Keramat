@@ -25,6 +25,10 @@ import NikooKaranList from './../views/Kheyrat/NikooKaranList';
 import NikooKaranForm from './../views/Kheyrat/NikooKaranForm';
 import RecivedsList from './../views/Kheyrat/RecivedsList';
 import RecivedsForm from './../views/Kheyrat/RecivedsForm';
+import SubjectsList from './../views/Services/SubjectsList';
+import SubjectForm from './../views/Services/SubjectForm';
+import ProvidedList from './../views/Services/ProvidedList';
+import ProvidedForm from './../views/Services/ProvidedForm';
 
 const routes = [
 	{ path: '/', name: 'کرامت', element: Home, exact: true },
@@ -88,7 +92,11 @@ const routes = [
 	{ path: '/kheyrat/nikoo-karan/:id', name: 'فرم نیکوکار', element: NikooKaranForm },
 	{ path: '/kheyrat/nikoo-karan/:nikooKarId/:id', name: 'فرم دریافتی', element: RecivedsForm },
 	{ path: '/kheyrat/reciveds', name: 'لیست دریافتی‌ها', element: RecivedsList, exact: true },
-
+	///////////
+	{ path: '/services/subjects', name: 'لیست موضوعات', element: SubjectsList, exact: true },
+	{ path: '/services/subjects/:id', name: 'فرم موضوع خدمت', element: SubjectForm, exact: true },
+	{ path: '/services/provided', name: 'لیست خدمات ارائه‌شده', element: ProvidedList, exact: true },
+	{ path: '/services/provided/:id', name: 'فرم خدمت ارائه‌شده', element: ProvidedForm, exact: true },
 	///////////
 	{ path: '/manage/sessions', name: 'نشست‌ها', element: Sesseions, exact: true },
 	{ path: '/manage/changes-log/:id?', name: 'لاگ تغییرات', element: ChangesLog },
