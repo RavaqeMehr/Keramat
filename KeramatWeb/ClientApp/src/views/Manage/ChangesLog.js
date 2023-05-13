@@ -215,6 +215,20 @@ const ChangeLogLink = ({ data }) => {
 			url = `./../../vali-nematan/special-disease/${data.entityId}`;
 			break;
 
+		case 'NikooKar':
+			if (deleted) {
+				return null;
+			}
+			url = `./../../kheyrat/nikoo-karan/${data.entityId}`;
+			break;
+		case 'Kheyr':
+			if (deleted) {
+				url = `./../../kheyrat/nikoo-karan/${data.root1Id}`;
+			} else {
+				url = `./../../kheyrat/nikoo-karan/${data.root1Id}/${data.entityId}`;
+			}
+			break;
+
 		default:
 			break;
 	}
