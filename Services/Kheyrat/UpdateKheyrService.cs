@@ -33,12 +33,15 @@ namespace Services.Kheyrat {
             item.CashValue = Math.Max(0, dto.CashValue);
             item.NotCashValue = Math.Max(0, dto.NotCashValue);
             item.CashAndNotCashValues = item.CashValue + item.NotCashValue;
+            item.CashDescription = dto.CashDescription;
+            item.NotCashDescription = dto.NotCashDescription;
 
             await kheyrRepo.UpdateAsync(item);
 
             await addEntityChangeService.Exe(new AppUsingLogs.Models.AddEntityChangeInputs<Kheyr> {
                 ChangeType = Entities.AppUsingLogs.ChangeType.Edit,
                 EnitityType = Entities.AppUsingLogs.EnitityType.Kheyr,
+                Root1Id = item.NikooKarId,
                 EntityId = item.Id,
                 ObjA = item_,
                 ObjB = item
