@@ -60,6 +60,14 @@ namespace Tests {
         }
 
         [Test]
+        public void TestCompare5() {
+            var obj1 = new Family { Finished = false };
+            var obj2 = new Family { Finished = true };
+            var result = obj1.Compare(obj2).Print();
+            Assert.Pass(result); // for check output
+        }
+
+        [Test]
         public void TestGetPropertyDisplayNameOrName() {
             var obj2 = new Connector();
             Assert.That(obj2.GetPropertyDisplayNameOrName(x => x.Id), Is.EqualTo("کد"));
