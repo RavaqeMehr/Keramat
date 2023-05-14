@@ -1,10 +1,10 @@
-﻿using Common;
-using Data;
+﻿using Data;
 using Entities.AppSettings;
 using Microsoft.EntityFrameworkCore;
 
 namespace Services.AppLayer {
-    public interface ISeedSettingService<T> : IScopedDependency {
+
+    public interface ISeedSettingService<T> {
         Task Set(int val);
         Task<int> Get();
     }

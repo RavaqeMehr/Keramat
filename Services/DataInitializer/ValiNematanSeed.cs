@@ -1,19 +1,19 @@
 ﻿using Data;
-using Entities.AppSettings;
 using Entities.ValiNematan;
+using Services.AppLayer;
 
 namespace Services.DataInitializer {
     public class ValiNematanSeed : IDataInitializer {
-        private readonly IRepository<AppSetting> appSettingRepo;
+        private readonly ISeedSettingService<ValiNematanSeed> seedSettingService;
         private readonly IRepository<FamilyLevel> familyLevelRepo;
-        private readonly IRepository<FamilyMemberNeedSubject> familyMemberNeedSubjectRepo;
         private readonly IRepository<FamilyNeedSubject> familyNeedSubjectRepo;
         private readonly IRepository<Connector> connectorRepo;
+        private readonly IRepository<FamilyMemberNeedSubject> familyMemberNeedSubjectRepo;
         private readonly IRepository<FamilyMemberRelation> familyMemberRelationRepo;
         private readonly IRepository<FamilyMemberSpecialDiseaseSubject> familyMemberSpecialDiseaseSubjectRepo;
 
         public ValiNematanSeed(
-            IRepository<AppSetting> appSettingRepo,
+            ISeedSettingService<ValiNematanSeed> seedSettingService,
             IRepository<FamilyLevel> familyLevelRepo,
             IRepository<FamilyNeedSubject> familyNeedSubjectRepo,
             IRepository<Connector> connectorRepo,
@@ -21,7 +21,7 @@ namespace Services.DataInitializer {
             IRepository<FamilyMemberRelation> familyMemberRelationRepo,
             IRepository<FamilyMemberSpecialDiseaseSubject> familyMemberSpecialDiseaseSubjectRepo
             ) {
-            this.appSettingRepo = appSettingRepo;
+            this.seedSettingService = seedSettingService;
             this.familyLevelRepo = familyLevelRepo;
             this.familyNeedSubjectRepo = familyNeedSubjectRepo;
             this.connectorRepo = connectorRepo;
@@ -32,8 +32,8 @@ namespace Services.DataInitializer {
 
         public int Order => 1;
 
-        public void InitializeData() {
-            var lastInstalledVerNum = int.Parse("0" + appSettingRepo.TableNoTracking.FirstOrDefault(x => x.Key == AppSettingsKeys.Last_Installed_Version)?.Val);
+        public async void InitializeData() {
+            var ver = await seedSettingService.Get();
 
             var familyLevelAdd = new List<FamilyLevel>();
             var familyNeedSubjectAdd = new List<FamilyNeedSubject>();
@@ -42,7 +42,7 @@ namespace Services.DataInitializer {
             var familyMemberRelationAdd = new List<FamilyMemberRelation>();
             var familyMemberSpecialDiseaseSubjectAdd = new List<FamilyMemberSpecialDiseaseSubject>();
 
-            if (lastInstalledVerNum < 1) {
+            if (ver < 1) {
                 familyLevelAdd.Add(new FamilyLevel { Level = 1, Title = "نامشخص" });
                 familyLevelAdd.Add(new FamilyLevel { Level = 2, Title = "محتاج" });
                 familyLevelAdd.Add(new FamilyLevel { Level = 3, Title = "خیلی محتاج" });
@@ -90,31 +90,35 @@ namespace Services.DataInitializer {
                 familyMemberSpecialDiseaseSubjectAdd.Add(new FamilyMemberSpecialDiseaseSubject { Title = "فشار خون" });
                 familyMemberSpecialDiseaseSubjectAdd.Add(new FamilyMemberSpecialDiseaseSubject { Title = "دیابت" });
                 familyMemberSpecialDiseaseSubjectAdd.Add(new FamilyMemberSpecialDiseaseSubject { Title = "بیماری نادر" });
+
+                ver = 1;
             }
 
             if (familyLevelAdd.Count > 0) {
-                familyLevelRepo.AddRange(familyLevelAdd);
+                await familyLevelRepo.AddRangeAsync(familyLevelAdd);
             }
 
             if (familyNeedSubjectAdd.Count > 0) {
-                familyNeedSubjectRepo.AddRange(familyNeedSubjectAdd);
+                await familyNeedSubjectRepo.AddRangeAsync(familyNeedSubjectAdd);
             }
 
             if (connectorAdd.Count > 0) {
-                connectorRepo.AddRange(connectorAdd);
+                await connectorRepo.AddRangeAsync(connectorAdd);
             }
 
             if (familyMemberNeedSubjectAdd.Count > 0) {
-                familyMemberNeedSubjectRepo.AddRange(familyMemberNeedSubjectAdd);
+                await familyMemberNeedSubjectRepo.AddRangeAsync(familyMemberNeedSubjectAdd);
             }
 
             if (familyMemberRelationAdd.Count > 0) {
-                familyMemberRelationRepo.AddRange(familyMemberRelationAdd);
+                await familyMemberRelationRepo.AddRangeAsync(familyMemberRelationAdd);
             }
 
             if (familyMemberSpecialDiseaseSubjectAdd.Count > 0) {
-                familyMemberSpecialDiseaseSubjectRepo.AddRange(familyMemberSpecialDiseaseSubjectAdd);
+                await familyMemberSpecialDiseaseSubjectRepo.AddRangeAsync(familyMemberSpecialDiseaseSubjectAdd);
             }
+
+            await seedSettingService.Set(ver);
         }
     }
 }

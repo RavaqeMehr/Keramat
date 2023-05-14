@@ -33,8 +33,9 @@ namespace Frameworks.Configurations {
 
             var dataInitializers = scope.ServiceProvider.GetServices<IDataInitializer>();
             var orderedList = dataInitializers.OrderBy(x => x.Order);
-            foreach (var dataInitializer in orderedList)
+            foreach (var dataInitializer in orderedList) {
                 dataInitializer.InitializeData();
+            }
 
             return app;
         }

@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Common.Utilities;
 using Frameworks.Configurations;
 using Frameworks.Middlewares;
 using Frameworks.Swagger;
@@ -74,7 +75,7 @@ try {
     app.Run();
 }
 catch (Exception e) {
-
+    Console.Write("Error! \n{0}", e.ToJSON());
 }
 finally {
     appSessionService.Stop().ConfigureAwait(false);

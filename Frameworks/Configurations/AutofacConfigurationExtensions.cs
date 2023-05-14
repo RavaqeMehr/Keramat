@@ -2,13 +2,15 @@
 using Common;
 using Data;
 using Entities.Common;
+using Services.AppLayer;
 using Services.DataInitializer;
 
 namespace Frameworks.Configurations {
     public static class AutofacConfigurationExtensions {
         public static void AddServices(this ContainerBuilder containerBuilder) {
-            //RegisterType > As > Liftetime
+            //RegisterType > As > Liftetime for GENERIC
             containerBuilder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            containerBuilder.RegisterGeneric(typeof(SeedSettingService<>)).As(typeof(ISeedSettingService<>)).InstancePerLifetimeScope();
 
             var commonAssembly = typeof(IScopedDependency).Assembly;
             var entitiesAssembly = typeof(IEntity).Assembly;
@@ -31,26 +33,5 @@ namespace Frameworks.Configurations {
                 .SingleInstance();
         }
 
-        public static void AddForms<TForm>(this ContainerBuilder containerBuilder, Type programType) {
-            var programAssembly = programType.Assembly;
-            containerBuilder.RegisterAssemblyTypes(programAssembly)
-                    .AssignableTo<TForm>()
-                    .InstancePerDependency();
-
-            containerBuilder.RegisterAssemblyTypes(programAssembly)
-                .AssignableTo<IScopedDependency>()
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
-
-            containerBuilder.RegisterAssemblyTypes(programAssembly)
-                .AssignableTo<ITransientDependency>()
-                .AsImplementedInterfaces()
-                .InstancePerDependency();
-
-            containerBuilder.RegisterAssemblyTypes(programAssembly)
-                .AssignableTo<ISingletonDependency>()
-                .AsImplementedInterfaces()
-                .SingleInstance();
-        }
     }
 }
