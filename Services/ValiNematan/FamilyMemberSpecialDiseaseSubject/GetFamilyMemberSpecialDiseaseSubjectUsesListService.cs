@@ -7,7 +7,7 @@ using Services.ValiNematan.Models;
 
 namespace Services.ValiNematan {
     public interface IGetFamilyMemberSpecialDiseaseSubjectUsesListService : IScopedDependency {
-        Task<WithPagination<GetUsesListFamilyMemberItemDto>> Exe(GetUsesListQuery query);
+        Task<WithPagination<GetUsesListFamilyMemberItemDto>> Exe(GetListQuery query);
     }
 
     public class GetFamilyMemberSpecialDiseaseSubjectUsesListService : IGetFamilyMemberSpecialDiseaseSubjectUsesListService {
@@ -19,7 +19,7 @@ namespace Services.ValiNematan {
             this.familyMemberRepo = familyMemberRepo;
         }
 
-        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> Exe(GetUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> Exe(GetListQuery query) {
             var p = query.Page ?? 1;
 
             IQueryable<FamilyMember> listAll = familyMemberRepo.TableNoTracking

@@ -261,7 +261,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpGet]
-        public async Task<WithPagination<GetUsesListFamilyItemDto>> FamilyLevelUsesList([FromQuery] GetUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyItemDto>> FamilyLevelUsesList([FromQuery] GetListQuery query) {
             return await getFamilyLevelUsesListService.Exe(query);
         }
 
@@ -288,7 +288,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpGet]
-        public async Task<WithPagination<GetUsesListFamilyItemDto>> ConnectorUsesList([FromQuery] GetUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyItemDto>> ConnectorUsesList([FromQuery] GetListQuery query) {
             return await getConnectorUsesListService.Exe(query);
         }
 
@@ -315,7 +315,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpGet]
-        public async Task<WithPagination<GetUsesListFamilyItemDto>> FamilyNeedSubjectUsesList([FromQuery] GetUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyItemDto>> FamilyNeedSubjectUsesList([FromQuery] GetListQuery query) {
             return await getFamilyNeedSubjectUsesListService.Exe(query);
         }
 
@@ -342,7 +342,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpGet]
-        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> FamilyMemberNeedSubjectUsesList([FromQuery] GetUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> FamilyMemberNeedSubjectUsesList([FromQuery] GetListQuery query) {
             return await getFamilyMemberNeedSubjectUsesListService.Exe(query);
         }
 
@@ -369,7 +369,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpGet]
-        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> FamilyMemberSpecialDiseaseSubjectUsesList([FromQuery] GetUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> FamilyMemberSpecialDiseaseSubjectUsesList([FromQuery] GetListQuery query) {
             return await getFamilyMemberSpecialDiseaseSubjectUsesListService.Exe(query);
         }
 
@@ -396,7 +396,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         }
 
         [HttpGet]
-        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> FamilyMemberRelationUsesList([FromQuery] GetUsesListQuery query) {
+        public async Task<WithPagination<GetUsesListFamilyMemberItemDto>> FamilyMemberRelationUsesList([FromQuery] GetListQuery query) {
             return await getFamilyMemberRelationUsesListService.Exe(query);
         }
 

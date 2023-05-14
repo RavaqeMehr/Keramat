@@ -8,7 +8,7 @@ using Services.Services.Models;
 
 namespace Services.Services {
     public interface IGetServiceSubjectUsesListService : IScopedDependency {
-        Task<WithPagination<ServiceSubjectGetUsesListItemDto>> Exe(GetUsesListQuery query);
+        Task<WithPagination<ServiceSubjectGetUsesListItemDto>> Exe(GetListQuery query);
     }
 
     public class GetServiceSubjectUsesListService : IGetServiceSubjectUsesListService {
@@ -20,7 +20,7 @@ namespace Services.Services {
             this.serviceProvidedRepo = serviceProvidedRepo;
         }
 
-        public async Task<WithPagination<ServiceSubjectGetUsesListItemDto>> Exe(GetUsesListQuery query) {
+        public async Task<WithPagination<ServiceSubjectGetUsesListItemDto>> Exe(GetListQuery query) {
             var p = query.Page ?? 1;
 
             IQueryable<ServiceProvided> listAll = serviceProvidedRepo.TableNoTracking
