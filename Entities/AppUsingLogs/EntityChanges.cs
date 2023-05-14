@@ -44,6 +44,10 @@ namespace Entities.AppUsingLogs {
         FamilyMemberSpecialDiseaseSubject = 115,
 
         NikooKar = 130,
-        Kheyr = 131
+        Kheyr = 131,
+
+        ServiceSubject = 140,
+        ServiceProvided = 141,
+        ServiceReciver = 142
     }
 }
