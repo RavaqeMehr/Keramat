@@ -15,6 +15,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IRemoveServiceSubjectService removeServiceSubjectService;
         private readonly IGetServiceProvidedsListService getServiceProvidedsListService;
         private readonly IGetServiceProvidedByIdService getServiceProvidedByIdService;
+        private readonly IGetServiceProvidedListByFamilyService getServiceProvidedListByFamilyService;
         private readonly IInsertServiceProvidedService insertServiceProvidedService;
         private readonly IUpdateServiceProvidedService updateServiceProvidedService;
         private readonly IRemoveServiceProvidedService removeServiceProvidedService;
@@ -32,6 +33,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         ////////////
             IGetServiceProvidedsListService getServiceProvidedsListService,
             IGetServiceProvidedByIdService getServiceProvidedByIdService,
+            IGetServiceProvidedListByFamilyService getServiceProvidedListByFamilyService,
             IInsertServiceProvidedService insertServiceProvidedService,
             IUpdateServiceProvidedService updateServiceProvidedService,
             IRemoveServiceProvidedService removeServiceProvidedService,
@@ -48,6 +50,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.removeServiceSubjectService = removeServiceSubjectService;
             this.getServiceProvidedsListService = getServiceProvidedsListService;
             this.getServiceProvidedByIdService = getServiceProvidedByIdService;
+            this.getServiceProvidedListByFamilyService = getServiceProvidedListByFamilyService;
             this.insertServiceProvidedService = insertServiceProvidedService;
             this.updateServiceProvidedService = updateServiceProvidedService;
             this.removeServiceProvidedService = removeServiceProvidedService;
@@ -92,6 +95,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpGet]
         public async Task<ServiceProvidedDto> ProvidedSingle([FromQuery] int id) {
             return await getServiceProvidedByIdService.Exe(id);
+        }
+
+        [HttpGet]
+        public async Task<WithPagination<ServiceProvidedGetListByFamilyItemDto>> ProvidedToFamily([FromQuery] GetListQuery query) {
+            return await getServiceProvidedListByFamilyService.Exe(query);
         }
 
         [HttpPost]
