@@ -229,6 +229,22 @@ const ChangeLogLink = ({ data }) => {
 			}
 			break;
 
+		case 'ServiceSubject':
+			if (deleted) {
+				return null;
+			}
+			url = `./../../services/subjects/${data.entityId}`;
+			break;
+		case 'ServiceProvided':
+			if (deleted) {
+				return null;
+			}
+			url = `./../../services/provided/${data.entityId}`;
+			break;
+		case 'ServiceReciver':
+			url = `./../../services/provided/${data.entityId}`;
+			break;
+
 		default:
 			break;
 	}
