@@ -24,7 +24,7 @@ namespace Services.Services {
             var p = query.Page ?? 1;
 
             IQueryable<ServiceProvided> listAll = serviceProvidedRepo.TableNoTracking
-                .Include(x => x.ServiceSubject)
+                .Include(x => x.Recivers)
                 .Where(x => x.ServiceSubjectId == query.Id);
 
             var perPage = 10;
@@ -39,7 +39,7 @@ namespace Services.Services {
 
             output.Items = items.Select(x => {
                 var dto = x.Adapt<ServiceSubjectGetUsesListItemDto>();
-                dto.ServiceSubjectTitle = x.ServiceSubject.Title;
+                dto.ReciversCount = x.Recivers.Count;
                 return dto;
             }).ToList();
 
