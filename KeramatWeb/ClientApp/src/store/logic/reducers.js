@@ -7,6 +7,7 @@ const initialState = {
 	familyMemberNeedSubjects: [],
 	familyMemberSpecialDiseaseSubjects: [],
 	familyMemberRelations: [],
+	serviceSubjects: [],
 };
 
 export default (state = initialState, { type, ...rest }) => {
@@ -40,6 +41,11 @@ export default (state = initialState, { type, ...rest }) => {
 			return {
 				...state,
 				familyMemberRelations: rest.data,
+			};
+		case actions.UPDATE_SERVICE_SUBJECTS:
+			return {
+				...state,
+				serviceSubjects: rest.data,
 			};
 
 		default:

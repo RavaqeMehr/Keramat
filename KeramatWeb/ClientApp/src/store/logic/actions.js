@@ -8,6 +8,7 @@ export const updateLogics = () => {
 		dispatch(updateFamilyMemberNeedSubjects());
 		dispatch(updateFamilyMemberSpecialDiseaseSubjects());
 		dispatch(updateFamilyMemberRelations());
+		dispatch(updateServiceSubjects());
 	};
 };
 
@@ -85,6 +86,19 @@ export const updateFamilyMemberRelations = () => {
 			.then((response) => response.data)
 			.then((data) => {
 				dispatch({ type: UPDATE_FAMILY_MEMBER_RELATIONS, data: data.data });
+			})
+			.catch(console.error);
+	};
+};
+
+export const UPDATE_SERVICE_SUBJECTS = 'LOGIC::UPDATE_SERVICE_SUBJECTS';
+export const updateServiceSubjects = () => {
+	return async (dispatch) => {
+		axios
+			.get('Services/Subjects')
+			.then((response) => response.data)
+			.then((data) => {
+				dispatch({ type: UPDATE_SERVICE_SUBJECTS, data: data.data });
 			})
 			.catch(console.error);
 	};
