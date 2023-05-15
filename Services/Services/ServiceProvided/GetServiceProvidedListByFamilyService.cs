@@ -22,7 +22,8 @@ namespace Services.Services {
 
         public async Task<WithPagination<ServiceProvidedGetListByFamilyItemDto>> Exe(GetListQuery query) {
             IQueryable<ServiceReciver> listAll = serviceReciverRepo.TableNoTracking
-               .Include(x => x.ServiceProvided).ThenInclude(x => x.ServiceSubject);
+               .Include(x => x.ServiceProvided).ThenInclude(x => x.ServiceSubject)
+               .Where(x => x.FamilyId == query.Id);
 
             var p = query.Page ?? 1;
             var perPage = 10;
