@@ -47,4 +47,8 @@ export const _EnitityType = [
 
 	enumItemMaker('NikooKar', 130, 'نیکوکار'),
 	enumItemMaker('Kheyr', 131, 'خیرات'),
+
+	enumItemMaker('ServiceSubject', 140, 'موضوع خدمت'),
+	enumItemMaker('ServiceProvided', 141, 'خدمت ارائه‌شده'),
+	enumItemMaker('ServiceReciver', 142, 'گیرنده خدمت'),
 ];
