@@ -99,7 +99,7 @@ const ProvidedForm = () => {
 	}
 
 	return (
-		<MyAccordion headers={['فرم', 'کمک‌های اهدایی', 'حذف']} defaultOpenIndex={id == 0 ? 0 : -1}>
+		<MyAccordion headers={['فرم', 'دریافت‌کنندگان', 'حذف']} defaultOpenIndex={id == 0 ? 0 : -1}>
 			{formCmp}
 			<Recivers providedId={id} />
 			<>
