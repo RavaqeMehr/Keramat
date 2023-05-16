@@ -166,7 +166,7 @@ const ChangeLogLink = ({ data }) => {
 			url = `./../../vali-nematan/families/${data.entityId}`;
 			break;
 		case 'FamilyLevel':
-			url = `./../../vali-nematan/families/${data.root1Id}`;
+			url = `./../../vali-nematan/levels/${data.entityId}`;
 			break;
 		case 'FamilyNeed':
 			url = `./../../vali-nematan/families/${data.root1Id}`;
