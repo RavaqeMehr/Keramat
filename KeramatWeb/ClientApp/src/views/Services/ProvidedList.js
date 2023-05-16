@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import MyTable from '../../components/table/MyTable';
 import { NumberWithCommas } from './../../helpers/Utils';
+import MyDateTime from './../../components/dateTime/MyDateTime';
 
 const ProvidedList = () => {
 	const navigate = useNavigate();
@@ -53,14 +54,15 @@ const ProvidedList = () => {
 
 export default ProvidedList;
 
-const cols = ['کد', 'نام', 'تلفن', 'تعداد خیرات', 'درج'];
+const cols = ['کد', 'خدمت', 'تعداد دریافت‌کنندگان', 'زمان'];
 
 const rowRenderer = (x) => (
 	<>
 		<th scope='row'>{x.id}</th>
-		<td>{x.fullName}</td>
-		<td>{x.phone}</td>
-		<td>{NumberWithCommas(x.kheyratCount)}</td>
-		<td>{x.addDateStr}</td>
+		<td>{x.serviceSubjectTitle}</td>
+		<td>{NumberWithCommas(x.reciversCount)}</td>
+		<td>
+			<MyDateTime dateTime={x.date} />
+		</td>
 	</>
 );
