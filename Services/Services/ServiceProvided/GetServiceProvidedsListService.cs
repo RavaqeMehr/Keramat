@@ -8,7 +8,7 @@ using Services.Services.Models;
 
 namespace Services.Services {
     public interface IGetServiceProvidedsListService : IScopedDependency {
-        Task<WithPagination<ServiceProvidedGetListItemDto>> Exe(GetListQuery query);
+        Task<WithPagination<ServiceProvidedGetListItemDto>> Exe(int page);
     }
 
     public class GetServiceProvidedsListService : IGetServiceProvidedsListService {
@@ -20,19 +20,18 @@ namespace Services.Services {
             this.serviceProvidedRepo = serviceProvidedRepo;
         }
 
-        public async Task<WithPagination<ServiceProvidedGetListItemDto>> Exe(GetListQuery query) {
+        public async Task<WithPagination<ServiceProvidedGetListItemDto>> Exe(int page) {
             IQueryable<ServiceProvided> listAll = serviceProvidedRepo.TableNoTracking
                 .Include(x => x.ServiceSubject)
                 .Include(x => x.Recivers);
 
-            var p = query.Page ?? 1;
             var perPage = 10;
 
             var output = new WithPagination<ServiceProvidedGetListItemDto>();
-            await output.Fill(listAll, p, perPage);
+            await output.Fill(listAll, page, perPage);
             var items = await listAll
                 .OrderByDescending(x => x.Date)
-                .Skip((p - 1) * perPage)
+                .Skip((page - 1) * perPage)
                 .Take(perPage)
                 .ToListAsync();
 

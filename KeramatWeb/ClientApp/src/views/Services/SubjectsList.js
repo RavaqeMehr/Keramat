@@ -11,7 +11,7 @@ const SubjectsList = () => {
 	return (
 		<>
 			<MyTable
-				title='لیست نیازهای اعضای خانواده'
+				title='لیست موضوعات خدمت'
 				cols={['کد', 'عنوان', 'ملاحظات']}
 				rows={serviceSubjects}
 				rowRenderer={rowRenderer}

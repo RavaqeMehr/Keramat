@@ -88,8 +88,8 @@ namespace KeramatWeb.Api.V1.Controllers {
         ////////////
 
         [HttpGet]
-        public async Task<WithPagination<ServiceProvidedGetListItemDto>> Provided([FromQuery] GetListQuery query) {
-            return await getServiceProvidedsListService.Exe(query);
+        public async Task<WithPagination<ServiceProvidedGetListItemDto>> Provided([FromQuery] int page) {
+            return await getServiceProvidedsListService.Exe(page);
         }
 
         [HttpGet]
