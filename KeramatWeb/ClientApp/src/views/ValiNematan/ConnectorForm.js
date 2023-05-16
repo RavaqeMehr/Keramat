@@ -32,12 +32,23 @@ const ConnectorForm = () => {
 			formSet((old) => ({
 				...old,
 				loading: false,
-				items: { name: thisItem.name, description: thisItem.description, phone: thisItem.phone },
+				items: { name: thisItem?.name, description: thisItem?.description, phone: thisItem?.phone },
 			}));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
 	}, [id]);
+
+	useEffect(() => {
+		if (id > 0) {
+			const thisItem = connectors.find((x) => x.id == id);
+			formSet((old) => ({
+				...old,
+				loading: false,
+				items: { name: thisItem?.name, description: thisItem?.description, phone: thisItem?.phone },
+			}));
+		}
+	}, [connectors]);
 
 	const submit = () => {
 		const dto = {
