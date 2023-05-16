@@ -31,12 +31,23 @@ const FamilyMemberSpecialDiseaseSubjectForm = () => {
 			formSet((old) => ({
 				...old,
 				loading: false,
-				items: { title: thisItem.title, description: thisItem.description },
+				items: { title: thisItem?.title, description: thisItem?.description },
 			}));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
 	}, [id]);
+
+	useEffect(() => {
+		if (id > 0) {
+			const thisItem = familyMemberSpecialDiseaseSubjects.find((x) => x.id == id);
+			formSet((old) => ({
+				...old,
+				loading: false,
+				items: { title: thisItem?.title, description: thisItem?.description },
+			}));
+		}
+	}, [familyMemberSpecialDiseaseSubjects]);
 
 	const submit = () => {
 		const dto = {

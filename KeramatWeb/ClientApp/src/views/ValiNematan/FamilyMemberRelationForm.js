@@ -31,12 +31,23 @@ const FamilyMemberRelationForm = () => {
 			formSet((old) => ({
 				...old,
 				loading: false,
-				items: { title: thisItem.title, description: thisItem.description },
+				items: { title: thisItem?.title, description: thisItem?.description },
 			}));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
 	}, [id]);
+
+	useEffect(() => {
+		if (id > 0) {
+			const thisItem = familyMemberRelations.find((x) => x.id == id);
+			formSet((old) => ({
+				...old,
+				loading: false,
+				items: { title: thisItem?.title, description: thisItem?.description },
+			}));
+		}
+	}, [familyMemberRelations]);
 
 	const submit = () => {
 		const dto = {

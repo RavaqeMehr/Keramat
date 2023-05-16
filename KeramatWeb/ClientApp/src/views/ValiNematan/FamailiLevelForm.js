@@ -32,12 +32,23 @@ const FamailiLevelForm = () => {
 			formSet((old) => ({
 				...old,
 				loading: false,
-				items: { title: thisItem.title, description: thisItem.description, level: thisItem.level },
+				items: { title: thisItem?.title, description: thisItem?.description, level: thisItem?.level },
 			}));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
 		}
 	}, [id]);
+
+	useEffect(() => {
+		if (id > 0) {
+			const thisItem = familyLevels.find((x) => x.id == id);
+			formSet((old) => ({
+				...old,
+				loading: false,
+				items: { title: thisItem?.title, description: thisItem?.description, level: thisItem?.level },
+			}));
+		}
+	}, [familyLevels]);
 
 	const submit = () => {
 		const dto = {
