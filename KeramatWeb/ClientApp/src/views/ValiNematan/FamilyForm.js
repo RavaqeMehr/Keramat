@@ -10,6 +10,7 @@ import MyAccordion from '../../components/ui/MyAccordion';
 import FamilyNeeds from './components/FamilyNeeds';
 import FamilyMembers from './components/FamilyMembers';
 import { Alert, Button } from 'reactstrap';
+import FamilyRecivedServices from './components/FamilyRecivedServices';
 
 const FamilyForm = () => {
 	const navigate = useNavigate();
@@ -165,10 +166,13 @@ const FamilyForm = () => {
 	}
 
 	return (
-		<MyAccordion headers={['فرم', 'نیازها', 'اعضا', 'حذف']} defaultOpenIndex={id == 0 ? 0 : -1}>
+		<MyAccordion
+			headers={['فرم', 'اعضا', 'نیازها', 'خدمات ارائه‌شده', 'حذف']}
+			defaultOpenIndex={id == 0 ? 0 : -1}>
 			{formCmp}
 			<FamilyNeeds familyId={id} />
 			<FamilyMembers familyId={id} />
+			<FamilyRecivedServices familyId={id} />
 			<>
 				<Alert color='warning' className='text-center'>
 					توجه داشته باشید که عملیات حذف، برگشت‌پذیر نیست و تنها زمانی امکان حذف وجود دارد که اطلاعات
