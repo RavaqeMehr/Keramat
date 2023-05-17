@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiError } from './../../helpers/NotifHelper';
 
 export const UPDATE_APP_INFO = 'GENERAL::UPDATE_APP_INFO';
 export const updateAppInfo = () => {
@@ -9,7 +10,7 @@ export const updateAppInfo = () => {
 			.then((data) => {
 				dispatch({ type: UPDATE_APP_INFO, data: data.data });
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 };
 

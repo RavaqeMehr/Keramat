@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiError } from './../../helpers/NotifHelper';
 
 export const updateLogics = () => {
 	return async (dispatch) => {
@@ -21,7 +22,7 @@ export const updateFamilyLevels = () => {
 			.then((data) => {
 				dispatch({ type: UPDATE_FAMILY_LEVELS, data: data.data });
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 };
 
@@ -34,7 +35,7 @@ export const updateConnectors = () => {
 			.then((data) => {
 				dispatch({ type: UPDATE_CONNECTORS, data: data.data });
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 };
 
@@ -47,7 +48,7 @@ export const updateFamilyNeedSubjects = () => {
 			.then((data) => {
 				dispatch({ type: UPDATE_FAMILY_NEED_SUBJECTS, data: data.data });
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 };
 
@@ -60,7 +61,7 @@ export const updateFamilyMemberNeedSubjects = () => {
 			.then((data) => {
 				dispatch({ type: UPDATE_FAMILY_MEMBER_NEED_SUBJECTS, data: data.data });
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 };
 
@@ -74,7 +75,7 @@ export const updateFamilyMemberSpecialDiseaseSubjects = () => {
 			.then((data) => {
 				dispatch({ type: UPDATE_FAMILY_MEMBER_SPECIAL_DISEASE_SUBJECTS, data: data.data });
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 };
 
@@ -87,7 +88,7 @@ export const updateFamilyMemberRelations = () => {
 			.then((data) => {
 				dispatch({ type: UPDATE_FAMILY_MEMBER_RELATIONS, data: data.data });
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 };
 
@@ -100,6 +101,6 @@ export const updateServiceSubjects = () => {
 			.then((data) => {
 				dispatch({ type: UPDATE_SERVICE_SUBJECTS, data: data.data });
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 };
