@@ -23,6 +23,7 @@ namespace KeramatWeb.Api.V1.Controllers {
         private readonly IInsertServiceReciverService insertServiceReciverService;
         private readonly IUpdateServiceReciverService updateServiceReciverService;
         private readonly IRemoveServiceReciverService removeServiceReciverService;
+        private readonly IGetFamiliesReciveStatusService getFamiliesReciveStatusService;
 
         public ServicesController(
             IGetServiceSubjectsListService getServiceSubjectsListService,
@@ -41,7 +42,8 @@ namespace KeramatWeb.Api.V1.Controllers {
             IGetServiceReciversListService getServiceReciversListService,
             IInsertServiceReciverService insertServiceReciverService,
             IUpdateServiceReciverService updateServiceReciverService,
-            IRemoveServiceReciverService removeServiceReciverService
+            IRemoveServiceReciverService removeServiceReciverService,
+            IGetFamiliesReciveStatusService getFamiliesReciveStatusService
             ) {
             this.getServiceSubjectsListService = getServiceSubjectsListService;
             this.getServiceSubjectUsesListService = getServiceSubjectUsesListService;
@@ -58,6 +60,7 @@ namespace KeramatWeb.Api.V1.Controllers {
             this.insertServiceReciverService = insertServiceReciverService;
             this.updateServiceReciverService = updateServiceReciverService;
             this.removeServiceReciverService = removeServiceReciverService;
+            this.getFamiliesReciveStatusService = getFamiliesReciveStatusService;
         }
 
         [HttpGet]
@@ -137,7 +140,12 @@ namespace KeramatWeb.Api.V1.Controllers {
 
         [HttpDelete]
         public async Task<bool> RemoveReciver([FromQuery] int id) {
-            return await removeServiceProvidedService.Exe(id);
+            return await removeServiceReciverService.Exe(id);
+        }
+
+        [HttpGet]
+        public async Task<List<GetAllNotRecivedFamiliesItemDto>> FamiliesStatus([FromQuery] int id) {
+            return await getFamiliesReciveStatusService.Exe(id);
         }
     }
 }

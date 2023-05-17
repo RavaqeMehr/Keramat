@@ -242,7 +242,7 @@ const ChangeLogLink = ({ data }) => {
 			url = `./../../services/provided/${data.entityId}`;
 			break;
 		case 'ServiceReciver':
-			url = `./../../services/provided/${data.entityId}`;
+			url = `./../../services/provided/${data.root1Id}`;
 			break;
 
 		default:
