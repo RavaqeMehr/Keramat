@@ -22,6 +22,7 @@ const MyTable = ({
 	onRowClick,
 	pagination,
 	onPageClick,
+	search,
 }) => {
 	let pn1 = 0,
 		pn2 = 0;
@@ -33,6 +34,7 @@ const MyTable = ({
 	return (
 		<Card className='mb-4'>
 			{title ? <CardHeader>{title}</CardHeader> : null}
+			{search ? <CardHeader>{search}</CardHeader> : null}
 
 			{loading ? <Loading /> : null}
 

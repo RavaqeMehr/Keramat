@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Offcanvas, OffcanvasHeader, OffcanvasBody, Button, Row, Col } from 'reactstrap';
 import InputText from './../../../components/form/InputText';
 import { NumberWithCommas } from './../../../helpers/Utils';
+import InputSearch from './../../../components/form/InputSearch';
 
 const Recivers = ({ providedId }) => {
 	const navigate = useNavigate();
@@ -113,6 +114,7 @@ const Recivers = ({ providedId }) => {
 			description: '',
 		},
 		showForm: false,
+		search: '',
 	});
 
 	return (
@@ -163,9 +165,16 @@ const Recivers = ({ providedId }) => {
 					<MyTable
 						title='لیست خانواده‌های دریافت‌نکرده'
 						cols={cols2}
-						rows={families.filter((x) => !x.serviced)}
+						rows={families.filter((x) => !x.serviced).filter((x) => x.title.indexOf(form.search) > -1)}
 						rowRenderer={(x) => rowRenderer2(x, form.items.familyId)}
 						onRowClick={(x) => formSet((old) => ({ ...old, items: { ...old.items, familyId: x.id } }))}
+						search={
+							<InputSearch
+								label='جستجو'
+								value={form.search}
+								onChange={(val) => formSet((old) => ({ ...old, search: val }))}
+							/>
+						}
 					/>
 				</OffcanvasBody>
 			</Offcanvas>
