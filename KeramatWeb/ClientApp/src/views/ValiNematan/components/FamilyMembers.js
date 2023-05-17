@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Badge, Button } from 'reactstrap';
 import MyTable from '../../../components/table/MyTable';
 import * as enums from '../../../enums';
+import { apiError } from './../../../helpers/NotifHelper';
 
 const FamilyMembers = ({ familyId }) => {
 	const navigate = useNavigate();
@@ -24,7 +25,7 @@ const FamilyMembers = ({ familyId }) => {
 			.then((x) => {
 				tblSet((old) => ({ ...old, loading: false, data: x }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 

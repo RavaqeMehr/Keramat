@@ -9,6 +9,7 @@ import MyTable from '../../../components/table/MyTable';
 import MyTableSortable from '../../../components/table/MyTableSortable';
 import { useNavigate } from 'react-router-dom';
 import MyDateTime from './../../../components/dateTime/MyDateTime';
+import { apiError } from './../../../helpers/NotifHelper';
 
 const FamilyRecivedServices = ({ familyId }) => {
 	const { serviceSubjects } = useSelector((x) => x.logic);
@@ -30,7 +31,7 @@ const FamilyRecivedServices = ({ familyId }) => {
 				const { items, ...pagination } = x;
 				tblSet((old) => ({ ...old, loading: false, data: items, pagination: pagination }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 

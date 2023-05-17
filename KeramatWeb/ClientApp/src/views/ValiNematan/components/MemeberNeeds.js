@@ -7,6 +7,7 @@ import InputText from '../../../components/form/InputText';
 import MyForm from '../../../components/form/MyForm';
 import MyTable from '../../../components/table/MyTable';
 import MyTableSortable from '../../../components/table/MyTableSortable';
+import { apiError } from './../../../helpers/NotifHelper';
 
 const MemeberNeeds = ({ familyId, familyMemberId }) => {
 	const { familyMemberNeedSubjects } = useSelector((x) => x.logic);
@@ -66,7 +67,7 @@ const MemeberNeeds = ({ familyId, familyMemberId }) => {
 					formSet((old) => ({ ...old, show: false }));
 					loadTable();
 				})
-				.catch(console.error)
+				.catch(apiError)
 				.finally(() => formSet((old) => ({ ...old, loading: false })));
 		} else {
 			const dto = {
@@ -81,7 +82,7 @@ const MemeberNeeds = ({ familyId, familyMemberId }) => {
 					formSet((old) => ({ ...old, show: false }));
 					loadTable();
 				})
-				.catch(console.error)
+				.catch(apiError)
 				.finally(() => formSet((old) => ({ ...old, loading: false })));
 		}
 	};
@@ -94,7 +95,7 @@ const MemeberNeeds = ({ familyId, familyMemberId }) => {
 				formSet((old) => ({ ...old, show: false }));
 				loadTable();
 			})
-			.catch(console.error)
+			.catch(apiError)
 			.finally(() => formSet((old) => ({ ...old, loading: false })));
 	};
 
@@ -106,7 +107,7 @@ const MemeberNeeds = ({ familyId, familyMemberId }) => {
 			.then((data) => {
 				loadTable();
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 
 	const [tbl, tblSet] = useState({
@@ -131,7 +132,7 @@ const MemeberNeeds = ({ familyId, familyMemberId }) => {
 			.then((x) => {
 				tblSet((old) => ({ ...old, loading: false, data: x, beforeSort: x, needSaveReOrder: false }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 
