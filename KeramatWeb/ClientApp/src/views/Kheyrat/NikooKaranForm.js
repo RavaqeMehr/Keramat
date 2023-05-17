@@ -7,6 +7,7 @@ import InputText from '../../components/form/InputText';
 import MyForm from '../../components/form/MyForm';
 import MyAccordion from '../../components/ui/MyAccordion';
 import RecivedsList from './RecivedsList';
+import { apiError } from './../../helpers/NotifHelper';
 
 const NikooKaranForm = () => {
 	const navigate = useNavigate();
@@ -36,7 +37,7 @@ const NikooKaranForm = () => {
 				.then((data) => {
 					formSet((old) => ({ ...old, items: data.data, loading: false }));
 				})
-				.catch(console.error)
+				.catch(apiError)
 				.finally(() => formSet((old) => ({ ...old, loading: false })));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
@@ -51,7 +52,7 @@ const NikooKaranForm = () => {
 				.then((data) => {
 					navigate(`./../${data.data}`, { replace: true, relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		} else {
 			axios
 				.put('Kheyrat/EditNikooKar', { id, ...form.items })
@@ -59,7 +60,7 @@ const NikooKaranForm = () => {
 				.then((data) => {
 					navigate(`./../`, { relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		}
 	};
 
@@ -72,7 +73,7 @@ const NikooKaranForm = () => {
 					navigate(`./../`, { relative: true });
 				}
 			})
-			.catch((e) => console.error);
+			.catch(apiError);
 	};
 
 	const formCmp = (

@@ -6,6 +6,7 @@ import { Offcanvas, OffcanvasHeader, OffcanvasBody, Button, Row, Col } from 'rea
 import InputText from './../../../components/form/InputText';
 import { NumberWithCommas } from './../../../helpers/Utils';
 import InputSearch from './../../../components/form/InputSearch';
+import { apiError } from './../../../helpers/NotifHelper';
 
 const Recivers = ({ providedId }) => {
 	const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Recivers = ({ providedId }) => {
 				const { items, ...pagination } = x;
 				tblSet((old) => ({ ...old, loading: false, data: items, pagination: pagination }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 
@@ -57,6 +58,7 @@ const Recivers = ({ providedId }) => {
 				familiesSet(x);
 			})
 			.catch((e) => {
+				apiError(e);
 				familiesSet([]);
 			});
 	};
@@ -73,7 +75,7 @@ const Recivers = ({ providedId }) => {
 				familiesSet((old) => [thisFamily, ...families.filter((x) => x.id != form.items.familyId)]);
 				formSet((old) => ({ loading: false, showForm: false, items: { ...old.items, familyId: -1 } }));
 			})
-			.catch(console.error)
+			.catch(apiError)
 			.finally(formSet((old) => ({ ...old, loading: false })));
 	};
 
@@ -85,7 +87,7 @@ const Recivers = ({ providedId }) => {
 				tblSet((old) => ({ ...old, activeId: -1, activeDescription: '' }));
 				GetPage(tbl.page);
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 
 	const removeFamily = (e) => {
@@ -99,7 +101,7 @@ const Recivers = ({ providedId }) => {
 				thisFamily.serviced = false;
 				familiesSet((old) => [thisFamily, ...families.filter((x) => x.id != tbl.activeFamilyId)]);
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 
 	const cancelEdit = (e) => {

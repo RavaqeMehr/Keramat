@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import MyTable from '../../components/table/MyTable';
 import { NumberWithCommas } from './../../helpers/Utils';
+import { apiError } from './../../helpers/NotifHelper';
 
 const NikooKaranList = () => {
 	const navigate = useNavigate();
@@ -25,7 +26,7 @@ const NikooKaranList = () => {
 				const { items, ...pagination } = x;
 				tblSet((old) => ({ ...old, loading: false, data: items, pagination: pagination }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 

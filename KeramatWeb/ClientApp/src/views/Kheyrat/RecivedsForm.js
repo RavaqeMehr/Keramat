@@ -8,6 +8,7 @@ import MyAccordion from '../../components/ui/MyAccordion';
 import RecivedsList from './RecivedsList';
 import InputText from './../../components/form/InputText';
 import { normalizeNumberInt, NumberWithCommas } from './../../helpers/Utils';
+import { apiError } from './../../helpers/NotifHelper';
 
 const RecivedsForm = () => {
 	const navigate = useNavigate();
@@ -36,7 +37,7 @@ const RecivedsForm = () => {
 				.then((data) => {
 					formSet((old) => ({ ...old, items: data.data, loading: false }));
 				})
-				.catch(console.error)
+				.catch(apiError)
 				.finally(() => formSet((old) => ({ ...old, loading: false })));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
@@ -51,7 +52,7 @@ const RecivedsForm = () => {
 				.then((data) => {
 					navigate(`./../${data.data}`, { replace: true, relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		} else {
 			axios
 				.put('Kheyrat/EditKheyr', { id, ...form.items })
@@ -59,7 +60,7 @@ const RecivedsForm = () => {
 				.then((data) => {
 					navigate(`./..`, { relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		}
 	};
 
@@ -72,7 +73,7 @@ const RecivedsForm = () => {
 					navigate(`./..`, { relative: true });
 				}
 			})
-			.catch((e) => console.error);
+			.catch(apiError);
 	};
 
 	const formCmp = (

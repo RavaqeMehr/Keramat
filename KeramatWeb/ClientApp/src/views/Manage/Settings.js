@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ReduxActions } from './../../store/index';
 import MyForm from '../../components/form/MyForm';
 import InputText from './../../components/form/InputText';
+import { apiError } from '../../helpers/NotifHelper';
 
 const Settings = () => {
 	const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Settings = () => {
 			.then((data) => {
 				dispatch(ReduxActions.generalActions.updateAppInfo());
 			})
-			.catch(console.error)
+			.catch(apiError)
 			.finally(() =>
 				formSet((old) => ({
 					...old,

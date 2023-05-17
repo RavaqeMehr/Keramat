@@ -8,6 +8,7 @@ import InputText from '../../components/form/InputText';
 import MyForm from '../../components/form/MyForm';
 import MyAccordion from '../../components/ui/MyAccordion';
 import Recivers from './components/Recivers';
+import { apiError } from './../../helpers/NotifHelper';
 
 const ProvidedForm = () => {
 	const navigate = useNavigate();
@@ -31,7 +32,7 @@ const ProvidedForm = () => {
 				.then((data) => {
 					formSet((old) => ({ ...old, items: data.data, loading: false }));
 				})
-				.catch(console.error)
+				.catch(apiError)
 				.finally(() => formSet((old) => ({ ...old, loading: false })));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
@@ -46,7 +47,7 @@ const ProvidedForm = () => {
 				.then((data) => {
 					navigate(`./../${data.data}`, { replace: true, relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		} else {
 			axios
 				.put('Services/EditProvided', { id, ...form.items })
@@ -54,7 +55,7 @@ const ProvidedForm = () => {
 				.then((data) => {
 					// navigate(`./../`, { relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		}
 	};
 
@@ -67,7 +68,7 @@ const ProvidedForm = () => {
 					navigate(`./../`, { relative: true });
 				}
 			})
-			.catch((e) => console.error);
+			.catch(apiError);
 	};
 
 	const formCmp = (

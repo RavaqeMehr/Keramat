@@ -7,6 +7,7 @@ import MyTable from '../../components/table/MyTable';
 import { _ChangeType } from '../../enums';
 import { duration2String, NumberWithCommas } from '../../helpers/Utils';
 import { _EnitityType } from './../../enums';
+import { apiError } from './../../helpers/NotifHelper';
 
 const ChangesLog = () => {
 	const navigate = useNavigate();
@@ -28,7 +29,7 @@ const ChangesLog = () => {
 				const { items, ...pagination } = x;
 				tblSet((old) => ({ ...old, loading: false, data: items, pagination: pagination }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 

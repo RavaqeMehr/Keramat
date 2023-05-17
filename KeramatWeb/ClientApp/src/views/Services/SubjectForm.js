@@ -10,6 +10,7 @@ import MyAccordion from '../../components/ui/MyAccordion';
 import { ReduxActions } from '../../store';
 import { NumberWithCommas } from './../../helpers/Utils';
 import MyDateTime from './../../components/dateTime/MyDateTime';
+import { apiError } from './../../helpers/NotifHelper';
 
 const SubjectForm = () => {
 	const navigate = useNavigate();
@@ -58,7 +59,7 @@ const SubjectForm = () => {
 					dispatch(await ReduxActions.logicActions.updateServiceSubjects());
 					navigate(`./../${data.data}`, { replace: true, relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		} else {
 			axios
 				.put('Services/EditSubject', { id, ...form.items })
@@ -67,7 +68,7 @@ const SubjectForm = () => {
 					dispatch(await ReduxActions.logicActions.updateServiceSubjects());
 					navigate(`./../`, { relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		}
 	};
 
@@ -88,7 +89,7 @@ const SubjectForm = () => {
 				const { items, ...pagination } = x;
 				tblSet((old) => ({ ...old, loading: false, data: items, pagination: pagination }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 
@@ -106,7 +107,7 @@ const SubjectForm = () => {
 					navigate(`./../`, { relative: true });
 				}
 			})
-			.catch((e) => console.error);
+			.catch(apiError);
 	};
 
 	const formCmp = (

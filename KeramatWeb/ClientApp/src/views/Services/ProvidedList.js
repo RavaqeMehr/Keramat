@@ -5,6 +5,7 @@ import axios from 'axios';
 import MyTable from '../../components/table/MyTable';
 import { NumberWithCommas } from './../../helpers/Utils';
 import MyDateTime from './../../components/dateTime/MyDateTime';
+import { apiError } from './../../helpers/NotifHelper';
 
 const ProvidedList = () => {
 	const navigate = useNavigate();
@@ -25,7 +26,7 @@ const ProvidedList = () => {
 				const { items, ...pagination } = x;
 				tblSet((old) => ({ ...old, loading: false, data: items, pagination: pagination }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 
