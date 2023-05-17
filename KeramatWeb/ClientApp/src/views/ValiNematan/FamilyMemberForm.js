@@ -11,6 +11,7 @@ import MemeberNeeds from './components/MemeberNeeds';
 import MemeberSpecialDiseases from './components/MemeberSpecialDiseases';
 import InputSelect from './../../components/form/InputSelect';
 import InputSwitch from './../../components/form/InputSwitch';
+import { apiError } from './../../helpers/NotifHelper';
 
 const FamilyMemberForm = () => {
 	const navigate = useNavigate();
@@ -73,7 +74,7 @@ const FamilyMemberForm = () => {
 				.then((data) => {
 					formSet((old) => ({ ...old, items: { ...old.items, ...data.data }, loading: false }));
 				})
-				.catch(console.error)
+				.catch(apiError)
 				.finally(() => formSet((old) => ({ ...old, loading: false })));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
@@ -92,7 +93,7 @@ const FamilyMemberForm = () => {
 				.then((data) => {
 					navigate(`./../${data.data}`, { replace: true, relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		} else {
 			axios
 				.put('ValiNematan/EditMember', form.items)
@@ -100,7 +101,7 @@ const FamilyMemberForm = () => {
 				.then((data) => {
 					navigate(`./../`, { relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		}
 	};
 
@@ -113,7 +114,7 @@ const FamilyMemberForm = () => {
 					navigate(`./../`, { relative: true });
 				}
 			})
-			.catch((e) => console.error);
+			.catch(apiError);
 	};
 
 	const [deathDateInputMode, deathDateInputModeSet] = useState({ mode: -1, text: '' });

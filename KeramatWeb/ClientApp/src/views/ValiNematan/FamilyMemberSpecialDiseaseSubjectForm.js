@@ -10,6 +10,7 @@ import MyTable from '../../components/table/MyTable';
 import MyAccordion from '../../components/ui/MyAccordion';
 import { Button, Alert } from 'reactstrap';
 import MemberUsesTable from './components/MemberUsesTable';
+import { apiError } from './../../helpers/NotifHelper';
 
 const FamilyMemberSpecialDiseaseSubjectForm = () => {
 	const navigate = useNavigate();
@@ -62,7 +63,7 @@ const FamilyMemberSpecialDiseaseSubjectForm = () => {
 					dispatch(await ReduxActions.logicActions.updateFamilyMemberSpecialDiseaseSubjects());
 					navigate(`./../${data.data}`, { replace: true, relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		} else {
 			axios
 				.put('ValiNematan/EditFamilyMemberSpecialDiseaseSubject', { id, ...dto })
@@ -71,7 +72,7 @@ const FamilyMemberSpecialDiseaseSubjectForm = () => {
 					dispatch(await ReduxActions.logicActions.updateFamilyMemberSpecialDiseaseSubjects());
 					navigate(`./../`, { relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		}
 	};
 
@@ -92,7 +93,7 @@ const FamilyMemberSpecialDiseaseSubjectForm = () => {
 				const { items, ...pagination } = x;
 				tblSet((old) => ({ ...old, loading: false, data: items, pagination: pagination }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 
@@ -110,7 +111,7 @@ const FamilyMemberSpecialDiseaseSubjectForm = () => {
 					navigate(`./../`, { relative: true });
 				}
 			})
-			.catch((e) => console.error);
+			.catch(apiError);
 	};
 
 	return (

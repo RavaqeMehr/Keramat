@@ -11,6 +11,7 @@ import FamilyNeeds from './components/FamilyNeeds';
 import FamilyMembers from './components/FamilyMembers';
 import { Alert, Button } from 'reactstrap';
 import FamilyRecivedServices from './components/FamilyRecivedServices';
+import { apiError } from './../../helpers/NotifHelper';
 
 const FamilyForm = () => {
 	const navigate = useNavigate();
@@ -41,7 +42,7 @@ const FamilyForm = () => {
 				.then((data) => {
 					formSet((old) => ({ ...old, items: data.data, loading: false }));
 				})
-				.catch(console.error)
+				.catch(apiError)
 				.finally(() => formSet((old) => ({ ...old, loading: false })));
 		} else {
 			formSet((old) => ({ ...old, loading: false }));
@@ -64,7 +65,7 @@ const FamilyForm = () => {
 				.then((data) => {
 					navigate(`./../${data.data}`, { replace: true, relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		} else {
 			axios
 				.put('ValiNematan/Edit', { id, ...dto })
@@ -72,7 +73,7 @@ const FamilyForm = () => {
 				.then((data) => {
 					navigate(`./../`, { relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		}
 	};
 
@@ -85,7 +86,7 @@ const FamilyForm = () => {
 					navigate(`./../`, { relative: true });
 				}
 			})
-			.catch((e) => console.error);
+			.catch(apiError);
 	};
 
 	const formCmp = (

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Badge, Button } from 'reactstrap';
 import MyTable from '../../components/table/MyTable';
+import { apiError } from './../../helpers/NotifHelper';
 
 const FamiliesList = () => {
 	const navigate = useNavigate();
@@ -25,7 +26,7 @@ const FamiliesList = () => {
 				const { items, ...pagination } = x;
 				tblSet((old) => ({ ...old, loading: false, cols: cols, data: items, pagination: pagination }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 

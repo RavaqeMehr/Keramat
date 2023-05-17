@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import MyTableSortable from '../../components/table/MyTableSortable';
 import { ReduxActions } from '../../store';
+import { apiError } from './../../helpers/NotifHelper';
 
 const FamilyMemberRelationsList = () => {
 	const navigate = useNavigate();
@@ -32,7 +33,7 @@ const FamilyMemberRelationsList = () => {
 			.then((data) => {
 				dispatch(ReduxActions.logicActions.updateFamilyMemberRelations());
 			})
-			.catch(console.error);
+			.catch(apiError);
 	};
 
 	useEffect(() => {

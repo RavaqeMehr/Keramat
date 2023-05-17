@@ -10,6 +10,7 @@ import MyTable from '../../components/table/MyTable';
 import MyAccordion from '../../components/ui/MyAccordion';
 import { Button, Alert } from 'reactstrap';
 import FamilyUsesTable from './components/FamilyUsesTable';
+import { apiError } from './../../helpers/NotifHelper';
 
 const ConnectorForm = () => {
 	const navigate = useNavigate();
@@ -63,7 +64,7 @@ const ConnectorForm = () => {
 					dispatch(await ReduxActions.logicActions.updateConnectors());
 					navigate(`./../${data.data}`, { replace: true, relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		} else {
 			axios
 				.put('ValiNematan/EditConnector', { id, ...dto })
@@ -72,7 +73,7 @@ const ConnectorForm = () => {
 					dispatch(await ReduxActions.logicActions.updateConnectors());
 					navigate(`./../`, { relative: true });
 				})
-				.catch(console.error);
+				.catch(apiError);
 		}
 	};
 
@@ -93,7 +94,7 @@ const ConnectorForm = () => {
 				const { items, ...pagination } = x;
 				tblSet((old) => ({ ...old, loading: false, data: items, pagination: pagination }));
 			})
-			.catch((e) => {})
+			.catch(apiError)
 			.finally(() => tblSet((old) => ({ ...old, loading: false })));
 	};
 
@@ -111,7 +112,7 @@ const ConnectorForm = () => {
 					navigate(`./../`, { relative: true });
 				}
 			})
-			.catch((e) => console.error);
+			.catch(apiError);
 	};
 
 	return (
