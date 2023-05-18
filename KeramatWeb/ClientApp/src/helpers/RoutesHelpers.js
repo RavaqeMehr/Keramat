@@ -5,7 +5,7 @@ export const useCurrentRoute = () => {
 	const location = useLocation();
 	try {
 		const [{ route }] = matchRoutes(routes, location);
-		return route;
+		return { route, location };
 	} catch (error) {
 		return null;
 	}
