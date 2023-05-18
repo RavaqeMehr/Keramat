@@ -171,8 +171,8 @@ const FamilyForm = () => {
 			headers={['فرم', 'اعضا', 'نیازها', 'خدمات ارائه‌شده', 'حذف']}
 			defaultOpenIndex={id == 0 ? 0 : -1}>
 			{formCmp}
-			<FamilyNeeds familyId={id} />
 			<FamilyMembers familyId={id} />
+			<FamilyNeeds familyId={id} />
 			<FamilyRecivedServices familyId={id} />
 			<>
 				<Alert color='warning' className='text-center'>
