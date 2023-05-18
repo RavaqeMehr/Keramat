@@ -1,6 +1,5 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Common.Utilities;
 using Frameworks.Configurations;
 using Frameworks.Middlewares;
 using Frameworks.Swagger;
@@ -66,15 +65,19 @@ try {
 
     app.MapFallbackToFile("index.html");
 
-    serviceProvider.GetRequiredService<ILoadAppSettingsService>().Exe().ConfigureAwait(false);
+    using (var tmpScope = serviceProvider.CreateScope()) {
+        tmpScope.ServiceProvider.GetRequiredService<ILoadAppSettingsService>().Exe().ConfigureAwait(false);
+    }
 
     app.Run();
 }
 catch (Exception e) {
-    Console.Write("Error! \n{0}", e.ToJSON());
+    Console.Write("Error! \n{0}", e.Message);
 }
 finally {
-
+    app.Lifetime.StopApplication();
 }
+
+Environment.Exit(110);
 
 
