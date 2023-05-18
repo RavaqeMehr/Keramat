@@ -7,7 +7,7 @@ using Services.Common;
 using Services.ValiNematan.Models;
 
 namespace Services.ValiNematan {
-    public interface IGetFamiliesListService : ITransientDependency {
+    public interface IGetFamiliesListService : IScopedDependency {
         Task<WithPagination<GetFamiliesListItemDto>> Search(GetFamiliesListQuery query);
         //Task<List<GetFamiliesListItemDto>> SearchPro(string search, int page=1);
     }

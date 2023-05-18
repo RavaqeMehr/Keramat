@@ -6,19 +6,16 @@ using Entities.Common;
 using Services.AppUsingLogs.Models;
 
 namespace Services.AppUsingLogs {
-    public interface IAddEntityChangeService : ITransientDependency {
+    public interface IAddEntityChangeService : IScopedDependency {
         Task Exe<T>(AddEntityChangeInputs<T> inputs);
     }
 
     public class AddEntityChangeService : IAddEntityChangeService {
-        private readonly IAppSessionService appSessionService;
         private readonly IRepository<EntityChanges> entityChangesRepo;
 
         public AddEntityChangeService(
-            IAppSessionService appSessionService,
             IRepository<EntityChanges> entityChangesRepo
             ) {
-            this.appSessionService = appSessionService;
             this.entityChangesRepo = entityChangesRepo;
         }
 
@@ -30,7 +27,6 @@ namespace Services.AppUsingLogs {
 
             if (diff.Count > 0) {
                 var item = new EntityChanges {
-                    AppSessionId = appSessionService.ThisSession.Id,
                     Date = now,
                     DateY = nowFa.Year,
                     DateM = nowFa.Month,

@@ -7,10 +7,8 @@ using Frameworks.Swagger;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
 using Services.AppLayer;
-using Services.AppUsingLogs;
 
 IServiceProvider serviceProvider;
-IAppSessionService appSessionService;
 
 var filesPath = @"data\files";
 if (!Directory.Exists(filesPath)) {
@@ -32,7 +30,6 @@ builder.Services.AddSwagger();
 var app = builder.Build();
 
 serviceProvider = app.Services;
-appSessionService = serviceProvider.GetRequiredService<IAppSessionService>();
 
 try {
 
@@ -69,10 +66,7 @@ try {
 
     app.MapFallbackToFile("index.html");
 
-
-    appSessionService.Start().ConfigureAwait(false);
     serviceProvider.GetRequiredService<ILoadAppSettingsService>().Exe().ConfigureAwait(false);
-
 
     app.Run();
 }
@@ -80,7 +74,7 @@ catch (Exception e) {
     Console.Write("Error! \n{0}", e.ToJSON());
 }
 finally {
-    appSessionService.Stop().ConfigureAwait(false);
+
 }
 
 

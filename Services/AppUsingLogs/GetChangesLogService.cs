@@ -8,7 +8,7 @@ using Services.Common;
 
 namespace Services.AppUsingLogs {
     public interface IGetChangesLogService : IScopedDependency {
-        Task<WithPagination<EntityChangesDto>> Exe(GetChangesLogQuery query);
+        Task<WithPagination<EntityChangesDto>> Exe(int page = 1);
     }
 
     public class GetChangesLogService : IGetChangesLogService {
@@ -20,19 +20,16 @@ namespace Services.AppUsingLogs {
             this.entityChangesRepo = entityChangesRepo;
         }
 
-        public async Task<WithPagination<EntityChangesDto>> Exe(GetChangesLogQuery query) {
+        public async Task<WithPagination<EntityChangesDto>> Exe(int page = 1) {
             IQueryable<EntityChanges> listAll = entityChangesRepo.TableNoTracking
                .OrderByDescending(x => x.Date);
-            if (query.AppSessionId is not null) {
-                listAll = listAll.Where(x => x.AppSessionId == query.AppSessionId);
-            }
 
             var perPage = 10;
 
             var output = new WithPagination<EntityChangesDto>();
-            await output.Fill(listAll, query.Page, perPage);
+            await output.Fill(listAll, page, perPage);
             var items = await listAll
-                .Skip((query.Page - 1) * perPage)
+                .Skip((page - 1) * perPage)
                 .Take(perPage)
                 .ToListAsync();
 
