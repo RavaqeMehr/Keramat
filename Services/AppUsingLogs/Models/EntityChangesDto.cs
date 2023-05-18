@@ -3,7 +3,6 @@
 namespace Services.AppUsingLogs.Models {
     public class EntityChangesDto {
         public int Id { get; set; }
-        public int AppSessionId { get; set; }
         public DateTime Date { get; set; }
         public ChangeType ChangeType { get; set; }
         public EnitityType EnitityType { get; set; }

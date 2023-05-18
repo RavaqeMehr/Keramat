@@ -56,7 +56,7 @@ const ChangesLog = () => {
 
 export default ChangesLog;
 
-const cols = ['کد', 'نشست', 'زمان', 'نوع', 'مورد', 'تغییرات'];
+const cols = ['کد', 'زمان', 'نوع', 'مورد', 'تغییرات'];
 
 const rowRenderer = (x, open = false) =>
 	open ? (
@@ -77,7 +77,6 @@ const rowRenderer = (x, open = false) =>
 	) : (
 		<>
 			<th scope='row'>{x.id}</th>
-			<td>{x.appSessionId}</td>
 			<td>
 				<MyDateTime dateTime={x.date} showTime timeOnNewLine showTimeAgo={false} />
 			</td>
