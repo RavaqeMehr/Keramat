@@ -1,6 +1,7 @@
 ﻿using Common;
 using Data;
 using Entities.AppSettings;
+using Microsoft.EntityFrameworkCore;
 using Services.AppLayer.Models;
 
 namespace Services.AppLayer {
@@ -27,7 +28,7 @@ namespace Services.AppLayer {
             _slogan.Val = dto.CharitySlogan;
             await settingsRepo.UpdateRangeAsync(new[] { _name, _slogan });
 
-            await appSettingsService.Load();
+            appSettingsService.Set(await settingsRepo.TableNoTracking.ToListAsync());
             return true;
         }
     }

@@ -71,7 +71,9 @@ try {
 
 
     appSessionService.Start().ConfigureAwait(false);
-    serviceProvider.GetRequiredService<IAppSettingsService>().Load().ConfigureAwait(false);
+    serviceProvider.GetRequiredService<ILoadAppSettingsService>().Exe().ConfigureAwait(false);
+
+
     app.Run();
 }
 catch (Exception e) {
