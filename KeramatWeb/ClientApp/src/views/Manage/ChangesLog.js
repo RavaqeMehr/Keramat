@@ -11,7 +11,6 @@ import { apiError } from './../../helpers/NotifHelper';
 
 const ChangesLog = () => {
 	const navigate = useNavigate();
-	const { id } = useParams();
 
 	const [tbl, tblSet] = useState({
 		page: 1,
@@ -23,7 +22,7 @@ const ChangesLog = () => {
 	const GetPage = (page) => {
 		tblSet((old) => ({ ...old, loading: true }));
 		axios
-			.get('Manage/ChangesLog', { params: { page, appSessionId: id } })
+			.get('Manage/ChangesLog', { params: { page } })
 			.then((x) => x.data.data)
 			.then((x) => {
 				const { items, ...pagination } = x;
@@ -35,14 +34,14 @@ const ChangesLog = () => {
 
 	useEffect(() => {
 		GetPage(1);
-	}, [id]);
+	}, []);
 
 	const [open, openSet] = useState(-1);
 
 	return (
 		<>
 			<MyTable
-				title='لیست نشست‌ها'
+				title='لیست تغییرات'
 				cols={cols}
 				rows={tbl.data}
 				pagination={tbl.pagination}
@@ -256,7 +255,7 @@ const ChangeLogLink = ({ data }) => {
 			color='secondary'
 			onClick={(e) => {
 				e.stopPropagation();
-				console.log(data, _type);
+				// console.log(data, _type);
 				if (url) {
 					navigate(url, { relative: true });
 				}

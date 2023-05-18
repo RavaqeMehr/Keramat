@@ -42,7 +42,6 @@ const _Navs = [
 	{
 		title: 'مدیریت',
 		items: [
-			{ title: 'نشست‌ها', to: '/manage/sessions' },
 			{ title: 'لاگ تغییرات', to: '/manage/changes-log' },
 			{ title: 'تنظیمات', to: '/manage/settings' },
 		],

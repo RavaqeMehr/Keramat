@@ -13,7 +13,6 @@ import FamilyMemberSpecialDiseaseSubjectsList from '../views/ValiNematan/FamilyM
 import AboutApp from './../views/About/AboutApp';
 import AboutIssues from './../views/About/AboutIssues';
 import Donation from './../views/Donation';
-import Sesseions from './../views/Manage/Sesseions';
 import Settings from './../views/Manage/Settings';
 import ConnectorForm from './../views/ValiNematan/ConnectorForm';
 import ConnectorsList from './../views/ValiNematan/ConnectorsList';
@@ -98,7 +97,6 @@ const routes = [
 	{ path: '/services/provided', name: 'لیست خدمات ارائه‌شده', element: ProvidedList, exact: true },
 	{ path: '/services/provided/:id', name: 'فرم خدمت ارائه‌شده', element: ProvidedForm, exact: true },
 	///////////
-	{ path: '/manage/sessions', name: 'نشست‌ها', element: Sesseions, exact: true },
 	{ path: '/manage/changes-log/:id?', name: 'لاگ تغییرات', element: ChangesLog },
 	{ path: '/manage/settings', name: 'تنظیمات', element: Settings, exact: true },
 	///////////
