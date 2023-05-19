@@ -1,4 +1,4 @@
-﻿![](KeramatWeb/ClientApp/public/assets/images/emam-hasan.jpg)
+![](KeramatWeb/ClientApp/public/assets/images/emam-hasan.jpg)
 
 # اپلیکیشن کرامت
 
@@ -8,7 +8,13 @@
 
 #### امکانات
 
-- به زودی
+- مدیریت خانواده‌های تحت پوشش (ولی‌نعمتان)
+- مدیریت اعضای خانواده‌ها
+- مدیریت نیازهای خانواده‌ها و اعضا
+- مدیریت بیماری‌های خاص اعضا
+- مدیریت خیرین
+- مدیریت خیرات جمع‌آوری شده
+- مدیریت فعالیت‌ها
 
 #### راهنمای استفاده
 
@@ -21,3 +27,6 @@
 #### مشارکت
 
 - به زودی
+
+![](KeramatWeb/ClientApp/public/assets/images/donation0.png)  
+[حمایت مالی از پروژه](https://zarinp.al/ravaqemehr.ir)
