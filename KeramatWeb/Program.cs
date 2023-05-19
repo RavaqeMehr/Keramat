@@ -6,6 +6,8 @@ using Frameworks.Swagger;
 using Services.AppLayer;
 using System.Diagnostics;
 
+//DateTimeConfig.Set();
+
 IServiceProvider serviceProvider;
 
 var builder = WebApplication.CreateBuilder(args);
