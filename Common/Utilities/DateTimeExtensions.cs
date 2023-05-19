@@ -1,19 +1,30 @@
 ﻿using System.Globalization;
 
 namespace Common.Utilities {
+
+    public class MyDateTime {
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public int Day { get; set; }
+        public int Hour { get; set; }
+        public int Minute { get; set; }
+        public int Second { get; set; }
+    }
+
     public static class DateTimeExtensions {
 
-        public static DateTime ToPersianDateTime(this DateTime dateTime) {
-            PersianCalendar pc = new PersianCalendar();
-            var persianDate = new DateTime(
-                pc.GetYear(dateTime),
-                pc.GetMonth(dateTime),
-                pc.GetDayOfMonth(dateTime),
-                pc.GetHour(dateTime),
-                pc.GetMinute(dateTime),
-                pc.GetSecond(dateTime),
-                calendar: pc
-                );
+        public static MyDateTime ToPersianDateTime(this DateTime dateTime) {
+            var pc = new PersianCalendar();
+
+            var persianDate = new MyDateTime {
+                Year = pc.GetYear(dateTime),
+                Month = pc.GetMonth(dateTime),
+                Day = pc.GetDayOfMonth(dateTime),
+                Hour = pc.GetHour(dateTime),
+                Minute = pc.GetMinute(dateTime),
+                Second = pc.GetSecond(dateTime)
+            };
+
             return persianDate;
         }
 
