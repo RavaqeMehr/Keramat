@@ -10,6 +10,11 @@ using System.Diagnostics;
 
 IServiceProvider serviceProvider;
 
+var filesPath = @"data";
+if (!Directory.Exists(filesPath)) {
+    Directory.CreateDirectory(filesPath);
+}
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
