@@ -39,6 +39,19 @@ const ProvidedForm = () => {
 		}
 	}, [id]);
 
+	useEffect(() => {
+		formSet((old) => ({
+			...old,
+			items: {
+				...old.items,
+				serviceSubjectId:
+					old.items.serviceSubjectId == null && serviceSubjects.length > 0
+						? serviceSubjects[0].id
+						: old.items.serviceSubjectId ?? null,
+			},
+		}));
+	}, [serviceSubjects]);
+
 	const submit = () => {
 		if (id == 0) {
 			axios

@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Alert, Button } from 'reactstrap';
 import MyAccordion from '../../components/ui/MyAccordion';
 import * as enums from '../../enums';
-import MyForm from './../../components/form/MyForm';
-import InputText from './../../components/form/InputText';
-import { Alert, Button } from 'reactstrap';
-import MemeberNeeds from './components/MemeberNeeds';
-import MemeberSpecialDiseases from './components/MemeberSpecialDiseases';
 import InputSelect from './../../components/form/InputSelect';
 import InputSwitch from './../../components/form/InputSwitch';
+import InputText from './../../components/form/InputText';
+import MyForm from './../../components/form/MyForm';
 import { apiError } from './../../helpers/NotifHelper';
+import MemeberNeeds from './components/MemeberNeeds';
+import MemeberSpecialDiseases from './components/MemeberSpecialDiseases';
 
 const FamilyMemberForm = () => {
 	const navigate = useNavigate();
 	const { id, familyId } = useParams();
-	const { familyMemberNeedSubjects, familyMemberSpecialDiseaseSubjects, familyMemberRelations } = useSelector(
-		(x) => x.logic
-	);
+	const { familyMemberRelations } = useSelector((x) => x.logic);
 
 	const [form, formSet] = useState({
 		loading: true,
@@ -57,12 +55,19 @@ const FamilyMemberForm = () => {
 	});
 
 	useEffect(() => {
-		if (form.items.familyMemberRelationId == null && familyMemberRelations.length > 0) {
-			formSet((old) => ({
-				...old,
-				items: { ...old.items, familyMemberRelationId: familyMemberRelations[0].id },
-			}));
-		}
+		formSet((old) => ({
+			...old,
+			items: {
+				...old.items,
+				familyMemberRelationId:
+					old.items.familyMemberRelationId == null && familyMemberRelations.length > 0
+						? familyMemberRelations[0].id
+						: old.items.familyMemberRelationId ?? null,
+				gender: old.items.gender ?? enums._Gender[0].val,
+				maritalStatus: old.items.maritalStatus ?? enums._MaritalStatus[0].val,
+				liveStatus: old.items.liveStatus ?? enums._LiveStatus[0].val,
+			},
+		}));
 	}, [familyMemberRelations]);
 
 	useEffect(() => {

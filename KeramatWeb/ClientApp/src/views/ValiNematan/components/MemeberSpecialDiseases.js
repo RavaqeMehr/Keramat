@@ -5,7 +5,6 @@ import { Button } from 'reactstrap';
 import InputSelect from '../../../components/form/InputSelect';
 import InputText from '../../../components/form/InputText';
 import MyForm from '../../../components/form/MyForm';
-import MyTable from '../../../components/table/MyTable';
 import MyTableSortable from '../../../components/table/MyTableSortable';
 import { apiError } from './../../../helpers/NotifHelper';
 
@@ -22,6 +21,20 @@ const MemeberSpecialDiseases = ({ familyId, familyMemberId }) => {
 			description: '',
 		},
 	});
+
+	useEffect(() => {
+		formSet((old) => ({
+			...old,
+			items: {
+				...old.items,
+				familyMemberSpecialDiseaseSubjectId:
+					old.items.familyMemberSpecialDiseaseSubjectId == null &&
+					familyMemberSpecialDiseaseSubjects.length > 0
+						? familyMemberSpecialDiseaseSubjects[0].id
+						: old.items.familyMemberSpecialDiseaseSubjectId ?? null,
+			},
+		}));
+	}, [familyMemberSpecialDiseaseSubjects]);
 
 	const toggleForm = () => {
 		if (remainingSpecialDiseases.length > 0) {

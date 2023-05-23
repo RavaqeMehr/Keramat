@@ -1,18 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Button } from 'reactstrap';
-import InputSelect from '../../../components/form/InputSelect';
-import InputText from '../../../components/form/InputText';
-import MyForm from '../../../components/form/MyForm';
-import MyTable from '../../../components/table/MyTable';
-import MyTableSortable from '../../../components/table/MyTableSortable';
 import { useNavigate } from 'react-router-dom';
+import MyTable from '../../../components/table/MyTable';
 import MyDateTime from './../../../components/dateTime/MyDateTime';
 import { apiError } from './../../../helpers/NotifHelper';
 
 const FamilyRecivedServices = ({ familyId }) => {
-	const { serviceSubjects } = useSelector((x) => x.logic);
 	const navigate = useNavigate();
 
 	const [tbl, tblSet] = useState({

@@ -49,6 +49,24 @@ const FamilyForm = () => {
 		}
 	}, [id]);
 
+	useEffect(() => {
+		console.log(form);
+		formSet((old) => ({
+			...old,
+			items: {
+				...old.items,
+				levelId:
+					old.items.levelId == null && familyLevels.length > 0
+						? familyLevels[0].id
+						: old.items.levelId ?? null,
+				connectorId:
+					old.items.connectorId == null && connectors.length > 0
+						? connectors[0].id
+						: old.items.connectorId ?? null,
+			},
+		}));
+	}, [familyLevels, connectors]);
+
 	const submit = () => {
 		console.log('submit');
 
@@ -57,6 +75,7 @@ const FamilyForm = () => {
 			levelId: +form.items.levelId > 0 ? form.items.levelId : null,
 			connectorId: +form.items.connectorId > 0 ? form.items.connectorId : null,
 		};
+		console.log(form, dto);
 
 		if (id == 0) {
 			axios
