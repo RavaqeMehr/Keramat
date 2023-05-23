@@ -36,6 +36,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddCustomApiVersioning();
 builder.Services.AddSwagger();
 
+builder.Services.AddScoped(x => new GithubApiClient.GithubApiClient("RavaqeMehr", "Keramat"));
+
 var app = builder.Build();
 
 serviceProvider = app.Services;

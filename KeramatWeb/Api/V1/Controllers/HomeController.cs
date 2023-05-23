@@ -7,11 +7,14 @@ namespace KeramatWeb.Api.V1.Controllers {
     [ApiVersion("1")]
     public class HomeController : BaseApi {
         private readonly IGetAppInfoService getAppInfoService;
+        private readonly ICheckUpdateService checkUpdateService;
 
         public HomeController(
-            IGetAppInfoService getAppInfoService
+            IGetAppInfoService getAppInfoService,
+            ICheckUpdateService checkUpdateService
             ) {
             this.getAppInfoService = getAppInfoService;
+            this.checkUpdateService = checkUpdateService;
         }
 
         [HttpGet]
@@ -27,6 +30,11 @@ namespace KeramatWeb.Api.V1.Controllers {
         [HttpDelete]
         public void Exit() {
             Environment.Exit(Index());
+        }
+
+        [HttpGet]
+        public async Task<CheckUpdateDto> CheckUpdate() {
+            return await checkUpdateService.Exe();
         }
     }
 }
