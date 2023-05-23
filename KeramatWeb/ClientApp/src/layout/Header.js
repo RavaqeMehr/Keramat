@@ -13,18 +13,13 @@ const Header = () => {
 
 	return (
 		<Navbar color='light' light>
-			{/* <NavbarToggler
-				onClick={() => {
-					collapseSidebar();
-				}}
-				className='mx-2'
-			/> */}
-
 			<NavbarBrand tag={Link} to='/'>
 				{appInfo.charityName}
 			</NavbarBrand>
 			<NavbarText className='text-dark'>{currentRoute?.route.name}</NavbarText>
-			<NavbarText>{appName}</NavbarText>
+			<NavbarText>
+				{appName} <small>{appInfo.appVersion}</small>
+			</NavbarText>
 		</Navbar>
 	);
 };

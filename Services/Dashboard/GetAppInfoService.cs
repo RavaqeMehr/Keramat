@@ -20,7 +20,8 @@ namespace Services.Dashboard {
         public GetAppInfoDto Exe() {
             return new GetAppInfoDto {
                 CharityName = appSettingsService.Get(AppSettingsKeys.Charity_Name) ?? "",
-                CharitySlogan = appSettingsService.Get(AppSettingsKeys.Charity_Slogan) ?? ""
+                CharitySlogan = appSettingsService.Get(AppSettingsKeys.Charity_Slogan) ?? "",
+                AppVersion = appSettingsService.Get(AppSettingsKeys.App_Version) ?? "1.0"
             };
         }
     }

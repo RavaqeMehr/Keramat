@@ -37,6 +37,15 @@ namespace Services.DataInitializer {
                 ver = 1;
             }
 
+            if (ver == 1) {
+                settingsAdd.Add(new AppSetting {
+                    Key = AppSettingsKeys.App_Version,
+                    Val = "1.1"
+                });
+
+                ver = 2;
+            }
+
 
             if (settingsAdd.Count > 0) {
                 await settingsRepo.AddRangeAsync(settingsAdd);
