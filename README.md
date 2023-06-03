@@ -6,6 +6,9 @@
 
 مناسب برای نصب و استفاده بر روی یک کامپیوتر
 
+
+[![Github All Releases](https://img.shields.io/github/downloads/RavaqeMehr/Keramat/total.svg)]()
+
 #### امکانات
 
 - مدیریت خانواده‌های تحت پوشش (ولی‌نعمتان)
