@@ -1,6 +1,6 @@
 ![](KeramatWeb/ClientApp/public/assets/images/emam-hasan.jpg)
 
-# اپلیکیشن کرامت
+# اپلیکیشن کرامت ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/RavaqeMehr/Keramat)
 
 ### جهت مدیریت مجموعه‌های کوچک خیریه
 
