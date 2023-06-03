@@ -2,10 +2,7 @@
 
 # اپلیکیشن کرامت 
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/RavaqeMehr/Keramat)
-
-[![Github All Releases](https://img.shields.io/github/downloads/RavaqeMehr/Keramat/total.svg)]()
-
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/RavaqeMehr/Keramat) [![Github All Releases](https://img.shields.io/github/downloads/RavaqeMehr/Keramat/total.svg)]()
 
 ### جهت مدیریت مجموعه‌های کوچک خیریه
 
